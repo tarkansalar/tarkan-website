@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Page Title -->
+    <title>Tarkan Salar - The Blue Ocean Guy | Fractional COO</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide-react@0.378.0/dist/umd/lucide.min.js"></script>
+
+    <!-- Custom Tailwind Configuration -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            // Re-defining fonts to match our style.css
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              display: ["Anton", "sans-serif"],
+            },
+            // Defining brand colors for utility classes
+            colors: {
+              "brand-primary": "#D8F911",
+              "brand-dark": "#0D0D0D",
+              "brand-white": "#FFFFFF",
+              "brand-red": "#FF4D4D",
+              "brand-orange": "#F2AD09",
+              "brand-green": "#16BC53",
+              "brand-cyan": "#42D1FF",
+            },
+            spacing: {
+              128: "32rem",
+              144: "36rem",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+
+  <body class="bg-brand-dark text-brand-white font-sans antialiased">
+    <!-- 
+      ======================================
+      HEADER & NAVIGATION
+      ======================================
+    -->
+    <header class="bg-brand-dark/90 backdrop-blur-md sticky top-0 z-50 w-full">
+      <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+        <!-- Logo / Brand Name -->
+        <a href="#" class="text-xl font-bold text-brand-primary font-display tracking-wide">
+          TARKAN: THE BLUE OCEAN GUY
+        </a>
+
+        <!-- Desktop Navigation -->
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="#about" class="hover:text-brand-primary transition-colors">About Tarkan</a>
+          <a href="#diagnostic" class="hover:text-brand-primary transition-colors">Diagnostic</a>
+          <a href="#results" class="hover:text-brand-primary transition-colors">Results</a>
+          <a href="#book-call" class="btn btn-secondary">Book a 1:1 Call</a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button
+          id="mobile-menu-btn"
+          class="md:hidden p-2 rounded-md text-brand-white focus:outline-none focus:ring-2 focus:ring-brand-primary"
+        >
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </nav>
+
+      <!-- Mobile Menu (Hidden by default) -->
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden absolute top-full left-0 w-full bg-brand-dark shadow-lg"
+      >
+        <div class="flex flex-col px-6 py-4 space-y-4">
+          <a href="#about" class="block hover:text-brand-primary transition-colors">About Tarkan</a>
+          <a href="#diagnostic" class="block hover:text-brand-primary transition-colors"
+            >Diagnostic</a
+          >
+          <a href="#results" class="block hover:text-brand-primary transition-colors">Results</a>
+          <a href="#book-call" class="btn btn-primary w-full text-center">Book a 1:1 Call</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- 
+      ======================================
+      MAIN CONTENT
+      ======================================
+    -->
+    <main>
+      <!-- 
+          ======================================
+          HERO SECTION
+          ======================================
+        -->
+      <section class="relative bg-brand-dark py-32 md:py-48 text-center overflow-hidden">
+        <!-- Background glow effect -->
+        <div
+          class="absolute -top-1/4 left-1/4 w-1/2 h-1/2 bg-brand-primary/10 rounded-full blur-3xl animate-pulse"
+          style="animation-duration: 5s"
+        ></div>
+        <div
+          class="absolute -bottom-1/4 right-1/4 w-1/3 h-1/3 bg-brand-cyan/10 rounded-full blur-3xl animate-pulse"
+          style="animation-duration: 7s"
+        ></div>
+
+        <div class="container mx-auto px-6 relative z-10">
+          <h1
+            class="font-display text-5xl md:text-7xl lg:text-8xl font-bold uppercase tracking-tight mb-6"
+          >
+            STOP COMPETING. <span class="text-brand-primary">START DOMINATING.</span>
+          </h1>
+          <p class="max-w-3xl mx-auto text-lg md:text-xl text-brand-white/80 mb-10">
+            Your business isn't broken. Your ocean is. I help $1M-$8M Consumer Goods Founders escape
+            the 'Red Ocean' of fatal competition and engineer new Blue Oceans of profit—in 8 weeks.
+          </p>
+          <p class="max-w-3xl mx-auto text-md md:text-lg text-brand-white/60 font-semibold mb-12">
+            No theory. Just 30 years of in-the-trenches execution as a fractional COO.
+          </p>
+
+          <div class="flex flex-col sm:flex-row justify-center items-center gap-6">
+            <a href="#diagnostic" class="btn btn-primary btn-lg w-full sm:w-auto">
+              <i data-lucide="compass" class="w-5 h-5 mr-2"></i>
+              Start Your Blue Ocean Diagnostic
+            </a>
+            <a href="#book-call" class="btn btn-secondary btn-lg w-full sm:w-auto">
+              <i data-lucide="calendar" class="w-5 h-5 mr-2"></i>
+              Book a 1:1 Diagnostic Call
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 
+          ======================================
+          SOCIAL PROOF / AS SEEN ON
+          ======================================
+        -->
+      <div class="bg-brand-dark py-12 border-y border-white/10">
+        <div class="container mx-auto px-6">
+          <h3
+            class="text-center text-sm font-semibold text-brand-white/50 uppercase tracking-widest mb-8"
+          >
+            As Seen In / Trusted By
+          </h3>
+          <div class="flex flex-wrap justify-around items-center gap-8 opacity-40 grayscale">
+            <!-- Placeholder logos. Use real SVGs or grayscale images. -->
+            <span class="text-2xl font-bold">FORBES</span>
+            <span class="text-2xl font-bold">ENTREPRENEUR</span>
+            <span class="text-2xl font-bold">BLOOMBERG</span>
+            <span class="text-2xl font-bold">INC.</span>
+            <span class="text-2xl font-bold">FAST COMPANY</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 
+          ======================================
+          PROBLEM SECTION (THE 'MESSY MIDDLE')
+          ======================================
+        -->
+      <section class="py-24 md:py-32">
+        <div class="container mx-auto px-6">
+          <div class="text-center max-w-3xl mx-auto">
+            <h2 class="section-title">Are You Trapped in the 'Messy Middle'?</h2>
+            <p class="section-subtitle">
+              If you're a founder doing $1M-$8M, this probably sounds familiar. You're growing, but
+              you're stuck in 'Gross Chaos'—and profits are leaking everywhere.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
+            <!-- Pain Point Card -->
+            <div class="feature-card">
+              <i data-lucide="trending-down" class="w-10 h-10 text-brand-red mb-4"></i>
+              <h3 class="feature-title">Stagnant Growth & Plateaus</h3>
+              <p class="feature-text">
+                Your growth has flatlined, but your costs keep rising. Every new customer feels more
+                expensive than the last.
+              </p>
+            </div>
+            <!-- Pain Point Card -->
+            <div class="feature-card">
+              <i data-lucide="flame" class="w-10 h-10 text-brand-orange mb-4"></i>
+              <h3 class="feature-title">Founder Burnout</h3>
+              <p>
+                You're the bottleneck for every decision. You're working 80-hour weeks, and you feel
+                like a firefighter, not a CEO.
+              </p>
+            </div>
+            <!-- Pain Point Card -->
+            <div class="feature-card">
+              <i data-lucide="dollar-sign" class="w-10 h-10 text-brand-red mb-4"></i>
+              <h3 class="feature-title">Rising Ad Costs</h3>
+              <p>
+                CAC is skyrocketing. You're in a bidding war you can't win, competing for the same
+                customers as everyone else.
+              </p>
+            </div>
+            <!-- Pain Point Card -->
+            <div class="feature-card">
+              <i data-lucide="filter" class="w-10 h-10 text-brand-orange mb-4"></i>
+              <h3 class="feature-title">Leaking Money</h3>
+              <p>
+                Supply chain problems, disorganized systems, and friction in operations are silently
+                draining your cash flow.
+              </p>
+            </div>
+            <!-- Pain Point Card -->
+            <div class="feature-card">
+              <i data-lucide="copy" class="w-10 h-10 text-brand-cyan mb-4"></i>
+              <h3 class="feature-title">Commodity Trap</h3>
+              <p>
+                Your LTV is dropping because cheaper knockoffs are flooding the market. You're
+                forced to compete on price, not value.
+              </p>
+            </div>
+            <!-- Pain Point Card -->
+            <div class="feature-card">
+              <i data-lucide="briefcase" class="w-10 h-10 text-brand-cyan mb-4"></i>
+              <h3 class="feature-title">Disorganized Systems</h3>
+              <p>
+                You're running an $8M business on spreadsheets and hustle. There's no single source
+                of truth, just 'gross chaos'.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 
+          ======================================
+          SOLUTION SECTION (INTRO)
+          ======================================
+        -->
+      <section id="about" class="py-24 md:py-32 bg-white/5">
+        <div class="container mx-auto px-6">
+          <div class="flex flex-col lg:flex-row items-center gap-16">
+            <!-- Image -->
+            <div class="w-full lg:w-2/5">
+              <img
+                src="https://placehold.co/800x1000/0D0D0D/D8F911?text=Tarkan+Salar"
+                alt="Tarkan Salar: The Blue Ocean Guy"
+                class="rounded-lg shadow-2xl w-full h-auto object-cover"
+              />
+            </div>
+
+            <!-- Content -->
+            <div class="w-full lg:w-3/5">
+              <h2 class="section-title text-left">
+                The Solution: The Blue Ocean + AI Profit Sprint
+              </h2>
+              <p class="section-subtitle text-left">
+                I don't just advise. I join your team as a Fractional COO to build and execute.
+              </p>
+
+              <div class="prose prose-invert max-w-none text-brand-white/80 text-lg space-y-6 mt-8">
+                <p>
+                  Hi, I'm
+                  <span class="text-brand-primary font-bold">Tarkan: The Blue Ocean Guy.</span>
+                </p>
+                <p>
+                  For 30 years, I've lived in the trenches. I'm not a consultant who read a book.
+                  I'm an operator who's built an 8-figure business, invented world-first products,
+                  owned factories in China, and shipped over 50 million units.
+                </p>
+                <p>
+                  I’ve faced the chaos you're in. I've navigated the supply chain nightmares, the
+                  cash flow disasters, and the burnout. And I engineered the systems to fix it.
+                </p>
+                <p>
+                  My
+                  <span class="text-brand-white font-semibold"
+                    >"Blue Ocean + AI Profit Sprint"</span
+                  >
+                  is an 8-week program where I work *in* your business as a fractional COO. We don't
+                  just find your Blue Ocean—we build the engine to get you there, using AI-powered
+                  systems to plug profit leaks, automate operations, and make your competition
+                  irrelevant.
+                </p>
+              </div>
+
+              <a href="#book-call" class="btn btn-primary btn-lg mt-12">
+                <i data-lucide="phone" class="w-5 h-5 mr-2"></i>
+                Book Your 1:1 Strategy Call
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 
+          ======================================
+          CTA 1: BLUE OCEAN DIAGNOSTIC
+          ======================================
+        -->
+      <section id="diagnostic" class="py-24 md:py-32">
+        <div class="container mx-auto px-6">
+          <div class="text-center max-w-3xl mx-auto">
+            <h2 class="section-title">Discover Your #1 Profit Leak in 5 Minutes</h2>
+            <p class="section-subtitle">
+              Take the 21-question
+              <span class="text-brand-primary font-semibold"
+                >Blue Ocean Brand Positioning + AI Readiness Diagnostic</span
+              >. Stop guessing where you're leaking money. Start engineering your solution.
+            </p>
+          </div>
+
+          <!-- Diagnostic Quiz Container -->
+          <div
+            id="quiz-container"
+            class="max-w-4xl mx-auto mt-16 bg-white/5 p-8 md:p-12 rounded-lg shadow-2xl"
+          >
+            <!-- Quiz Start Screen -->
+            <div id="quiz-start" class="text-center">
+              <h3 class="font-display text-3xl font-bold mb-4">Ready to Find Your Blue Ocean?</h3>
+              <p class="text-lg text-brand-white/80 mb-8">
+                This quick assessment will reveal your brand's biggest gaps and AI opportunities.
+                You'll receive an instant score and analysis.
+              </p>
+              <button id="start-quiz-btn" class="btn btn-primary btn-lg">
+                Start the Diagnostic
+                <i data-lucide="arrow-right" class="w-5 h-5 ml-2"></i>
+              </button>
+            </div>
+
+            <!-- Quiz Questions (Hidden by default) -->
+            <div id="quiz-questions" class="hidden">
+              <!-- Progress Bar -->
+              <div class="w-full bg-brand-dark rounded-full h-2.5 mb-8 border border-white/10">
+                <div
+                  id="quiz-progress-bar"
+                  class="bg-brand-primary h-2 rounded-full"
+                  style="width: 5%"
+                ></div>
+              </div>
+
+              <!-- Question Slides -->
+              <div class="quiz-slides space-y-8">
+                <!-- This is where JS will inject/show questions. -->
+                <!-- We'll build the full question bank in script.js -->
+                <!-- Example of Q1 Structure -->
+                <div class="quiz-question active-question" data-question-index="0">
+                  <label class="question-label" for="q1">Q1: What industry are you in?</label>
+                  <p class="question-description">Select your primary category.</p>
+                  <div class="space-y-4 mt-6">
+                    <button class="quiz-option" data-value="Fashion & Apparel">
+                      Fashion & Apparel
+                    </button>
+                    <button class="quiz-option" data-value="Cosmetics & Beauty">
+                      Cosmetics & Beauty
+                    </button>
+                    <button class="quiz-option" data-value="Furniture & Home Goods">
+                      Furniture & Home Goods
+                    </button>
+                    <button class="quiz-option" data-value="Supplements & Wellness">
+                      Supplements & Wellness
+                    </button>
+                    <button class="quiz-option" data-value="Other">Other</button>
+                  </div>
+                </div>
+                <!-- Q2, Q3... Q21 will be generated by script.js -->
+              </div>
+            </div>
+
+            <!-- Quiz Results (Hidden by default) -->
+            <div id="quiz-results" class="hidden">
+              <div class="text-center">
+                <h3 class="font-display text-4xl font-bold mb-4">Your Blue Ocean Brand Score:</h3>
+                <div classs="text-8xl font-display font-bold text-brand-primary my-6">
+                  <span id="quiz-score-value">72</span>/100
+                </div>
+
+                <p class="text-lg text-brand-white/80 mb-10">
+                  Based on your answers, here are your 3 biggest profit leaks:
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+                  <!-- Result Card -->
+                  <div class="feature-card">
+                    <h4 class="text-brand-red text-xl font-bold mb-2">1. Brand Clarity Gap</h4>
+                    <p class_="text-brand-white/80" id="result-text-1">
+                      Your answers show a potential lack of clarity in your market positioning,
+                      which could be confusing customers and costing you sales.
+                    </p>
+                  </div>
+                  <!-- Result Card -->
+                  <div class="feature-card">
+                    <h4 class="text-brand-orange text-xl font-bold mb-2">2. Brand Loyalty Gap</h4>
+                    <p class="text-brand-white/80" id="result-text-2">
+                      You're likely competing on price, not value, making you vulnerable to cheaper
+                      knockoffs and market saturation.
+                    </p>
+                  </div>
+                  <!-- Result Card -->
+                  <div class="feature-card">
+                    <h4 class="text-brand-cyan text-xl font-bold mb-2">3. AI Leverage Gap</h4>
+                    <p class="text-brand-white/80" id="result-text-3">
+                      You are currently using AI for basic tasks, but missing the 3D 'unfair
+                      advantage' to systemize operations and product innovation.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="mt-12">
+                  <p class="text-xl text-brand-white/90 mb-6">
+                    You're leaving an estimated
+                    <span class="text-brand-primary font-bold" id="profit-leak-value"
+                      >$XXX,XXX</span
+                    >
+                    on the table. Let's fix it.
+                  </p>
+                  <a href="#book-call" class="btn btn-primary btn-lg">
+                    Book a Free Session to Close These Gaps
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 
+          ======================================
+          AUTHORITY / BOOK SECTION
+          ======================================
+        -->
+      <section class="py-24 md:py-32 bg-white/5">
+        <div class="container mx-auto px-6">
+          <div class="flex flex-col lg:flex-row items-center gap-16">
+            <!-- Book Cover -->
+            <div class="w-full lg:w-2/5 flex justify-center">
+              <img
+                src="https://placehold.co/800x1000/0D0D0D/D8F911?text=Book+Cover+Placeholder"
+                alt="The Blue Ocean Founder by Tarkan Salar"
+                class="rounded-lg shadow-2xl w-3/4 lg:w-full max-w-md h-auto"
+              />
+            </div>
+
+            <!-- Content -->
+            <div class="w-full lg:w-3/5">
+              <h2 class="section-title text-left">I Wrote the Book on It. Literally.</h2>
+              <p class="section-subtitle text-left">
+                From his upcoming book, "The Blue Ocean Founder"
+              </p>
+
+              <div class="prose prose-invert max-w-none text-brand-white/80 text-lg space-y-6 mt-8">
+                <blockquote>
+                  "The marketplace is noisy. Thousands are screaming. 'Best product! Lowest price!'
+                  And you're screaming too, but nobody hears you. You are invisible. This is the
+                  'Red Ocean.' The solution isn't to scream louder. It's to find a new ocean. A
+                  quiet, empty, profitable Blue Ocean where you are the only one."
+                </blockquote>
+                <p>
+                  My life's work is dedicated to this: finding, engineering, and dominating new
+                  market categories. My experience isn't from a classroom; it's from 30 years of
+                  building, failing, and winning in the real world.
+                </p>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-12">
+                <div class="feature-card p-6">
+                  <span class="font-display text-4xl font-bold text-brand-primary">8-FIGURES</span>
+                  <p class="mt-2 text-brand-white/80">
+                    Built and scaled a consumer goods business to 8-figures.
+                  </p>
+                </div>
+                <div class="feature-card p-6">
+                  <span class="font-display text-4xl font-bold text-brand-primary">50M+ UNITS</span>
+                  <p class="mt-2 text-brand-white/80">
+                    Manufactured & shipped over 50 million units globally.
+                  </p>
+                </div>
+                <div class="feature-card p-6">
+                  <span class="font-display text-4xl font-bold text-brand-primary">GLOBAL OPS</span>
+                  <p class="mt-2 text-brand-white/80">
+                    Owned factories in China, with offices in Hong Kong, Germany, and Istanbul.
+                  </p>
+                </div>
+                <div class="feature-card p-6">
+                  <span class="font-display text-4xl font-bold text-brand-primary"
+                    >FRACTIONAL COO</span
+                  >
+                  <p class="mt-2 text-brand-white/80">
+                    The hands-on operator you hire to get it done, not just talk about it.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 
+          ======================================
+          TESTIMONIALS / RESULTS
+          ======================================
+        -->
+      <section id="results" class="py-24 md:py-32">
+        <div class="container mx-auto px-6">
+          <div class="text-center max-w-3xl mx-auto">
+            <h2 class="section-title">Real Founders. Real Results.</h2>
+            <p class="section-subtitle">
+              Don't just take my word for it. Here's what happens when we find your Blue Ocean.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
+            <!-- Testimonial Card -->
+            <div class="testimonial-card">
+              <p class="text-lg text-brand-white/90 mb-6">
+                "Tarkan isn't a consultant, he's a heat-seeking missile for profit. He came in,
+                identified $250k in operational leaks in our supplement brand in the first week, and
+                built the system to fix it. We stopped competing and started dominating."
+              </p>
+              <div class="flex items-center">
+                <img
+                  src="https://placehold.co/100x100/FFFFFF/0D0D0D?text=CEO"
+                  alt="Founder"
+                  class="w-12 h-12 rounded-full mr-4 border-2 border-brand-primary"
+                />
+                <div>
+                  <h4 class="font-bold text-brand-white">Jane Doe, CEO</h4>
+                  <p class="text-sm text-brand-primary">Apex Wellness</p>
+                </div>
+              </div>
+            </div>
+            <!-- Testimonial Card -->
+            <div class="testimonial-card">
+              <p class="text-lg text-brand-white/90 mb-6">
+                "We were stuck at $3M for two years, fighting for scraps. Tarkan's 'Blue Ocean
+                Sprint' redefined our entire category. We're now on track to double our revenue, not
+                by spending more on ads, but by creating a new, uncontested market."
+              </p>
+              <div class="flex items-center">
+                <img
+                  src="https://placehold.co/100x100/FFFFFF/0D0D0D?text=Founder"
+                  alt="Founder"
+                  class="w-12 h-12 rounded-full mr-4 border-2 border-brand-primary"
+                />
+                <div>
+                  <h4 class="font-bold text-brand-white">John Smith, Founder</h4>
+                  <p class="text-sm text-brand-primary">Evergreen Apparel</p>
+                </div>
+              </div>
+            </div>
+            <!-- Testimonial Card -->
+            <div class="testimonial-card">
+              <p class="text-lg text-brand-white/90 mb-6">
+                "The 'fractional COO' model was new to us, but it's the only thing that's ever
+                worked. Tarkan didn't just give us a strategy; he rolled up his sleeves and helped
+                us implement the AI systems to automate our supply chain. Game-changing."
+              </p>
+              <div class="flex items-center">
+                <img
+                  src="https://placehold.co/100x100/FFFFFF/0D0D0D?text=Owner"
+                  alt="Founder"
+                  class="w-12 h-12 rounded-full mr-4 border-2 border-brand-primary"
+                />
+                <div>
+                  <h4 class="font-bold text-brand-white">Sam Lee, Owner</h4>
+                  <p class="text-sm text-brand-primary">Origin Furniture</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 
+          ======================================
+          CTA 2: BOOK A CALL
+          ======================================
+        -->
+      <section id="book-call" class="py-24 md:py-32 bg-brand-primary text-brand-dark">
+        <div class="container mx-auto px-6">
+          <div class="text-center max-w-3xl mx-auto">
+            <h2 class="font-display text-5xl md:text-6xl font-bold uppercase tracking-tight mb-6">
+              Ready for a 1:1 Diagnostic?
+            </h2>
+            <p class="text-xl md:text-2xl text-brand-dark/80 mb-10">
+              Book a complimentary 30-minute Blue Ocean Strategy Session. I'll personally review
+              your business and we'll map your fastest path to profit, live on the call.
+            </p>
+
+            <a href="https://calendly.com/your-link" target="_blank" class="btn btn-dark btn-lg">
+              <i data-lucide="calendar" class="w-6 h-6 mr-2"></i>
+              Book Your Free Session Now
+            </a>
+
+            <p class="text-brand-dark/60 mt-6 text-sm">
+              This is a no-pitch, pure-value strategy call.
+            </p>
+          </div>
+
+          <!-- Placeholder for Calendly Embed -->
+          <!-- 
+                <div class="max-w-4xl mx-auto mt-16 h-[700px]">
+                    <div class="bg-gray-200 w-full h-full rounded-lg flex items-center justify-center">
+                        <span class="text-gray-500 font-semibold">Calendly Embed Area</span>
+                    </div>
+                </div> 
+                -->
+        </div>
+      </section>
+    </main>
+
+    <!-- 
+      ======================================
+      FOOTER
+      ======================================
+    -->
+    <footer class="bg-brand-dark border-t border-white/10 py-16">
+      <div class="container mx-auto px-6">
+        <div
+          class="flex flex-col md:flex-row justify-between items-center text-center md:text-left"
+        >
+          <!-- Logo & Copyright -->
+          <div class="mb-8 md:mb-0">
+            <a
+              href="#"
+              class="text-2xl font-bold text-brand-primary font-display tracking-wide mb-2 block"
+            >
+              TARKAN: THE BLUE OCEAN GUY
+            </a>
+            <p class="text-sm text-brand-white/50">
+              © <span id="footer-year">2025</span> Tarkan Salar. All rights reserved.
+            </p>
+          </div>
+
+          <!-- Footer Nav -->
+          <div class="flex flex-col md:flex-row items-center gap-6 mb-8 md:mb-0">
+            <a href="#about" class="text-brand-white/70 hover:text-brand-primary transition-colors"
+              >About</a
+            >
+            <a
+              href="#diagnostic"
+              class="text-brand-white/70 hover:text-brand-primary transition-colors"
+              >Diagnostic</a
+            >
+            <a
+              href="#results"
+              class="text-brand-white/70 hover:text-brand-primary transition-colors"
+              >Results</a
+            >
+            <a
+              href="#book-call"
+              class="text-brand-white/70 hover:text-brand-primary transition-colors"
+              >Book a Call</a
+            >
+          </div>
+
+          <!-- Social Links -->
+          <div class="flex justify-center md:justify-end space-x-6">
+            <a
+              href="#"
+              class="text-brand-white/70 hover:text-brand-primary transition-colors"
+              aria-label="LinkedIn"
+            >
+              <i data-lucide="linkedin" class="w-6 h-6"></i>
+            </a>
+            <a
+              href="#"
+              class="text-brand-white/70 hover:text-brand-primary transition-colors"
+              aria-label="Twitter"
+            >
+              <i data-lucide="twitter" class="w-6 h-6"></i>
+            </a>
+            <a
+              href="#"
+              class="text-brand-white/70 hover:text-brand-primary transition-colors"
+              aria-label="YouTube"
+            >
+              <i data-lucide="youtube" class="w-6 h-6"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- 
+      ======================================
+      JAVASCRIPT
+      ======================================
+    -->
+    <!-- Custom JS File -->
+    <script src="script.js" defer></script>
+
+    <!-- Lucide Icons Init -->
+    <script>
+      lucide.createIcons();
+    </script>
+  </body>
+</html>
