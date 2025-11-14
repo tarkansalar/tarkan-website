@@ -40,13 +40,17 @@ body {
   Styles for headings and reusable components.
 */
 
+.font-display {
+  letter-spacing: 0.01em;
+}
+
 /* Section Titles (using display font) */
 .section-title {
   font-family: var(--font-display);
   font-size: 3rem; /* 48px */
   font-weight: 700;
   line-height: 1.2;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.01em;
   text-transform: uppercase;
   color: var(--color-white);
   margin-bottom: 1rem;
