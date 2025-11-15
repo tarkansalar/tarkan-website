@@ -1,69 +1,80 @@
 /*
 ======================================
-TARKAN SALAR - CUSTOM STYLESHEET
+TARKAN SALAR - CUSTOM STYLESHEET (Revamped)
+Based on the 22 Nov 2025 Blueprint
 ======================================
 */
 
 /* 1. ROOT VARIABLES
-  Defines the brand's color palette and fonts for global use.
+  Defines the brand's color palette and fonts per the guide.
+  - Using 'Inter' as the practical, available substitute for 'Helvetica' and 'tt-commons-pro'.
+  - 'Anton' is used for major display/hero headlines.
 */
 :root {
   --font-sans: "Inter", sans-serif;
   --font-display: "Anton", sans-serif;
+  --font-heading: "Inter", sans-serif; /* Per guide, this would be Helvetica. Using Inter as substitute. */
 
+  /* Color Palette per Guide */
   --color-primary: #d8f911;
   --color-dark: #0d0d0d;
   --color-white: #ffffff;
 
   --color-red: #ff4d4d;
-  --color-orange: #f2ad09;
+  --color-orange: #f2ad0c; /* Updated from F2AD09 */
   --color-green: #16bc53;
   --color-cyan: #42d1ff;
 
-  --color-white-50: rgba(255, 255, 255, 0.5);
+  /* Opacity helpers */
   --color-white-80: rgba(255, 255, 255, 0.8);
+  --color-white-50: rgba(255, 255, 255, 0.5);
+  --color-white-30: rgba(255, 255, 255, 0.3);
   --color-white-10: rgba(255, 255, 255, 0.1);
   --color-white-05: rgba(255, 255, 255, 0.05);
 }
 
 /* 2. BASE STYLING
-  Applies base styles to the body and sets up typography.
+  Applies base styles from the guide.
 */
 body {
   background-color: var(--color-dark);
   color: var(--color-white);
   font-family: var(--font-sans);
-  line-height: 26px; /* Per brand guide */
+  font-weight: 500; /* Per guide (Medium weight for tt-commons-pro) */
+  font-size: 16px; /* Per guide */
+  line-height: 26px; /* Per guide */
 }
 
 /* 3. TYPOGRAPHY & GLOBAL CLASSES
   Styles for headings and reusable components.
 */
 
+/* For Hero / major display text (per guide) */
 .font-display {
+  font-family: var(--font-display);
   letter-spacing: 0.01em;
 }
 
-/* Section Titles (using display font) */
+/* For standard section headings (per guide) */
 .section-title {
-  font-family: var(--font-display);
-  font-size: 3rem; /* 48px */
-  font-weight: 700;
+  font-family: var(--font-heading);
+  font-size: 48px; /* 48px per guide */
+  font-weight: 700; /* Bold per guide */
   line-height: 1.2;
-  letter-spacing: 0.01em;
-  text-transform: uppercase;
   color: var(--color-white);
   margin-bottom: 1rem;
 }
 
 @media (min-width: 768px) {
   .section-title {
-    font-size: 4rem; /* 64px */
+    font-size: 48px; /* Stays 48px as per guide's H2 spec */
   }
 }
 
 /* Section Subtitles */
 .section-subtitle {
+  font-family: var(--font-sans); /* Body font */
+  font-weight: 500;
   font-size: 1.125rem; /* 18px */
   line-height: 1.6;
   color: var(--color-white-80);
@@ -80,7 +91,7 @@ body {
 
 /* Text-heavy content styling */
 .prose {
-  font-size: 1.125rem;
+  font-size: 1.125rem; /* 18px */
   line-height: 1.7;
 }
 
@@ -93,64 +104,55 @@ body {
   margin-left: 0;
 }
 
-/* 4. BUTTON STYLES
-  Defines all button variants per the brand guide.
+/* 4. BUTTON STYLES (Revamped per Guide)
+  Replaces old .btn, .btn-primary, .btn-secondary, .btn-lg
 */
+
+/* Base Button */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-sans);
+  font-family: var(--font-heading); /* Per guide (Helvetica 700) */
   font-size: 1rem; /* 16px */
-  font-weight: 700;
-  padding: 0.875rem 1.75rem; /* 14px 28px */
-  border-radius: 999px; /* Pill shape */
-  border: 2px solid transparent;
+  font-weight: 700; /* Per guide */
+  padding: 16px 32px; /* Per guide */
+  border-radius: 999px; /* Pill shape per guide */
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   text-decoration: none;
   white-space: nowrap;
 }
 
-.btn-lg {
-  padding: 1rem 2.5rem; /* 16px 40px */
-  font-size: 1.125rem; /* 18px */
-}
-
-/* Primary Button (Neon Green) */
+/* Primary Button (Neon Green) - Per Guide */
 .btn-primary {
   background-color: var(--color-primary);
   color: var(--color-dark);
-  border-color: var(--color-primary);
+  border: 1px solid var(--color-primary); /* 1px border per guide */
 }
 
 .btn-primary:hover {
-  background-color: var(--color-dark);
-  color: var(--color-primary);
-  border-color: var(--color-primary);
-  transform: translateY(-2px);
+  transform: scale(1.05); /* Per guide suggestion */
   box-shadow: 0 4px 15px rgba(216, 249, 17, 0.2);
 }
 
-/* Secondary Button (Outline) */
+/* Secondary Button (Outline) - Per Guide */
 .btn-secondary {
   background-color: transparent;
-  color: var(--color-primary);
-  border-color: var(--color-primary);
+  color: var(--color-white);
+  border: 2px solid var(--color-white); /* 2px border per guide */
 }
 
 .btn-secondary:hover {
-  background-color: var(--color-primary);
+  background-color: var(--color-white);
   color: var(--color-dark);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(216, 249, 17, 0.2);
 }
 
 /* Dark Button (For use on light backgrounds) */
 .btn-dark {
   background-color: var(--color-dark);
   color: var(--color-primary);
-  border-color: var(--color-dark);
+  border: 2px solid var(--color-dark);
 }
 
 .btn-dark:hover {
@@ -162,9 +164,10 @@ body {
 
 /* 5. COMPONENT STYLES
   Custom classes for cards and other components.
+  (Kept from original as they are implied by the guide's layout)
 */
 
-/* Feature Card (Pain Points, Stats) */
+/* Feature Card (Pain Points, Stats, Case Studies) */
 .feature-card {
   background-color: var(--color-white-05);
   border: 1px solid var(--color-white-10);
@@ -181,8 +184,9 @@ body {
 }
 
 .feature-title {
-  font-size: 1.25rem;
+  font-family: var(--font-heading);
   font-weight: 700;
+  font-size: 1.25rem;
   color: var(--color-white);
   margin-bottom: 0.5rem;
 }
@@ -200,7 +204,7 @@ body {
   height: 100%;
 }
 
-/* 6. QUIZ STYLES
+/* 6. QUIZ & FORM STYLES (Updated per Guide)
   Specific styles for the Blue Ocean Diagnostic quiz.
 */
 .quiz-question {
@@ -224,8 +228,9 @@ body {
 }
 
 .question-label {
-  font-size: 1.75rem; /* 28px */
+  font-family: var(--font-heading);
   font-weight: 700;
+  font-size: 1.75rem; /* 28px */
   color: var(--color-white);
   line-height: 1.3;
 }
@@ -236,15 +241,15 @@ body {
   margin-top: 0.5rem;
 }
 
-/* Quiz Options (Buttons, Selects, Inputs) */
+/* Quiz Options (Buttons) */
 .quiz-option {
   display: block;
   width: 100%;
   background-color: transparent;
-  border: 2px solid var(--color-white-10);
+  border: 1px solid var(--color-white-30); /* Per guide (1px solid #FFFFFF 30%) */
   color: var(--color-white-80);
   padding: 1rem 1.5rem;
-  border-radius: 8px; /* Per brand guide */
+  border-radius: 8px; /* Per guide */
   text-align: left;
   font-size: 1.125rem;
   font-weight: 500;
@@ -265,17 +270,19 @@ body {
   font-weight: 700;
 }
 
-/* Form Inputs (for open-ended questions) */
+/* Form Inputs (for open-ended questions & lead capture) - Per Guide */
 .quiz-input,
 .quiz-textarea {
   display: block;
   width: 100%;
-  background-color: var(--color-white-05);
+  background-color: var(--color-white-05); /* Semi-transparent dark */
   color: var(--color-white);
-  border-radius: 8px;
-  padding: 12px; /* 12px all sides per brand guide */
-  border: 2px solid var(--color-white-10);
-  font-size: 1.125rem;
+  border-radius: 8px; /* Per guide */
+  padding: 12px; /* 12px all sides per guide */
+  border: 1px solid var(--color-white-30); /* Per guide */
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 1rem; /* 16px */
   line-height: 1.5;
   transition: all 0.2s ease;
 }
@@ -288,7 +295,7 @@ body {
 .quiz-input:focus,
 .quiz-textarea:focus {
   outline: none;
-  border-color: var(--color-primary);
+  border-color: var(--color-primary); /* Per guide focus state */
   background-color: var(--color-dark);
   box-shadow: 0 0 0 3px rgba(216, 249, 17, 0.3);
 }
@@ -305,4 +312,54 @@ body {
   margin-top: 2rem;
   padding-top: 2rem;
   border-top: 1px solid var(--color-white-10);
+}
+
+/* 7. NEW MODAL STYLES
+  For the diagnostic quiz pop-up
+*/
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  z-index: 100;
+  display: none; /* Hidden by default */
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background-color: var(--color-dark);
+  border: 1px solid var(--color-white-10);
+  border-radius: 16px;
+  padding: 2rem;
+  width: 90%;
+  max-width: 56rem; /* 4xl */
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+@media (min-width: 768px) {
+  .modal-content {
+    padding: 3rem;
+  }
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  color: var(--color-white-50);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.modal-close-btn:hover {
+  color: var(--color-primary);
+  transform: rotate(90deg);
 }
