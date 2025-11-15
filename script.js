@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", () => {
   /**
    * ======================================
    * SECTION 1: DIAGNOSTIC MODAL CONTROLS
-   * (New functionality per guide)
    * ======================================
    */
   const diagnosticModal = document.getElementById("diagnostic-modal");
@@ -63,7 +62,6 @@ document.addEventListener("DOMContentLoaded", () => {
   /**
    * ======================================
    * SECTION 2: MOBILE NAVIGATION
-   * (Updated for new modal buttons)
    * ======================================
    */
   const mobileMenuBtn = document.getElementById("mobile-menu-btn");
@@ -106,17 +104,16 @@ document.addEventListener("DOMContentLoaded", () => {
   /**
    * ======================================
    * SECTION 4: BLUE OCEAN DIAGNOSTIC QUIZ
-   * (Heavily modified for modal & lead capture)
    * ======================================
    */
   const quizContainer = document.getElementById("quiz-container");
   if (!quizContainer) return; // Don't run quiz logic if container isn't found
 
-  // --- 4A. QUIZ DATA BANK (Unchanged from original) ---
+  // --- 4A. QUIZ DATA BANK (From original file) ---
   const questionBank = [
     // Part 1: Brand Positioning (9 questions)
     {
-      q: "What industry are you in?",
+      q: "What industry are you in?", // Index 0
       type: "select",
       options: [
         "Fashion & Apparel",
@@ -129,12 +126,12 @@ document.addEventListener("DOMContentLoaded", () => {
       ],
     },
     {
-      q: "What's your current annual revenue?",
+      q: "What's your current annual revenue?", // Index 1
       type: "select",
       options: ["$250K - $1M", "$1M – $3M", "$3M – $5M", "$5M – $8M", "$8M+"], // Updated per guide
     },
     {
-      q: "If you were sold out of your best-selling product for 4 weeks, what would your customers do?",
+      q: "If you were sold out of your best-selling product for 4 weeks, what would your customers do?", // Index 2
       type: "select",
       options: [
         "Wait for us to restock – they only want our brand",
@@ -143,7 +140,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ],
     },
     {
-      q: "If you raised your prices by 20% tomorrow, what would happen?",
+      q: "If you raised your prices by 20% tomorrow, what would happen?", // Index 3
       type: "select",
       options: [
         "Sales would stay strong – our customers value what we offer",
@@ -152,7 +149,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ],
     },
     {
-      q: "If your brand disappeared tomorrow, would your customers miss you—or just find a replacement?",
+      q: "If your brand disappeared tomorrow, would your customers miss you—or just find a replacement?", // Index 4
       type: "select",
       options: [
         "They'd genuinely miss us – we have a loyal community",
@@ -161,7 +158,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ],
     },
     {
-      q: "When you pitch your brand to a stranger or investor, do they 'get it' immediately?",
+      q: "When you pitch your brand to a stranger or investor, do they 'get it' immediately?", // Index 5
       type: "select",
       options: [
         "Yes – they instantly understand our category and value",
@@ -171,7 +168,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ],
     },
     {
-      q: "Where do most of your customers discover you?",
+      q: "Where do most of your customers discover you?", // Index 6
       type: "select",
       options: [
         "Paid ads (Meta, Google, TikTok)",
@@ -183,7 +180,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ],
     },
     {
-      q: "What's your biggest competitive threat right now?",
+      q: "What's your biggest competitive threat right now?", // Index 7
       type: "select",
       options: [
         "Cheaper knockoffs flooding the market",
@@ -194,13 +191,13 @@ document.addEventListener("DOMContentLoaded", () => {
       ],
     },
     {
-      q: 'Complete this sentence: "Our customers choose us because..."',
+      q: 'Complete this sentence: "Our customers choose us because..."', // Index 8
       type: "open",
       placeholder: "Type your 1-2 sentence answer here...",
     },
     // Part 2: AI Readiness (6 questions)
     {
-      q: "How are you currently using AI in your business?",
+      q: "How are you currently using AI in your business?", // Index 9
       type: "multi-select",
       options: [
         "1D (Basic automation): ChatGPT for emails, captions, basic tasks",
@@ -211,7 +208,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ],
     },
     {
-      q: "If you had an extra $100K right now, where would you invest it to grow fastest?",
+      q: "If you had an extra $100K right now, where would you invest it to grow fastest?", // Index 10
       type: "select",
       options: [
         "Marketing & customer acquisition",
@@ -223,12 +220,12 @@ document.addEventListener("DOMContentLoaded", () => {
       ],
     },
     {
-      q: "What's the #1 thing stealing your time right now that AI or systems could handle?",
+      q: "What's the #1 thing stealing your time right now that AI or systems could handle?", // Index 11
       type: "open",
       placeholder: "e.g., Answering support tickets, managing inventory...",
     },
     {
-      q: "How do you currently track profitability and cash flow?",
+      q: "How do you currently track profitability and cash flow?", // Index 12
       type: "select",
       options: [
         "Strong system – we have dashboards, a CFO, or solid tools",
@@ -238,18 +235,18 @@ document.addEventListener("DOMContentLoaded", () => {
       ],
     },
     {
-      q: "What's the ONE problem you want solved in the next 30 days?",
+      q: "What's the ONE problem you want solved in the next 30 days?", // Index 13
       type: "open",
       placeholder: "Be specific...",
     },
     {
-      q: "What's your ideal outcome 12 months from now?",
+      q: "What's your ideal outcome 12 months from now?", // Index 14
       type: "open",
       placeholder: "e.g., 'Exit the business', 'Double profitability', 'Remove myself from operations'...",
     },
     // Part 3: Coaching Fit (6 questions)
     {
-      q: "Have you worked with a coach, consultant, or advisor before?",
+      q: "Have you worked with a coach, consultant, or advisor before?", // Index 15
       type: "select",
       options: [
         "Yes, and it was transformational",
@@ -259,7 +256,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ],
     },
     {
-      q: "What matters most to you when choosing someone to help you grow? (Select up to 3)",
+      q: "What matters most to you when choosing someone to help you grow? (Select up to 3)", // Index 16
       type: "multi-select",
       limit: 3, // Special property for this question
       options: [
@@ -272,12 +269,12 @@ document.addEventListener("DOMContentLoaded", () => {
       ],
     },
     {
-      q: "If the right coach could help you add $500K–$1M in profit in 8 weeks, what would you be willing to invest?",
+      q: "If the right coach could help you add $500K–$1M in profit in 8 weeks, what would you be willing to invest?", // Index 17
       type: "select",
       options: ["$5K – $10K", "$10K – $15K", "$15K – $25K", "$25K+", "Not sure – depends on the plan and ROI"],
     },
     {
-      q: "How urgent is solving your biggest business problem right now?",
+      q: "How urgent is solving your biggest business problem right now?", // Index 18
       type: "select",
       options: [
         "Extremely urgent – it's keeping me up at night",
@@ -287,12 +284,12 @@ document.addEventListener("DOMContentLoaded", () => {
       ],
     },
     {
-      q: "If you could wave a magic wand and fix ONE thing in your business today, what would it be?",
+      q: "If you could wave a magic wand and fix ONE thing in your business today, what would it be?", // Index 19
       type: "open",
       placeholder: "The one thing causing the most friction...",
     },
     {
-      q: "BONUS: Is there anything else you'd like to share about your business, goals, or challenges?",
+      q: "BONUS: Is there anything else you'd like to share about your business, goals, or challenges?", // Index 20
       type: "open",
       placeholder: "This context helps...",
     },
@@ -308,7 +305,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // New Lead Capture elements
   const quizLeadCaptureEl = document.getElementById("quiz-lead-capture");
   const submitLeadBtn = document.getElementById("submit-lead-btn");
-  const quizLeadErrorEl = document.getElementById("quiz-lead-error"); // <-- Issue 4 Fix
+  const quizLeadErrorEl = document.getElementById("quiz-lead-error");
 
   // Results elements
   const quizResultsEl = document.getElementById("quiz-results");
@@ -374,7 +371,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     }>Back</button>
                     ${
                       index === questionBank.length - 1
-                        ? `<button class="btn btn-primary btn-submit-quiz">See My Results</button>` // Renamed to avoid conflict
+                        ? `<button class="btn btn-primary btn-submit-quiz">See My Results</button>`
                         : `<button class="btn btn-primary btn-next ${
                             q.type === "open" ? "" : "hidden"
                           }">Next</button>`
@@ -436,7 +433,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const name = document.getElementById("quiz-name").value;
         const email = document.getElementById("quiz-email").value;
 
-        // Issue 4 Fix: Replace alert() with non-blocking validation
+        // Replace alert() with non-blocking validation
         if (!name || !email) {
           quizLeadErrorEl.classList.remove("hidden"); // Show error message
           return; // Stop execution
@@ -480,7 +477,7 @@ document.addEventListener("DOMContentLoaded", () => {
       optionBtn.closest(".quiz-question").querySelector(".btn-next").classList.remove("hidden");
     } else if (question.type === "select") {
       // Store answer
-      answers[index] = value;
+      answers[index] = value; // This is a string
 
       // Visually select
       Array.from(optionBtn.parentNode.children).forEach((btn) => btn.classList.remove("selected"));
@@ -529,7 +526,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const progress = ((index + 1) / questionBank.length) * 100;
     quizProgressBar.style.width = `${progress}%`;
 
-    // Issue 1 Fix: Render icons (for "Back" button)
+    // Render icons (for "Back" button)
     lucide.createIcons();
   }
 
@@ -540,38 +537,44 @@ document.addEventListener("DOMContentLoaded", () => {
     quizQuestionsEl.classList.add("hidden");
     quizResultsEl.classList.add("hidden");
     quizLeadCaptureEl.classList.remove("hidden");
-    // Issue 1 Fix: Render icons (for buttons on this screen)
+    // Render icons (for buttons on this screen)
     lucide.createIcons();
   }
 
   /**
    * Calculates the score and populates the results screen.
+   * THIS IS THE UPDATED FUNCTION USING THE *ORIGINAL* LOGIC
    */
   function calculateAndShowResults() {
     let score = 20; // Base score
     let profitLeak = 100000; // Base leak
 
-    // --- Scoring Logic (Based on original script) ---
-    // Q3: Loyalty
+    // --- Scoring Logic (From Original File) ---
+    // Q3 (Index 2): Loyalty
     if (answers[2] === "Wait for us to restock – they only want our brand") score += 15;
-    // Q4: Pricing Power
+    // Q4 (Index 3): Pricing Power
     if (answers[3] === "Sales would stay strong – our customers value what we offer") score += 10;
-    // Q5: Loyalty
+    // Q5 (Index 4): Loyalty
     if (answers[4] === "They'd genuinely miss us – we have a loyal community") score += 10;
-    // Q6: Clarity
+    // Q6 (Index 5): Clarity
     if (answers[5] === "Yes – they instantly understand our category and value") score += 15;
-    // Q10: AI Readiness
+    // Q10 (Index 9): AI Readiness
     if (answers[9] && answers[9].includes("3D (Unfair advantage): Using AI for product innovation, customer insights, etc.")) score += 15;
-    // Q18: Budget
+    // Q18 (Index 17): Budget
     if (answers[17] === "$15K – $25K" || answers[17] === "$25K+") score += 15;
-    // Q19: Urgency
-    if (answers[18] === "Extremely urgent – it's keeping me up at night" || answers[18] === "Very urgent – I need help within 30 days") score += 10;
-    
+    // Q19 (Index 18): Urgency
+    if (
+      answers[18] === "Extremely urgent – it's keeping me up at night" ||
+      answers[18] === "Very urgent – I need help within 30 days"
+    )
+      score += 10;
+
     // Ensure score is max 100
     if (score > 100) score = 100;
 
-    // --- Result Text Logic (Based on original script) ---
+    // --- Result Text Logic (From Original File) ---
     // 1. Clarity Gap
+    // Checks Q6 (Index 5)
     if (answers[5] && (answers[5].includes("Not really") || answers[5].includes("No"))) {
       resultText1El.textContent =
         "Your answers show a critical lack of brand clarity. Customers and investors are likely confused, which directly costs you sales and wastes ad spend.";
@@ -581,7 +584,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // 2. Loyalty Gap
-    if (answers[2] && (answers[2].includes("Buy from a competitor") || (answers[4] && answers[4].includes("They'd replace us easily")))) {
+    // Checks Q3 (Index 2) and Q5 (Index 4)
+    if (
+      (answers[2] && answers[2].includes("Buy from a competitor")) ||
+      (answers[4] && answers[4].includes("They'd replace us easily"))
+    ) {
       resultText2El.textContent =
         "You're likely trapped in a 'Red Ocean,' competing on price, not value. This makes you vulnerable to cheaper knockoffs and market saturation.";
     } else {
@@ -590,6 +597,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // 3. AI Leverage Gap
+    // Checks Q10 (Index 9)
     if (answers[9] && (answers[9].includes("Not using AI at all") || answers[9].includes("1D (Basic automation)"))) {
       resultText3El.textContent =
         "You are currently using AI for basic tasks, but missing the 3D 'unfair advantage' to systemize operations, automate workflows, and drive product innovation.";
@@ -613,7 +621,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initQuiz();
 
   // --- 5. GLOBAL ICON RENDER ---
-  // Issue 1 Fix: Call lucide.createIcons() after DOM is loaded
-  // This renders all icons on the main page.
+  // Renders all icons on the main page.
   lucide.createIcons();
 }); // End of DOMContentLoaded

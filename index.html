@@ -22,7 +22,6 @@
     <link rel="stylesheet" href="style.css" />
 
     <!-- Lucide Icons (Correct Script) -->
-    <!-- Replaced lucide-react with the correct UMD package -->
     <script src="https://unpkg.com/lucide@0.378.0/dist/umd/lucide.min.js"></script>
 
     <!-- Custom Tailwind Configuration -->
@@ -72,6 +71,10 @@
           >
           <a href="#plan" class="font-sans hover:text-brand-primary transition-colors">The Plan</a>
           <a href="#proof" class="font-sans hover:text-brand-primary transition-colors">Proof</a>
+          <!-- Added Testimonials Link -->
+          <a href="#testimonials" class="font-sans hover:text-brand-primary transition-colors"
+            >Testimonials</a
+          >
           <a href="#about" class="font-sans hover:text-brand-primary transition-colors"
             >About Tarkan</a
           >
@@ -109,6 +112,10 @@
           >
           <a href="#plan" class="block hover:text-brand-primary transition-colors">The Plan</a>
           <a href="#proof" class="block hover:text-brand-primary transition-colors">Proof</a>
+          <!-- Added Testimonials Link -->
+          <a href="#testimonials" class="block hover:text-brand-primary transition-colors"
+            >Testimonials</a
+          >
           <a href="#about" class="block hover:text-brand-primary transition-colors">About Tarkan</a>
           <button id="open-diagnostic-btn-mobile" class="btn btn-secondary w-full text-center">
             Start Diagnostic
@@ -147,7 +154,7 @@
               </h1>
               <p class="max-w-2xl mx-auto lg:mx-0 text-xl md:text-2xl font-bold mb-10">
                 For D2C founders ($250k-$8M) drowning in 70-hour weeks, cash-flow nightmares, and
-                operational chaos. Stop competing. Start creating.
+                operational chaos. Stop competing. Start dominating.
               </p>
               <div
                 class="flex flex-col sm:flex-row justify-center lg:justify-start items-center gap-6"
@@ -491,10 +498,86 @@
 
       <!-- 
           ======================================
+          NEW SECTION: TESTIMONIALS (From Old Version)
+          ======================================
+        -->
+      <section id="testimonials" class="py-24 md:py-32">
+        <div class="container mx-auto px-6">
+          <div class="text-center max-w-3xl mx-auto">
+            <h2 class="section-title">Real Founders. Real Results.</h2>
+            <p class="section-subtitle">
+              Don't just take my word for it. Here's what happens when we find your Blue Ocean.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
+            <!-- Testimonial Card -->
+            <div class="testimonial-card">
+              <p class="text-lg text-brand-white/90 mb-6">
+                "Tarkan isn't a consultant, he's a heat-seeking missile for profit. He came in,
+                identified $250k in operational leaks in our supplement brand in the first week, and
+                built the system to fix it. We stopped competing and started dominating."
+              </p>
+              <div class="flex items-center">
+                <img
+                  src="https://placehold.co/100x100/FFFFFF/0D0D0D?text=CEO"
+                  alt="Founder"
+                  class="w-12 h-12 rounded-full mr-4 border-2 border-brand-primary"
+                />
+                <div>
+                  <h4 class="font-bold text-brand-white">Jane Doe, CEO</h4>
+                  <p class="text-sm text-brand-primary">Apex Wellness</p>
+                </div>
+              </div>
+            </div>
+            <!-- Testimonial Card -->
+            <div class="testimonial-card">
+              <p class="text-lg text-brand-white/90 mb-6">
+                "We were stuck at $3M for two years, fighting for scraps. Tarkan's 'Blue Ocean
+                Sprint' redefined our entire category. We're now on track to double our revenue, not
+                by spending more on ads, but by creating a new, uncontested market."
+              </p>
+              <div class="flex items-center">
+                <img
+                  src="https://placehold.co/100x100/FFFFFF/0D0D0D?text=Founder"
+                  alt="Founder"
+                  class="w-12 h-12 rounded-full mr-4 border-2 border-brand-primary"
+                />
+                <div>
+                  <h4 class="font-bold text-brand-white">John Smith, Founder</h4>
+                  <p class="text-sm text-brand-primary">Evergreen Apparel</p>
+                </div>
+              </div>
+            </div>
+            <!-- Testimonial Card -->
+            <div class="testimonial-card">
+              <p class="text-lg text-brand-white/90 mb-6">
+                "The 'fractional COO' model was new to us, but it's the only thing that's ever
+                worked. Tarkan didn't just give us a strategy; he rolled up his sleeves and helped
+                us implement the AI systems to automate our supply chain. Game-changing."
+              </p>
+              <div class="flex items-center">
+                <img
+                  src="https://placehold.co/100x100/FFFFFF/0D0D0D?text=Owner"
+                  alt="Founder"
+                  class="w-12 h-12 rounded-full mr-4 border-2 border-brand-primary"
+                />
+                <div>
+                  <h4 class="font-bold text-brand-white">Sam Lee, Owner</h4>
+                  <p class="text-sm text-brand-primary">Origin Furniture</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 
+          ======================================
           SECTION 7: ABOUT TARKAN (Merged)
           ======================================
         -->
-      <section id="about" class="py-24 md:py-32">
+      <section id="about" class="py-24 md:py-32 bg-white/5">
         <div class="container mx-auto px-6">
           <!-- Part 1: Merged Book Section -->
           <div class="flex flex-col lg:flex-row items-center gap-16">
@@ -802,7 +885,6 @@
           </div>
 
           <!-- Quiz Results (Hidden by default) -->
-          <!-- This is the "score card" from the old version, which the new script.js will now show -->
           <div id="quiz-results" class="hidden">
             <div class="text-center">
               <h3 class="font-heading text-4xl font-bold mb-4">Your Blue Ocean Brand Score:</h3>
