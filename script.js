@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
     {
       q: "What's your current annual revenue?", // Index 1
       type: "select",
-      options: ["$250K - $1M", "$1M – $3M", "$3M – $5M", "$5M – $8M", "$8M+"], // Updated per guide
+      options: ["$500k - $1M", "$1M – $3M", "$3M – $5M", "$5M – $8M", "$8M+"], // Updated per guide
     },
     {
       q: "If you were sold out of your best-selling product for 4 weeks, what would your customers do?", // Index 2
