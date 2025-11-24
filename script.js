@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
       diagnosticModal.style.display = "flex";
       document.body.style.overflow = "hidden"; // Prevent background scroll
       // Render icons inside the modal when it opens
-      lucide.createIcons();
+      if (window.lucide) lucide.createIcons();
     }
   };
 
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
    */
   const mobileMenuBtn = document.getElementById("mobile-menu-btn");
   const mobileMenu = document.getElementById("mobile-menu");
-  const mobileMenuLinks = mobileMenu.querySelectorAll('a[href^="#"]');
+  const mobileMenuLinks = mobileMenu ? mobileMenu.querySelectorAll('a[href^="#"]') : [];
   const mobileDiagnosticBtn = document.getElementById("open-diagnostic-btn-mobile");
 
   if (mobileMenuBtn && mobileMenu) {
@@ -107,9 +107,10 @@ document.addEventListener("DOMContentLoaded", () => {
    * ======================================
    */
   const quizContainer = document.getElementById("quiz-container");
-  if (!quizContainer) return; // Don't run quiz logic if container isn't found
+  // Don't run quiz logic if container isn't found
+  if (!quizContainer) return; 
 
-  // --- 4A. QUIZ DATA BANK (From original file) ---
+  // --- 4A. QUIZ DATA BANK ---
   const questionBank = [
     // Part 1: Brand Positioning (9 questions)
     {
@@ -128,7 +129,7 @@ document.addEventListener("DOMContentLoaded", () => {
     {
       q: "What's your current annual revenue?", // Index 1
       type: "select",
-      options: ["$500k - $1M", "$1M – $3M", "$3M – $5M", "$5M – $8M", "$8M+"], // Updated per guide
+      options: ["$500k - $1M", "$1M – $3M", "$3M – $5M", "$5M – $8M", "$8M+"], 
     },
     {
       q: "If you were sold out of your best-selling product for 4 weeks, what would your customers do?", // Index 2
@@ -258,7 +259,7 @@ document.addEventListener("DOMContentLoaded", () => {
     {
       q: "What matters most to you when choosing someone to help you grow? (Select up to 3)", // Index 16
       type: "multi-select",
-      limit: 3, // Special property for this question
+      limit: 3, 
       options: [
         "Years of hands-on experience (10+ years)",
         "Built and scaled physical products themselves",
@@ -309,11 +310,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Results elements
   const quizResultsEl = document.getElementById("quiz-results");
-  const quizScoreValueEl = document.getElementById("quiz-score-value");
-  const resultText1El = document.getElementById("result-text-1");
-  const resultText2El = document.getElementById("result-text-2");
-  const resultText3El = document.getElementById("result-text-3");
-  const profitLeakValueEl = document.getElementById("profit-leak-value");
 
   // --- 4C. QUIZ STATE ---
   let currentQuestionIndex = 0;
@@ -325,6 +321,8 @@ document.addEventListener("DOMContentLoaded", () => {
    * Initializes the quiz, renders questions, and sets up listeners.
    */
   function initQuiz() {
+    if(!quizSlidesContainer) return;
+    
     // Clear the placeholder content from HTML
     quizSlidesContainer.innerHTML = "";
 
@@ -332,7 +330,7 @@ document.addEventListener("DOMContentLoaded", () => {
     renderQuestions();
 
     // Add main event listener
-    startQuizBtn.addEventListener("click", startQuiz);
+    if(startQuizBtn) startQuizBtn.addEventListener("click", startQuiz);
 
     // Add event listeners for rendered questions
     addQuizListeners();
@@ -423,28 +421,12 @@ document.addEventListener("DOMContentLoaded", () => {
     // Add listeners for new Lead Capture step
     if (quizLeadCaptureEl) {
       // Back button on lead form goes to last question
-      quizLeadCaptureEl.querySelector(".btn-back").addEventListener("click", () => {
-        showQuestion(questionBank.length - 1);
-      });
-
-      // Submit Lead button -> Show Results
-      submitLeadBtn.addEventListener("click", () => {
-        // Here you would normally validate and send the lead
-        const name = document.getElementById("quiz-name").value;
-        const email = document.getElementById("quiz-email").value;
-
-        // Replace alert() with non-blocking validation
-        if (!name || !email) {
-          quizLeadErrorEl.classList.remove("hidden"); // Show error message
-          return; // Stop execution
-        }
-
-        // If validation passes, hide error and proceed
-        quizLeadErrorEl.classList.add("hidden");
-
-        // console.log("Lead Captured:", { name, email, answers });
-        calculateAndShowResults(); // This will now run, showing the score card
-      });
+      const backBtn = quizLeadCaptureEl.querySelector(".btn-back");
+      if(backBtn) {
+          backBtn.addEventListener("click", () => {
+            showQuestion(questionBank.length - 1);
+          });
+      }
     }
   }
 
@@ -519,15 +501,17 @@ document.addEventListener("DOMContentLoaded", () => {
     quizResultsEl.classList.add("hidden");
 
     // Show the current question and its parent container
-    quizSlidesContainer.querySelector(`.quiz-question[data-question-index="${index}"]`).classList.add("active-question");
+    const activeQ = quizSlidesContainer.querySelector(`.quiz-question[data-question-index="${index}"]`);
+    if(activeQ) activeQ.classList.add("active-question");
+    
     quizQuestionsEl.classList.remove("hidden");
 
     // Update progress bar
     const progress = ((index + 1) / questionBank.length) * 100;
-    quizProgressBar.style.width = `${progress}%`;
+    if(quizProgressBar) quizProgressBar.style.width = `${progress}%`;
 
     // Render icons (for "Back" button)
-    lucide.createIcons();
+    if (window.lucide) lucide.createIcons();
   }
 
   /**
@@ -538,83 +522,226 @@ document.addEventListener("DOMContentLoaded", () => {
     quizResultsEl.classList.add("hidden");
     quizLeadCaptureEl.classList.remove("hidden");
     // Render icons (for buttons on this screen)
-    lucide.createIcons();
+    if (window.lucide) lucide.createIcons();
   }
 
-  /**
-   * Calculates the score and populates the results screen.
-   * THIS IS THE UPDATED FUNCTION USING THE *ORIGINAL* LOGIC
-   */
-  function calculateAndShowResults() {
+  // --- GOOGLE SHEETS & AI LOGIC ---
+  // IMPORTANT: This URL must be from a Web App deployment executed as "Me" with access "Anyone"
+  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxGYEUCBm3ueYKPmgDBulXupsufhifXxXdvixZS0zsq8HvD0U6VTs1eeigRUNf94w1PUg/exec'; 
+
+  if (submitLeadBtn) {
+    submitLeadBtn.addEventListener("click", () => {
+      const nameEl = document.getElementById("quiz-name");
+      const emailEl = document.getElementById("quiz-email");
+      const phoneEl = document.getElementById("quiz-phone");
+      const businessEl = document.getElementById("quiz-business");
+      const btnText = document.getElementById("btn-text");
+      const quizLeadErrorEl = document.getElementById("quiz-lead-error");
+
+      const name = nameEl ? nameEl.value : "";
+      const email = emailEl ? emailEl.value : "";
+      const phone = phoneEl ? phoneEl.value : "";
+      const business = businessEl ? businessEl.value : "";
+
+      // 1. Validation
+      if (!name || !email || !phone || !business) {
+        if(quizLeadErrorEl) quizLeadErrorEl.classList.remove("hidden");
+        return;
+      }
+      if(quizLeadErrorEl) quizLeadErrorEl.classList.add("hidden");
+
+      // 2. Loading State
+      if(btnText) btnText.textContent = "Analyzing Data...";
+      submitLeadBtn.disabled = true;
+
+      // 3. Local Calculation
+      const results = calculateResultsLogic();
+
+      // 4. Send Data to Google Sheets (Backend)
+      const formData = new FormData();
+      formData.append("name", name);
+      formData.append("email", email);
+      formData.append("phone", phone);
+      formData.append("business", business);
+      formData.append("score", results.score);
+      formData.append("profitLeak", results.profitLeak);
+      formData.append("answers", JSON.stringify(answers));
+
+      fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        body: formData,
+        mode: "no-cors"
+      })
+      .then(() => {
+        // Success (or opaque success)
+        renderDashboard(results, business, email);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        // Fallback: show dashboard anyway
+        renderDashboard(results, business, email);
+      });
+    });
+  }
+
+  function calculateResultsLogic() {
     let score = 20; // Base score
-    let profitLeak = 100000; // Base leak
+    
+    // Safe check helper to avoid crashes on undefined answers
+    const checkAnswer = (index, keyword) => {
+        if (!answers[index]) return false;
+        // Handle array answers (multi-select) or strings
+        const ans = Array.isArray(answers[index]) ? answers[index].join(" ") : answers[index];
+        return ans.toString().includes(keyword);
+    };
 
-    // --- Scoring Logic (From Original File) ---
-    // Q3 (Index 2): Loyalty
-    if (answers[2] === "Wait for us to restock – they only want our brand") score += 15;
-    // Q4 (Index 3): Pricing Power
-    if (answers[3] === "Sales would stay strong – our customers value what we offer") score += 10;
-    // Q5 (Index 4): Loyalty
-    if (answers[4] === "They'd genuinely miss us – we have a loyal community") score += 10;
-    // Q6 (Index 5): Clarity
-    if (answers[5] === "Yes – they instantly understand our category and value") score += 15;
-    // Q10 (Index 9): AI Readiness
-    if (answers[9] && answers[9].includes("3D (Unfair advantage): Using AI for product innovation, customer insights, etc.")) score += 15;
-    // Q18 (Index 17): Budget
-    if (answers[17] === "$15K – $25K" || answers[17] === "$25K+") score += 15;
-    // Q19 (Index 18): Urgency
-    if (
-      answers[18] === "Extremely urgent – it's keeping me up at night" ||
-      answers[18] === "Very urgent – I need help within 30 days"
-    )
-      score += 10;
+    // Logic Mapping (Tarkan's Rules)
+    // Q3 (Index 2): "Wait for us" -> High Loyalty
+    if (checkAnswer(2, "Wait for us")) score += 15; 
+    // Q4 (Index 3): "Stay strong" -> Pricing Power
+    if (checkAnswer(3, "Stay strong")) score += 10; 
+    // Q5 (Index 4): "Genuinely miss" -> Brand Power
+    if (checkAnswer(4, "Genuinely miss")) score += 10; 
+    // Q6 (Index 5): "Yes" -> Clarity
+    if (checkAnswer(5, "Yes")) score += 15; 
+    // Q10 (Index 9): "3D" -> AI Maturity
+    if (checkAnswer(9, "3D")) score += 15; 
+    // Q19 (Index 18): "Extremely urgent" -> Urgency
+    if (checkAnswer(18, "Extremely urgent")) score += 10; 
 
-    // Ensure score is max 100
     if (score > 100) score = 100;
 
-    // --- Result Text Logic (From Original File) ---
-    // 1. Clarity Gap
-    // Checks Q6 (Index 5)
-    if (answers[5] && (answers[5].includes("Not really") || answers[5].includes("No"))) {
-      resultText1El.textContent =
-        "Your answers show a critical lack of brand clarity. Customers and investors are likely confused, which directly costs you sales and wastes ad spend.";
-    } else {
-      resultText1El.textContent =
-        "Your clarity seems high, but we can leverage this by building systems to ensure that clarity translates to every part of your operation.";
-    }
+    // Calculate Profit Leak based on Revenue Bracket (Q2 / Index 1)
+    let revenueMultiplier = 15000;
+    const revAnswer = answers[1] || ""; 
+    if (revAnswer === "$1M – $3M") revenueMultiplier = 50000;
+    if (revAnswer === "$3M – $5M") revenueMultiplier = 85000;
+    if (revAnswer === "$5M – $8M") revenueMultiplier = 150000;
+    if (revAnswer === "$8M+") revenueMultiplier = 250000;
 
-    // 2. Loyalty Gap
-    // Checks Q3 (Index 2) and Q5 (Index 4)
-    if (
-      (answers[2] && answers[2].includes("Buy from a competitor")) ||
-      (answers[4] && answers[4].includes("They'd replace us easily"))
-    ) {
-      resultText2El.textContent =
-        "You're likely trapped in a 'Red Ocean,' competing on price, not value. This makes you vulnerable to cheaper knockoffs and market saturation.";
-    } else {
-      resultText2El.textContent =
-        "You have a strong, loyal brand. Now we must build the operational engine to serve that community profitably and at scale.";
-    }
+    // The lower the score, the higher the leak factor
+    // Score 20 -> Leak Factor 8.0
+    // Score 100 -> Leak Factor 0.0
+    const leakFactor = (100 - score) / 10; 
+    const profitLeak = Math.round(leakFactor * revenueMultiplier);
 
-    // 3. AI Leverage Gap
-    // Checks Q10 (Index 9)
-    if (answers[9] && (answers[9].includes("Not using AI at all") || answers[9].includes("1D (Basic automation)"))) {
-      resultText3El.textContent =
-        "You are currently using AI for basic tasks, but missing the 3D 'unfair advantage' to systemize operations, automate workflows, and drive product innovation.";
-    } else {
-      resultText3El.textContent =
-        "You're already leveraging AI. Our sprint will focus on integrating it into a '3D Unfair Advantage' that your competitors can't copy.";
-    }
+    return { score, profitLeak };
+  }
 
-    // Calculate final profit leak
-    profitLeak += (100 - score) * 3500;
-    profitLeakValueEl.textContent = `$${profitLeak.toLocaleString()}`;
-
-    // Display results
-    quizScoreValueEl.textContent = score;
-    quizQuestionsEl.classList.add("hidden");
+  function renderDashboard(results, businessName, email) {
+    // Hide Lead Form, Show Results
     quizLeadCaptureEl.classList.add("hidden");
-    quizResultsEl.classList.remove("hidden"); // <-- This shows the score card
+    quizResultsEl.classList.remove("hidden");
+    
+    // 1. Populate Basic Text (Safely)
+    setText("result-business-name", businessName);
+    setText("quiz-score-value", results.score);
+    setText("profit-leak-value", "$" + results.profitLeak.toLocaleString());
+    setText("confirm-email", email);
+
+    // 2. Score Label Styling
+    const scoreLabel = document.getElementById("score-label");
+    if(scoreLabel) {
+        if(results.score < 50) {
+            scoreLabel.textContent = "⚠️ Red Ocean Danger Zone";
+            scoreLabel.className = "relative z-10 text-brand-red font-bold text-lg md:text-xl mt-2";
+        } else if (results.score < 80) {
+            scoreLabel.textContent = "⚠️ The Messy Middle";
+            scoreLabel.className = "relative z-10 text-brand-orange font-bold text-lg md:text-xl mt-2";
+        } else {
+            scoreLabel.textContent = "🌊 Blue Ocean Ready";
+            scoreLabel.className = "relative z-10 text-brand-primary font-bold text-lg md:text-xl mt-2";
+        }
+    }
+
+    // 3. Populate The 3 Insights Grid (MATCHING YOUR HTML IDs)
+    // Insight 1: Positioning (ID: insight-positioning)
+    const posText = results.score < 60 
+        ? "CRITICAL: You are competing on price. Analysis detects a '1D' positioning strategy. You are paying the 'Invisible Tax' on every ad dollar."
+        : "GOOD: Brand strength is high, but operational drag is likely killing your margins. Move from 'Better' to 'Different'.";
+    setText("insight-positioning", posText);
+
+    // Insight 2: Retention (ID: insight-retention)
+    // Based on Q3/Index 2
+    let isLowRetention = false;
+    if (answers[2] && answers[2].toString().includes("Buy from a competitor")) isLowRetention = true;
+    
+    const retText = isLowRetention
+        ? "ALERT: Brand loyalty is fragile. A competitor with a better offer could steal your market share in 30 days." 
+        : "OPPORTUNITY: High loyalty detected. You are sitting on a goldmine of LTV that isn't being fully monetized.";
+    setText("insight-retention", retText);
+
+    // Insight 3: AI Maturity (ID: insight-ai)
+    // Based on Q10/Index 9
+    let isAdvancedAI = false;
+    if (answers[9]) {
+       const ansStr = Array.isArray(answers[9]) ? answers[9].join(" ") : answers[9];
+       if(ansStr.includes("3D")) isAdvancedAI = true;
+    }
+
+    const aiText = isAdvancedAI
+        ? "ADVANCED: You use AI well. Is it connected to your supply chain? The next step is a fully autonomous 'Predictable Profit Engine'." 
+        : "URGENT: Falling behind. Competitors using '3D AI' will undercut your pricing and outpace your innovation within 12 months.";
+    setText("insight-ai", aiText);
+
+
+    // 4. Render Radar Chart
+    const canvas = document.getElementById('blueOceanChart');
+    if (canvas) {
+        const ctx = canvas.getContext('2d');
+        
+        // Create visual sub-scores
+        const clarityScore = results.score;
+        const opsScore = results.score > 50 ? results.score - 15 : results.score + 10;
+        const aiScore = results.score > 70 ? 80 : 30;
+        const loyaltyScore = results.score > 60 ? results.score : results.score - 10;
+
+        new Chart(ctx, {
+            type: 'radar',
+            data: {
+                labels: ['Clarity', 'Ops', 'AI', 'Loyalty', 'Pricing'],
+                datasets: [{
+                    label: 'Current State',
+                    data: [clarityScore, opsScore, aiScore, loyaltyScore, clarityScore - 5],
+                    backgroundColor: 'rgba(216, 249, 17, 0.2)',
+                    borderColor: '#D8F911',
+                    pointBackgroundColor: '#D8F911',
+                    pointBorderColor: '#fff',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        angleLines: { color: 'rgba(255, 255, 255, 0.1)' },
+                        grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                        pointLabels: { 
+                            color: 'rgba(255,255,255,0.7)', 
+                            font: { size: 11, family: 'Inter' } 
+                        },
+                        ticks: { display: false, backdropColor: 'transparent' },
+                        suggestedMin: 0,
+                        suggestedMax: 100
+                    }
+                },
+                plugins: { legend: { display: false } }
+            }
+        });
+    }
+    
+    // Re-render icons
+    if (window.lucide) lucide.createIcons();
+  }
+
+  // Helper function to safely set text (Prevents Crashes)
+  function setText(id, text) {
+      const el = document.getElementById(id);
+      if(el) {
+          el.textContent = text;
+      } else {
+          console.warn("Element not found during dashboard render:", id);
+      }
   }
 
   // --- 4E. KICK IT OFF ---
@@ -622,5 +749,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // --- 5. GLOBAL ICON RENDER ---
   // Renders all icons on the main page.
-  lucide.createIcons();
+  if(window.lucide) lucide.createIcons();
 }); // End of DOMContentLoaded

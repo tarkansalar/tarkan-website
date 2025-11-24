@@ -24,6 +24,8 @@
     <!-- Lucide Icons (Correct Script) -->
     <script src="https://unpkg.com/lucide@0.378.0/dist/umd/lucide.min.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <!-- Custom Tailwind Configuration -->
     <script>
       tailwind.config = {
@@ -968,9 +970,7 @@
           <i data-lucide="x" class="w-8 h-8"></i>
         </button>
 
-        <!-- Diagnostic Quiz Container -->
         <div id="quiz-container" class="w-full">
-          <!-- Quiz Start Screen -->
           <div id="quiz-start" class="text-center">
             <h3 id="modal-title" class="font-heading text-3xl font-bold mb-4">
               The Blue Ocean Diagnostic
@@ -986,9 +986,7 @@
             </button>
           </div>
 
-          <!-- Quiz Questions (Hidden by default) -->
           <div id="quiz-questions" class="hidden">
-            <!-- Progress Bar -->
             <div class="w-full bg-brand-dark rounded-full h-2.5 mb-8 border border-white/10">
               <div
                 id="quiz-progress-bar"
@@ -997,85 +995,172 @@
               ></div>
             </div>
 
-            <!-- Question Slides -->
-            <div class="quiz-slides">
-              <!-- This is where JS will inject/show questions. -->
-            </div>
+            <div class="quiz-slides"></div>
+          </div>
+          <div id="quiz-lead-capture" class="hidden text-left max-w-lg mx-auto">
+            <h3 class="font-heading text-2xl font-bold mb-2 text-brand-white">
+              Generating Your Profit Leak Report...
+            </h3>
+            <p class="text-brand-white/70 mb-6">
+              We need a few details to customize your Blue Ocean analysis and send the full 15-page
+              AI audit to your inbox.
+            </p>
 
-            <!-- Lead Capture (New Step) -->
-            <div id="quiz-lead-capture" class="hidden">
-              <h3 class="question-label mb-4">Almost there! Who are you?</h3>
-              <p class="question-description mb-6">
-                Enter your details to see your AI-generated score and "Profit Leak" analysis.
-              </p>
-              <div class="space-y-4">
-                <input type="text" id="quiz-name" class="quiz-input" placeholder="Your Name" />
+            <div class="space-y-4">
+              <div>
+                <label class="block text-xs uppercase tracking-widest text-brand-white/50 mb-1"
+                  >Full Name</label
+                >
+                <input
+                  type="text"
+                  id="quiz-name"
+                  class="quiz-input"
+                  placeholder="e.g. Tarkan Salar"
+                />
+              </div>
+
+              <div>
+                <label class="block text-xs uppercase tracking-widest text-brand-white/50 mb-1"
+                  >Business Email</label
+                >
                 <input
                   type="email"
                   id="quiz-email"
                   class="quiz-input"
-                  placeholder="Your Email Address"
+                  placeholder="name@yourbrand.com"
                 />
               </div>
-              <!-- Issue 4 Fix: Added error message p tag -->
-              <p id="quiz-lead-error" class="text-brand-red text-sm mt-4 hidden">
-                Please fill out all fields.
-              </p>
-              <div class="quiz-nav">
-                <button
-                  class="btn btn-secondary btn-back"
-                  aria-label="Go back to previous question"
+
+              <div>
+                <label class="block text-xs uppercase tracking-widest text-brand-white/50 mb-1"
+                  >Phone Number</label
                 >
-                  Back
-                </button>
-                <button id="submit-lead-btn" class="btn btn-primary">
-                  See My Results
-                  <i data-lucide="arrow-right" class="w-5 h-5 ml-2"></i>
-                </button>
+                <input
+                  type="tel"
+                  id="quiz-phone"
+                  class="quiz-input"
+                  placeholder="+1 (555) 000-0000"
+                />
               </div>
+
+              <div>
+                <label class="block text-xs uppercase tracking-widest text-brand-white/50 mb-1"
+                  >Business Name</label
+                >
+                <input
+                  type="text"
+                  id="quiz-business"
+                  class="quiz-input"
+                  placeholder="e.g. Blue Ocean Supplements"
+                />
+              </div>
+            </div>
+
+            <p id="quiz-lead-error" class="text-brand-red text-sm mt-4 hidden">
+              <i data-lucide="alert-circle" class="w-4 h-4 inline mr-1"></i>
+              Please fill out all fields correctly.
+            </p>
+
+            <div class="quiz-nav mt-8">
+              <button class="btn btn-secondary btn-back text-sm">Back</button>
+              <button id="submit-lead-btn" class="btn btn-primary w-full ml-4">
+                <span id="btn-text">Reveal My Report</span>
+                <i data-lucide="arrow-right" class="w-5 h-5 ml-2"></i>
+              </button>
             </div>
           </div>
 
-          <!-- Quiz Results (Hidden by default) -->
-          <div id="quiz-results" class="hidden">
-            <div class="text-center">
-              <h3 class="font-heading text-4xl font-bold mb-4">Your Blue Ocean Brand Score:</h3>
-              <div class="text-8xl font-display font-bold text-brand-primary my-6">
-                <span id="quiz-score-value">...</span>/100
-              </div>
-
-              <p class="text-lg text-brand-white/80 mb-10">
-                Based on your answers, here are your 3 biggest profit leaks:
+          <div id="quiz-results" class="hidden w-full">
+            <div class="text-center mb-8">
+              <h3 class="font-heading text-3xl font-bold mb-2">Your Blue Ocean Diagnosis</h3>
+              <p class="text-brand-white/60">
+                Analysis for:
+                <span id="result-business-name" class="text-brand-primary">Your Brand</span>
               </p>
+            </div>
 
-              <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
-                <!-- Result Card -->
-                <div class="feature-card">
-                  <h4 class="text-brand-red text-xl font-bold mb-2">1. Brand Clarity Gap</h4>
-                  <p class="text-brand-white/80" id="result-text-1">...</p>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+              <div
+                class="bg-white/5 border border-white/10 rounded-xl p-6 flex flex-col items-center justify-center relative overflow-hidden"
+              >
+                <div class="absolute top-0 right-0 w-full h-full bg-brand-primary/5 blur-2xl"></div>
+                <h4
+                  class="relative z-10 text-brand-white/70 uppercase tracking-widest text-sm mb-4"
+                >
+                  Overall Score
+                </h4>
+                <div class="relative z-10 text-7xl font-display font-bold text-brand-primary mb-2">
+                  <span id="quiz-score-value">0</span>/100
                 </div>
-                <!-- Result Card -->
-                <div class="feature-card">
-                  <h4 class="text-brand-orange text-xl font-bold mb-2">2. Brand Loyalty Gap</h4>
-                  <p class="text-brand-white/80" id="result-text-2">...</p>
-                </div>
-                <!-- Result Card -->
-                <div class="feature-card">
-                  <h4 class="text-brand-cyan text-xl font-bold mb-2">3. AI Leverage Gap</h4>
-                  <p class="text-brand-white/80" id="result-text-3">...</p>
-                </div>
-              </div>
-
-              <div class="mt-12">
-                <p class="text-xl text-brand-white/90 mb-6">
-                  You're leaving an estimated
-                  <span class="text-brand-primary font-bold" id="profit-leak-value">$XXX,XXX</span>
-                  on the table. Let's fix it.
+                <p id="score-label" class="relative z-10 text-brand-white font-bold text-lg">
+                  Red Ocean Trapped
                 </p>
-                <a href="https://calendly.com/your-link" target="_blank" class="btn btn-primary">
-                  Book a Call to Fix This
-                </a>
               </div>
+
+              <div
+                class="bg-white/5 border border-white/10 rounded-2xl p-6 flex items-center justify-center h-[300px] w-full"
+              >
+                <canvas id="blueOceanChart" style="max-height: 250px"></canvas>
+              </div>
+            </div>
+
+            <div
+              class="bg-brand-red/10 border border-brand-red/30 rounded-xl p-6 mb-8 flex flex-col md:flex-row items-center gap-6"
+            >
+              <div class="bg-brand-red/20 p-3 rounded-full">
+                <i data-lucide="alert-triangle" class="w-8 h-8 text-brand-red"></i>
+              </div>
+              <div class="text-center md:text-left flex-1">
+                <h4 class="text-brand-red font-bold text-xl uppercase mb-1">
+                  Cost of Inaction Alert
+                </h4>
+                <p class="text-brand-white/80">
+                  Based on your revenue and efficiency score, you are likely leaking:
+                </p>
+              </div>
+              <div class="text-3xl font-display font-bold text-white">
+                <span id="profit-leak-value">$0</span
+                ><span class="text-sm text-white/50 block text-right">/ Year</span>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left mb-10">
+              <div class="bg-white/5 border border-white/10 rounded-xl p-5">
+                <h4 class="text-brand-primary text-lg font-bold mb-3 flex items-center">
+                  <i data-lucide="target" class="w-4 h-4 mr-2"></i>Positioning
+                </h4>
+                <p class="text-sm text-brand-white/70 leading-relaxed" id="insight-positioning">
+                  ...
+                </p>
+              </div>
+              <div class="bg-white/5 border border-white/10 rounded-xl p-5">
+                <h4 class="text-brand-primary text-lg font-bold mb-3 flex items-center">
+                  <i data-lucide="users" class="w-4 h-4 mr-2"></i>Retention
+                </h4>
+                <p class="text-sm text-brand-white/70 leading-relaxed" id="insight-retention">
+                  ...
+                </p>
+              </div>
+              <div class="bg-white/5 border border-white/10 rounded-xl p-5">
+                <h4 class="text-brand-primary text-lg font-bold mb-3 flex items-center">
+                  <i data-lucide="cpu" class="w-4 h-4 mr-2"></i>AI Maturity
+                </h4>
+                <p class="text-sm text-brand-white/70 leading-relaxed" id="insight-ai">...</p>
+              </div>
+            </div>
+
+            <div class="text-center">
+              <p class="text-brand-white/60 mb-4 text-sm">
+                A detailed 15-page AI audit has been sent to
+                <span id="confirm-email" class="text-brand-white font-bold">your email</span>.
+              </p>
+              <a
+                href="https://calendly.com/your-link"
+                target="_blank"
+                class="btn btn-primary w-full sm:w-auto"
+              >
+                Fix This Profit Leak Now
+              </a>
             </div>
           </div>
         </div>
