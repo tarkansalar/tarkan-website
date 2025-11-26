@@ -750,4 +750,62 @@ document.addEventListener("DOMContentLoaded", () => {
   // --- 5. GLOBAL ICON RENDER ---
   // Renders all icons on the main page.
   if(window.lucide) lucide.createIcons();
+
+  /**
+   * ======================================
+   * TESTIMONIAL MODAL LOGIC
+   * ======================================
+   */
+  const testimonialModal = document.getElementById("testimonial-modal");
+  const closeTestimonialBtn = document.getElementById("close-testimonial-modal");
+  const testimonialBtns = document.querySelectorAll(".open-testimonial-modal");
+
+  // Elements to populate
+  const tmImg = document.getElementById("tm-img");
+  const tmName = document.getElementById("tm-name");
+  const tmRole = document.getElementById("tm-role");
+  const tmText = document.getElementById("tm-text");
+
+  const openTestimonial = (btn) => {
+    // 1. Get data from clicked button
+    const name = btn.getAttribute("data-name");
+    const role = btn.getAttribute("data-role");
+    const img = btn.getAttribute("data-img");
+    const text = btn.getAttribute("data-text");
+
+    // 2. Populate Modal
+    if(tmName) tmName.textContent = name;
+    if(tmRole) tmRole.textContent = role;
+    if(tmImg) tmImg.src = img;
+    if(tmText) tmText.textContent = `"${text}"`;
+
+    // 3. Show Modal
+    if(testimonialModal) {
+        testimonialModal.style.display = "flex";
+        document.body.style.overflow = "hidden"; // Lock scroll
+    }
+  };
+
+  const closeTestimonial = () => {
+    if(testimonialModal) {
+        testimonialModal.style.display = "none";
+        document.body.style.overflow = "auto"; // Unlock scroll
+    }
+  };
+
+  // Attach Click Listeners
+  testimonialBtns.forEach(btn => {
+    btn.addEventListener("click", () => openTestimonial(btn));
+  });
+
+  if(closeTestimonialBtn) {
+    closeTestimonialBtn.addEventListener("click", closeTestimonial);
+  }
+
+  // Close on outside click
+  if(testimonialModal) {
+    testimonialModal.addEventListener("click", (e) => {
+        if(e.target === testimonialModal) closeTestimonial();
+    });
+  }
 }); // End of DOMContentLoaded
