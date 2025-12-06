@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Free Brand Health Check | Tarkan Salar</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+
+    <script src="https://unpkg.com/lucide@0.378.0/dist/umd/lucide.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              display: ["Anton", "sans-serif"],
+              heading: ["Inter", "sans-serif"],
+            },
+            colors: {
+              "brand-primary": "#D8F911",
+              "brand-dark": "#0D0D0D",
+              "brand-white": "#FFFFFF",
+              "brand-red": "#FF4D4D",
+              "brand-orange": "#F2AD0C",
+            },
+          },
+        },
+      };
+    </script>
+
+    <script type="text/javascript">
+      (function (c, l, a, r, i, t, y) {
+        c[a] =
+          c[a] ||
+          function () {
+            (c[a].q = c[a].q || []).push(arguments);
+          };
+        t = l.createElement(r);
+        t.async = 1;
+        t.src = "https://www.clarity.ms/tag/" + i;
+        y = l.getElementsByTagName(r)[0];
+        y.parentNode.insertBefore(t, y);
+      })(window, document, "clarity", "script", "ugg13zy1t9");
+    </script>
+
+    <style>
+      /* Hide standard nav elements if they accidentally leak in */
+      header nav a {
+        display: none !important;
+      }
+
+      /* New container logic: Min height but safe padding */
+      .squeeze-container {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        /* Removed justify-center to prevent top-overlap */
+      }
+    </style>
+  </head>
+
+  <body class="bg-brand-dark text-brand-white font-sans antialiased">
+    <header class="absolute top-0 left-0 w-full z-50 p-6 md:p-8">
+      <div class="container mx-auto flex justify-center md:justify-start">
+        <span class="text-xl font-bold text-brand-white font-heading tracking-wide">
+          TARKAN: The Blue Ocean Builder
+        </span>
+      </div>
+    </header>
+
+    <main class="squeeze-container relative overflow-hidden pt-32 pb-16 md:pt-40 md:pb-20">
+      <div
+        class="absolute top-0 right-0 w-full md:w-1/2 h-full bg-brand-primary/5 blur-[120px] rounded-full pointer-events-none z-0"
+      ></div>
+
+      <div class="container mx-auto px-6 relative z-10 h-full flex flex-col justify-center">
+        <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+          <div class="w-full lg:w-1/2 text-center lg:text-left">
+            <h1
+              class="font-display text-4xl md:text-5xl lg:text-6xl font-bold uppercase mb-6 tracking-wide leading-tight"
+            >
+              Are you frustrated that your D2C brand is stuck in the
+              <span class="text-brand-red">"Messy Middle"</span> even though you're working harder
+              than ever?
+            </h1>
+
+            <p class="text-xl text-brand-white/80 mb-8 max-w-2xl mx-auto lg:mx-0">
+              Stop guessing. Answer 15 questions to audit your operations, identify your #1 profit
+              leak, and get a roadmap to scale past $10M.
+            </p>
+
+            <div
+              class="space-y-4 mb-10 text-left max-w-lg mx-auto lg:mx-0 bg-white/5 p-6 rounded-xl border border-white/10 shadow-lg"
+            >
+              <div class="flex items-start">
+                <i
+                  data-lucide="bar-chart-2"
+                  class="w-6 h-6 text-brand-primary mr-3 flex-shrink-0 mt-1"
+                ></i>
+                <div>
+                  <strong class="text-brand-white">MEASURE</strong>
+                  <p class="text-sm text-brand-white/70">
+                    Compare your metrics against 8-figure heavyweights.
+                  </p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <i
+                  data-lucide="search"
+                  class="w-6 h-6 text-brand-primary mr-3 flex-shrink-0 mt-1"
+                ></i>
+                <div>
+                  <strong class="text-brand-white">IDENTIFY</strong>
+                  <p class="text-sm text-brand-white/70">
+                    Pinpoint the exact bottleneck (Ops, AI, or Brand) holding you back.
+                  </p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <i data-lucide="map" class="w-6 h-6 text-brand-primary mr-3 flex-shrink-0 mt-1"></i>
+                <div>
+                  <strong class="text-brand-white">IMPROVE</strong>
+                  <p class="text-sm text-brand-white/70">
+                    Get a free, customized 3-step action plan instantly.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <button
+              id="open-diagnostic-btn-hero"
+              class="btn btn-primary text-lg w-full md:w-auto shadow-[0_0_30px_rgba(216,249,17,0.3)] hover:shadow-[0_0_50px_rgba(216,249,17,0.5)] transform hover:-translate-y-1 transition-all"
+            >
+              Start Brand Health Check
+              <i data-lucide="arrow-right" class="w-5 h-5 ml-2"></i>
+            </button>
+            <p class="mt-4 text-sm text-brand-white/50 uppercase tracking-widest font-bold">
+              <i data-lucide="clock" class="w-4 h-4 inline mb-1 mr-1"></i> Takes 3 Minutes • 100%
+              Free
+            </p>
+          </div>
+
+          <div class="w-full lg:w-1/2 flex justify-center mt-8 lg:mt-0">
+            <div
+              class="relative w-full max-w-md bg-brand-dark border border-white/10 rounded-2xl p-6 shadow-2xl rotate-1 hover:rotate-0 transition-all duration-500 group cursor-pointer"
+              id="visual-trigger"
+            >
+              <div
+                class="absolute -top-4 -right-4 bg-brand-primary text-brand-dark font-bold px-4 py-2 rounded-lg transform rotate-3 shadow-lg z-20 group-hover:rotate-6 transition-transform"
+              >
+                Generated for you
+              </div>
+
+              <div
+                class="space-y-4 opacity-50 blur-[1px] group-hover:blur-0 transition-all duration-300"
+              >
+                <div class="h-8 bg-white/20 rounded w-3/4"></div>
+                <div class="h-4 bg-white/10 rounded w-full"></div>
+                <div class="h-4 bg-white/10 rounded w-5/6"></div>
+                <div class="grid grid-cols-2 gap-4 mt-6">
+                  <div
+                    class="h-24 bg-brand-primary/20 rounded-lg border border-brand-primary/30"
+                  ></div>
+                  <div class="h-24 bg-brand-red/20 rounded-lg border border-brand-red/30"></div>
+                </div>
+              </div>
+
+              <div
+                class="absolute inset-0 flex flex-col items-center justify-center text-center p-6 z-10"
+              >
+                <div
+                  class="bg-black/80 backdrop-blur-md p-6 rounded-xl border border-brand-primary/30 shadow-2xl group-hover:scale-105 transition-transform duration-300"
+                >
+                  <h3 class="font-display text-3xl text-brand-white mb-2">YOUR SCORE?</h3>
+                  <p class="text-brand-white/80 mb-4">
+                    Unlock your personalized <br />
+                    <span class="text-brand-primary">Blue Ocean Audit</span>
+                  </p>
+                  <button
+                    id="open-diagnostic-btn-img"
+                    class="btn btn-primary text-sm py-3 px-6 pointer-events-none"
+                  >
+                    Reveal My Report
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-20 lg:mt-32">
+          <div
+            class="bg-white/5 border border-white/10 rounded-xl p-8 backdrop-blur-sm shadow-xl flex flex-col lg:flex-row items-center justify-between gap-6 max-w-5xl mx-auto opacity-80 hover:opacity-100 transition-opacity"
+          >
+            <div class="text-center lg:text-left">
+              <p class="text-xs font-bold uppercase tracking-[0.2em] text-brand-primary mb-2">
+                The Methodology
+              </p>
+              <p class="text-brand-white font-heading font-bold text-2xl">
+                Based on 30 Years of Scaling Experience
+              </p>
+            </div>
+
+            <div class="hidden lg:block h-12 w-px bg-white/10"></div>
+
+            <div
+              class="flex flex-wrap justify-center gap-x-8 gap-y-4 font-heading text-brand-white/90"
+            >
+              <div class="flex flex-col items-center lg:items-start">
+                <span class="font-display text-2xl text-brand-white">50M+</span>
+                <span class="text-xs text-brand-white/50 uppercase tracking-wide"
+                  >Units Shipped</span
+                >
+              </div>
+              <div class="flex flex-col items-center lg:items-start">
+                <span class="font-display text-2xl text-brand-white">8-Figure</span>
+                <span class="text-xs text-brand-white/50 uppercase tracking-wide">Exits</span>
+              </div>
+              <div class="flex flex-col items-center lg:items-start">
+                <span class="font-display text-2xl text-brand-white">Former</span>
+                <span class="text-xs text-brand-white/50 uppercase tracking-wide"
+                  >Adidas & Diesel Ops</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer
+      class="bg-brand-dark py-8 text-center text-brand-white/30 text-xs border-t border-white/5"
+    >
+      <div class="container mx-auto">
+        <p>&copy; 2025 Tarkan Salar. All Rights Reserved.</p>
+      </div>
+    </footer>
+
+    <div
+      id="diagnostic-modal"
+      class="modal-overlay"
+      aria-labelledby="modal-title"
+      role="dialog"
+      aria-modal="true"
+    >
+      <div class="modal-content">
+        <button id="modal-close-btn" class="modal-close-btn" aria-label="Close diagnostic modal">
+          <i data-lucide="x" class="w-8 h-8"></i>
+        </button>
+
+        <div id="quiz-container" class="w-full">
+          <div id="quiz-start" class="text-center">
+            <h3 id="modal-title" class="font-heading text-3xl font-bold mb-4">
+              The Blue Ocean Diagnostic
+            </h3>
+            <p class="text-lg text-brand-white/80 mb-8">
+              Discover your brand's positioning gaps, profit leaks, and AI readiness. Get your
+              custom report in 3 minutes.
+            </p>
+            <button id="start-quiz-btn" class="btn btn-primary">
+              Start Assessment
+              <i data-lucide="arrow-right" class="w-5 h-5 ml-2"></i>
+            </button>
+          </div>
+
+          <div id="quiz-questions" class="hidden">
+            <div class="w-full bg-brand-dark rounded-full h-2.5 mb-8 border border-white/10">
+              <div
+                id="quiz-progress-bar"
+                class="bg-brand-primary h-2 rounded-full transition-all duration-300"
+                style="width: 0%"
+              ></div>
+            </div>
+            <div class="quiz-slides"></div>
+          </div>
+
+          <div id="quiz-lead-capture" class="hidden text-left max-w-lg mx-auto">
+            <h3 class="font-heading text-2xl font-bold mb-2 text-brand-white">
+              Generating Your Profit Leak Report...
+            </h3>
+            <p class="text-brand-white/70 mb-6">
+              Where should we send your AI-generated audit and roadmap?
+            </p>
+
+            <div class="space-y-4">
+              <div>
+                <label class="block text-xs uppercase tracking-widest text-brand-white/50 mb-1"
+                  >Full Name</label
+                >
+                <input
+                  type="text"
+                  id="quiz-name"
+                  class="quiz-input"
+                  placeholder="e.g. Tarkan Salar"
+                />
+              </div>
+              <div>
+                <label class="block text-xs uppercase tracking-widest text-brand-white/50 mb-1"
+                  >Business Email</label
+                >
+                <input
+                  type="email"
+                  id="quiz-email"
+                  class="quiz-input"
+                  placeholder="name@yourbrand.com"
+                />
+              </div>
+              <div>
+                <label class="block text-xs uppercase tracking-widest text-brand-white/50 mb-1"
+                  >Phone (Optional)</label
+                >
+                <input
+                  type="tel"
+                  id="quiz-phone"
+                  class="quiz-input"
+                  placeholder="+1 (555) 000-0000"
+                />
+              </div>
+              <div>
+                <label class="block text-xs uppercase tracking-widest text-brand-white/50 mb-1"
+                  >Business Name</label
+                >
+                <input
+                  type="text"
+                  id="quiz-business"
+                  class="quiz-input"
+                  placeholder="e.g. Blue Ocean Supplements"
+                />
+              </div>
+            </div>
+
+            <p id="quiz-lead-error" class="text-brand-red text-sm mt-4 hidden">
+              <i data-lucide="alert-circle" class="w-4 h-4 inline mr-1"></i>
+              Please fill out all required fields.
+            </p>
+
+            <div class="quiz-nav mt-8">
+              <button class="btn btn-secondary btn-back text-sm">Back</button>
+              <button id="submit-lead-btn" class="btn btn-primary w-full ml-4">
+                <span id="btn-text">Reveal My Report</span>
+                <i data-lucide="arrow-right" class="w-5 h-5 ml-2"></i>
+              </button>
+            </div>
+          </div>
+
+          <div id="quiz-results" class="hidden w-full">
+            <div class="text-center mb-8">
+              <h3 class="font-heading text-3xl font-bold mb-2">Your Blue Ocean Diagnosis</h3>
+              <p class="text-brand-white/60">
+                Analysis for:
+                <span id="result-business-name" class="text-brand-primary">Your Brand</span>
+              </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+              <div
+                class="bg-white/5 border border-white/10 rounded-xl p-6 flex flex-col items-center justify-center relative overflow-hidden"
+              >
+                <div class="absolute top-0 right-0 w-full h-full bg-brand-primary/5 blur-2xl"></div>
+                <h4
+                  class="relative z-10 text-brand-white/70 uppercase tracking-widest text-sm mb-4"
+                >
+                  Overall Score
+                </h4>
+                <div class="relative z-10 text-7xl font-display font-bold text-brand-primary mb-2">
+                  <span id="quiz-score-value">0</span>/100
+                </div>
+                <p id="score-label" class="relative z-10 text-brand-white font-bold text-lg">
+                  Calculating...
+                </p>
+              </div>
+
+              <div
+                class="bg-white/5 border border-white/10 rounded-2xl p-6 flex items-center justify-center h-[300px] w-full"
+              >
+                <canvas id="blueOceanChart" style="max-height: 250px"></canvas>
+              </div>
+            </div>
+
+            <div
+              class="bg-brand-red/10 border border-brand-red/30 rounded-xl p-6 mb-8 flex flex-col md:flex-row items-center gap-6"
+            >
+              <div class="bg-brand-red/20 p-3 rounded-full">
+                <i data-lucide="alert-triangle" class="w-8 h-8 text-brand-red"></i>
+              </div>
+              <div class="text-center md:text-left flex-1">
+                <h4 class="text-brand-red font-bold text-xl uppercase mb-1">Profit Leak Alert</h4>
+                <p class="text-brand-white/80">Based on your metrics, you are likely leaking:</p>
+              </div>
+              <div class="text-3xl font-display font-bold text-white">
+                <span id="profit-leak-value">$0</span
+                ><span class="text-sm text-white/50 block text-right">/ Year</span>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left mb-10">
+              <div class="bg-white/5 border border-white/10 rounded-xl p-5">
+                <h4 class="text-brand-primary text-lg font-bold mb-3 flex items-center">
+                  <i data-lucide="target" class="w-4 h-4 mr-2"></i>Positioning
+                </h4>
+                <p class="text-sm text-brand-white/70 leading-relaxed" id="insight-positioning">
+                  ...
+                </p>
+              </div>
+              <div class="bg-white/5 border border-white/10 rounded-xl p-5">
+                <h4 class="text-brand-primary text-lg font-bold mb-3 flex items-center">
+                  <i data-lucide="users" class="w-4 h-4 mr-2"></i>Retention
+                </h4>
+                <p class="text-sm text-brand-white/70 leading-relaxed" id="insight-retention">
+                  ...
+                </p>
+              </div>
+              <div class="bg-white/5 border border-white/10 rounded-xl p-5">
+                <h4 class="text-brand-primary text-lg font-bold mb-3 flex items-center">
+                  <i data-lucide="cpu" class="w-4 h-4 mr-2"></i>AI Maturity
+                </h4>
+                <p class="text-sm text-brand-white/70 leading-relaxed" id="insight-ai">...</p>
+              </div>
+            </div>
+
+            <div class="text-center">
+              <p class="text-brand-white/60 mb-4 text-sm">
+                A detailed audit has been sent to
+                <span id="confirm-email" class="text-brand-white font-bold">your email</span>.
+              </p>
+              <a
+                href="https://calendly.com/cantstopmeofficial/tarkan-salar-meeting-duration-adjustable-clone"
+                target="_blank"
+                class="btn btn-primary w-full sm:w-auto"
+              >
+                Fix This Profit Leak Now
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script-v2.js" defer></script>
+
+    <script>
+      // Force render icons immediately to fix the missing icon issue
+      if (window.lucide) {
+        window.lucide.createIcons();
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        // Re-run createIcons just to be safe after DOM load
+        if (window.lucide) window.lucide.createIcons();
+
+        // Handle Button Click
+        const mockBtn = document.getElementById("open-diagnostic-btn-img");
+        const modal = document.getElementById("diagnostic-modal");
+
+        // Handle visual container click (for better UX)
+        const visualTrigger = document.getElementById("visual-trigger");
+
+        const openModal = () => {
+          if (modal) {
+            modal.style.display = "flex";
+            // Render icons again when modal opens (important for hidden content)
+            if (window.lucide) window.lucide.createIcons();
+          }
+        };
+
+        if (mockBtn)
+          mockBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            openModal();
+          });
+        if (visualTrigger) visualTrigger.addEventListener("click", openModal);
+      });
+    </script>
+  </body>
+</html>
