@@ -1374,36 +1374,35 @@
         -->
       <section id="cta-choice" class="py-24 md:py-32 bg-white/5">
         <div class="container mx-auto px-6">
+          <div class="text-center mb-12 mx-auto px-10">
+            <h2 class="section-title mb-6 md:px-10 lg:px-20">
+              Why Booking This Call Is the Smartest Decision You'll Make This Year
+            </h2>
+          </div>
           <div class="flex flex-col lg:flex-row items-center gap-12 mb-20">
             <div class="w-full lg:w-1/2">
               <div
-                class="relative aspect-video bg-black rounded-2xl border border-white/20 overflow-hidden group cursor-pointer shadow-2xl"
-                onclick="this.innerHTML='<iframe class=\'w-full h-full\' src=\'https://www.youtube.com/embed/8cOYIcH5JUc?autoplay=1\' title=\'Bali Video\' frameborder=\'0\' allow=\'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\' allowfullscreen></iframe>'"
+                class="relative aspect-[9/16] max-w-sm mx-auto bg-black rounded-2xl border border-white/20 overflow-hidden shadow-2xl group"
               >
-                <img
-                  src="https://img.youtube.com/vi/8cOYIcH5JUc/maxresdefault.jpg"
-                  alt="Bali Video"
-                  class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity"
-                  onerror="this.src='https://img.youtube.com/vi/8cOYIcH5JUc/hqdefault.jpg'"
-                />
-                <div class="absolute inset-0 flex items-center justify-center">
-                  <div
-                    class="w-20 h-20 bg-brand-primary rounded-full flex items-center justify-center group-hover:scale-110 transition-transform"
-                  >
-                    <i data-lucide="play" class="w-8 h-8 text-brand-dark fill-current ml-1"></i>
-                  </div>
-                </div>
+                <video
+                  controls
+                  playsinline
+                  class="w-full h-full object-cover"
+                  poster="https://img.youtube.com/vi/8cOYIcH5JUc/hqdefault.jpg"
+                >
+                  <source src="tarkan-greetings-video-from-bali.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+
                 <div
-                  class="absolute bottom-4 left-4 bg-black/60 px-3 py-1 rounded text-xs font-bold uppercase tracking-widest text-white backdrop-blur-sm"
+                  class="absolute bottom-4 left-4 bg-black/60 px-3 py-1 rounded text-xs font-bold uppercase tracking-widest text-white backdrop-blur-sm pointer-events-none"
                 >
                   Bali, Indonesia
                 </div>
               </div>
             </div>
+
             <div class="w-full lg:w-1/2">
-              <h2 class="section-title text-left mb-6">
-                Why Booking This Call Is the Smartest Decision You'll Make This Year
-              </h2>
               <div class="prose prose-invert text-lg text-brand-white/80">
                 <p>
                   "Greetings from Bali." You just made a smart decision. Research shows 87% of
@@ -1415,6 +1414,39 @@
                   <strong class="text-white">9 clients</strong>.
                 </p>
               </div>
+            </div>
+          </div>
+
+          <div class="text-center max-w-3xl mx-auto">
+            <h2 class="section-title">Stop Drowning in the Red Ocean.</h2>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16 max-w-5xl mx-auto">
+            <div
+              class="feature-card border-2 border-brand-primary p-8 flex flex-col items-center text-center"
+            >
+              <h3 class="font-heading font-bold text-2xl mb-4">
+                OPTION 1: The Blue Ocean Diagnostic
+              </h3>
+              <p class="feature-text mb-8">
+                Not ready for a call? Take this free 21-question assessment.
+              </p>
+              <button id="open-diagnostic-btn-cta" class="btn btn-primary mt-auto">
+                Start My Diagnostic
+              </button>
+            </div>
+            <div class="feature-card p-8 flex flex-col items-center text-center">
+              <h3 class="font-heading font-bold text-2xl mb-4">
+                OPTION 2: The 'No Fluff' Strategy Call
+              </h3>
+              <p class="feature-text mb-8">
+                Book a live, "no-bullshit" working session to find your single biggest bottleneck.
+              </p>
+              <a
+                href="https://calendly.com/cantstopmeofficial/tarkan-salar-meeting-duration-adjustable-clone"
+                target="_blank"
+                class="btn btn-secondary mt-auto"
+                >Book My Call Now</a
+              >
             </div>
           </div>
         </div>
