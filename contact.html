@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact & Imprint | Tarkan Salar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: { sans: ["Inter", "sans-serif"], display: ["Anton", "sans-serif"] },
+            colors: {
+              "brand-primary": "#D8F911",
+              "brand-dark": "#0D0D0D",
+              "brand-white": "#FFFFFF",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-brand-dark text-brand-white font-sans antialiased flex flex-col min-h-screen">
+    <header class="border-b border-white/10 p-6">
+      <div class="container mx-auto">
+        <a
+          href="index.html"
+          class="text-xl font-bold font-heading tracking-wide hover:text-brand-primary transition-colors"
+        >
+          TARKAN: The Blue Ocean Builder
+        </a>
+      </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-16 max-w-2xl flex-grow flex flex-col justify-center">
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-8 md:p-12 shadow-2xl">
+        <h1 class="font-display text-4xl mb-8 text-brand-primary border-b border-white/10 pb-4">
+          Contact / Imprint
+        </h1>
+
+        <div class="space-y-6 text-lg text-brand-white/90">
+          <div>
+            <p class="text-brand-white/50 text-xs uppercase tracking-widest font-bold mb-1">
+              Company
+            </p>
+            <p class="text-xl font-bold">Smart Concepts GmbH</p>
+          </div>
+
+          <div>
+            <p class="text-brand-white/50 text-xs uppercase tracking-widest font-bold mb-1">
+              Address
+            </p>
+            <p>Zingel 17<br />31134 Hildesheim, Germany</p>
+          </div>
+
+          <div>
+            <p class="text-brand-white/50 text-xs uppercase tracking-widest font-bold mb-1">
+              Email
+            </p>
+            <a
+              href="mailto:cantstopmeofficial@gmail.com"
+              class="text-brand-primary hover:underline text-xl"
+              >cantstopmeofficial@gmail.com</a
+            >
+          </div>
+
+          <div>
+            <p class="text-brand-white/50 text-xs uppercase tracking-widest font-bold mb-1">
+              Phone
+            </p>
+            <p class="text-xl">+62 821-2455-9430</p>
+          </div>
+
+          <div class="pt-6 mt-6 border-t border-white/10 text-sm text-brand-white/60">
+            <p><strong>Managing Director(s):</strong> [Name]</p>
+            <p><strong>Register Entry:</strong> [Register ID]</p>
+            <p><strong>VAT ID:</strong> [VAT ID]</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="border-t border-white/10 py-12 text-center text-sm text-brand-white/50">
+      <div class="container mx-auto">
+        <p>&copy; 2025 Tarkan Salar. All Rights Reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>
