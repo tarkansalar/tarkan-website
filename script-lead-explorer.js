@@ -69,19 +69,56 @@ function convertSheetURLtoCSV(url) {
 /**
  * Fetch CSV from Google Sheets with CORS proxy
  */
+/**
+ * Fetch CSV from Google Sheets with CORS proxy fallback
+ */
 async function fetchCSVfromSheet(url) {
-  try {
-    const csvUrl = convertSheetURLtoCSV(url);
-    const corsProxy = 'https://api.allorigins.win/raw?url=';
-    const proxyUrl = corsProxy + encodeURIComponent(csvUrl);
-    
-    const response = await fetch(proxyUrl);
-    if (!response.ok) throw new Error('Failed to fetch sheet data');
-    
-    return await response.text();
-  } catch (error) {
-    throw new Error('Could not load Google Sheet. Make sure it\'s publicly accessible. ' + error.message);
+  const csvUrl = convertSheetURLtoCSV(url);
+  
+  // List of proxies to try in order
+  const proxies = [
+    // AllOrigins - usually reliable
+    (target) => `https://api.allorigins.win/raw?url=${encodeURIComponent(target)}`,
+    // CorsProxy.io - alternative
+    (target) => `https://corsproxy.io/?${encodeURIComponent(target)}`,
+    // CodeTabs - fallback
+    (target) => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(target)}`
+  ];
+
+  let lastError = null;
+
+  for (const proxyGen of proxies) {
+    try {
+      const proxyUrl = proxyGen(csvUrl);
+      console.log(`Trying proxy: ${proxyUrl}`);
+      
+      const response = await fetch(proxyUrl);
+      
+      if (!response.ok) {
+        throw new Error(`Status ${response.status}`);
+      }
+      
+      const text = await response.text();
+      
+      // Basic validation: HTML error pages often start with <!DOCTYPE or <html
+      // Valid CSV should probably not start with those, unless the content itself is HTML (unlikely for lead data)
+      if (text.trim().toLowerCase().startsWith('<!doctype') || 
+          text.trim().toLowerCase().startsWith('<html')) {
+        throw new Error('Proxy returned HTML error page instead of CSV');
+      }
+
+      // If we got here, it looks like valid text
+      return text;
+      
+    } catch (error) {
+      console.warn(`Proxy failed: ${error.message}`);
+      lastError = error;
+      // Continue to next proxy
+    }
   }
+
+  // If we exhaust all proxies
+  throw new Error('Could not load Google Sheet. Please check your internet connection/that the sheet is public. ' + (lastError ? lastError.message : ''));
 }
 
 /**
