@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkedIn Lead Explorer - Tarkan Salar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Anton&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ====================================
+           LINKEDIN LEAD EXPLORER - STYLES
+           Integrated with Tarkan Salar Theme
+           ==================================== */
+
+        /* Google Sheets Input Section */
+        .lead-explorer-section {
+            padding: 3rem 2rem;
+            background-color: var(--color-dark);
+            border-bottom: 1px solid var(--color-white-10);
+            margin-bottom: 2rem;
+        }
+
+        .lead-explorer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .lead-explorer-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .lead-explorer-title {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .lead-explorer-subtitle {
+            font-family: var(--font-sans);
+            font-size: 1.125rem;
+            color: var(--color-white-80);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Input Tabs */
+        .lead-input-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--color-white-10);
+            padding-bottom: 1rem;
+        }
+
+        .tab-btn {
+            padding: 0.75rem 1.5rem;
+            background: transparent;
+            border: none;
+            color: var(--color-white-50);
+            cursor: pointer;
+            font-weight: 500;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            color: var(--color-primary);
+            border-bottom-color: var(--color-primary);
+        }
+
+        .tab-btn:hover {
+            color: var(--color-white-80);
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* URL Input Form */
+        .input-group {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .input-group input {
+            flex: 1;
+            min-width: 250px;
+            padding: 12px 16px;
+            background-color: var(--color-white-05);
+            border: 1px solid var(--color-white-30);
+            border-radius: 8px;
+            color: var(--color-white);
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            transition: all 0.2s ease;
+        }
+
+        .input-group input::placeholder {
+            color: var(--color-white-50);
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            background-color: var(--color-dark);
+            box-shadow: 0 0 0 3px rgba(216, 249, 17, 0.1);
+        }
+
+        .input-group button {
+            padding: 12px 24px;
+            background-color: var(--color-primary);
+            color: var(--color-dark);
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: var(--font-sans);
+        }
+
+        .input-group button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(216, 249, 17, 0.3);
+        }
+
+        /* CSV Textarea */
+        .csv-textarea {
+            width: 100%;
+            min-height: 200px;
+            padding: 16px;
+            background-color: var(--color-white-05);
+            border: 1px solid var(--color-white-30);
+            border-radius: 8px;
+            color: var(--color-white);
+            font-family: 'Courier New', monospace;
+            font-size: 0.875rem;
+            resize: vertical;
+            transition: all 0.2s ease;
+        }
+
+        .csv-textarea::placeholder {
+            color: var(--color-white-50);
+        }
+
+        .csv-textarea:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            background-color: var(--color-dark);
+            box-shadow: 0 0 0 3px rgba(216, 249, 17, 0.1);
+        }
+
+        /* Error & Success Messages */
+        .message {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: none;
+            animation: slideIn 0.3s ease;
+        }
+
+        .message.show {
+            display: block;
+        }
+
+        .message.error {
+            background-color: rgba(255, 77, 77, 0.1);
+            border: 1px solid var(--color-red);
+            color: var(--color-red);
+        }
+
+        .message.success {
+            background-color: rgba(22, 188, 83, 0.1);
+            border: 1px solid var(--color-green);
+            color: var(--color-green);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Analytics Dashboard */
+        .analytics-section {
+            margin-bottom: 3rem;
+        }
+
+        .analytics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .analytics-card {
+            background-color: var(--color-white-05);
+            border: 1px solid var(--color-white-10);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .analytics-card:hover {
+            border-color: var(--color-primary);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(216, 249, 17, 0.1);
+        }
+
+        .analytics-label {
+            font-size: 0.875rem;
+            color: var(--color-white-50);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .analytics-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            font-family: var(--font-display);
+        }
+
+        /* Search Controls */
+        .search-section {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 250px;
+            padding: 12px 16px;
+            background-color: var(--color-white-05);
+            border: 1px solid var(--color-white-30);
+            border-radius: 8px;
+            color: var(--color-white);
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            transition: all 0.2s ease;
+        }
+
+        .search-box::placeholder {
+            color: var(--color-white-50);
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            background-color: var(--color-dark);
+            box-shadow: 0 0 0 3px rgba(216, 249, 17, 0.1);
+        }
+
+        .search-result-count {
+            color: var(--color-white-50);
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .clear-btn {
+            padding: 8px 16px;
+            background-color: transparent;
+            border: 1px solid var(--color-white-30);
+            color: var(--color-white-50);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: all 0.2s ease;
+        }
+
+        .clear-btn:hover {
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+            background-color: rgba(216, 249, 17, 0.05);
+        }
+
+        /* Leads Grid */
+        .leads-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .leads-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Lead Card */
+        .lead-card {
+            background-color: var(--color-white-05);
+            border: 1px solid var(--color-white-10);
+            border-radius: 12px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .lead-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--color-primary);
+            box-shadow: 0 10px 30px rgba(216, 249, 17, 0.15);
+        }
+
+        .lead-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--color-white-10);
+            flex-shrink: 0;
+            border: 2px solid var(--color-white-05);
+        }
+
+        .lead-avatar-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .lead-avatar-initials {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-dark);
+            font-weight: 700;
+            font-size: 16px;
+            border-radius: 50%;
+        }
+
+        .lead-name {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .lead-position {
+            font-size: 0.875rem;
+            color: var(--color-white-50);
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .lead-company {
+            font-size: 0.875rem;
+            color: var(--color-white-80);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .lead-email {
+            font-size: 0.8rem;
+            color: var(--color-primary);
+            word-break: break-all;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            background-color: var(--color-white-05);
+            border: 1px dashed var(--color-white-10);
+            border-radius: 12px;
+        }
+
+        .empty-state-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .empty-state-text {
+            color: var(--color-white-50);
+            font-size: 1rem;
+        }
+
+        /* Modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            display: none;
+            overflow-y: auto;
+            padding: 1rem;
+            animation: fadeInModal 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding-top: 2rem;
+        }
+
+        @keyframes fadeInModal {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .modal-content {
+            background: var(--color-dark);
+            border: 1px solid var(--color-white-10);
+            border-radius: 16px;
+            width: 100%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            animation: slideUpModal 0.3s ease;
+        }
+
+        @keyframes slideUpModal {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem;
+            border-bottom: 1px solid var(--color-white-10);
+            position: sticky;
+            top: 0;
+            background: var(--color-dark);
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-white);
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--color-white-50);
+            transition: all 0.2s ease;
+            padding: 0;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+        }
+
+        .modal-close:hover {
+            color: var(--color-primary);
+            background: var(--color-white-05);
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        /* Modal Avatar Section */
+        .modal-avatar-section {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--color-white-10);
+        }
+
+        .modal-avatar-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--color-primary);
+            box-shadow: 0 4px 12px rgba(216, 249, 17, 0.2);
+        }
+
+        /* Detail Groups */
+        .detail-group {
+            margin-bottom: 2rem;
+        }
+
+        .detail-group-title {
+            font-size: 0.75rem;
+            color: var(--color-white-50);
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: 0.05em;
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--color-white-05);
+            font-size: 0.875rem;
+            gap: 1rem;
+        }
+
+        .detail-item:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: var(--color-white-50);
+            flex-shrink: 0;
+            max-width: 40%;
+        }
+
+        .detail-value {
+            color: var(--color-white-80);
+            word-break: break-word;
+            text-align: right;
+            flex: 1;
+        }
+
+        .detail-value a {
+            color: var(--color-primary);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .detail-value a:hover {
+            text-decoration: underline;
+            color: var(--color-white);
+        }
+
+        /* Copy Button */
+        .copy-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--color-primary);
+            color: var(--color-dark);
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            margin-top: 1.5rem;
+            font-family: var(--font-heading);
+        }
+
+        .copy-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 15px rgba(216, 249, 17, 0.3);
+        }
+
+        .copy-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: var(--color-green);
+            color: var(--color-dark);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            display: none;
+            animation: slideInToast 0.3s ease;
+            z-index: 2000;
+        }
+
+        .toast.show {
+            display: block;
+        }
+
+        @keyframes slideInToast {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Loading Spinner */
+        .loading-spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid var(--color-white-30);
+            border-top-color: var(--color-primary);
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 640px) {
+            .lead-explorer-title {
+                font-size: 1.875rem;
+            }
+
+            .lead-explorer-subtitle {
+                font-size: 1rem;
+            }
+
+            .input-group {
+                flex-direction: column;
+            }
+
+            .input-group input,
+            .input-group button {
+                width: 100%;
+            }
+
+            .search-section {
+                flex-direction: column;
+            }
+
+            .search-box {
+                width: 100%;
+            }
+
+            .analytics-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            /* Modal Mobile Improvements */
+            .modal-content {
+                width: 95%;
+                max-height: 85vh;
+                margin: 1rem;
+            }
+
+            .modal-header {
+                padding: 1rem;
+            }
+
+            .modal-body {
+                padding: 1rem;
+            }
+
+            .detail-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.25rem;
+            }
+            
+            .detail-label {
+                max-width: 100%;
+                color: var(--color-white-50);
+                font-size: 0.75rem;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+            }
+
+            .detail-value {
+                text-align: left;
+                word-wrap: break-word; /* Ensure long URLs/text break */
+                word-break: break-word;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="lead-explorer-section">
+        <div class="lead-explorer-container">
+            <!-- Header -->
+            <div class="lead-explorer-header">
+                <h1 class="lead-explorer-title">📊 LinkedIn Lead Explorer</h1>
+                <p class="lead-explorer-subtitle">
+                    Load your LinkedIn Sales Navigator data and visualize, search, and manage leads effortlessly
+                </p>
+            </div>
+
+            <!-- Input Tabs -->
+            <div class="lead-input-tabs">
+                <button class="tab-btn active" data-tab="url-tab">📋 Google Sheets URL</button>
+                <button class="tab-btn" data-tab="csv-tab">📄 Paste CSV</button>
+            </div>
+
+            <!-- Messages -->
+            <div id="errorMessage" class="message error"></div>
+            <div id="successMessage" class="message success"></div>
+
+            <!-- URL Tab -->
+            <div id="url-tab" class="tab-content active">
+                <div class="input-group">
+                    <input 
+                        type="text" 
+                        id="sheetUrl" 
+                        class="sheet-url-input"
+                        placeholder="Paste your Google Sheets URL (https://docs.google.com/spreadsheets/d/...)" 
+                    >
+                    <button id="loadBtn" class="load-btn">Load Data</button>
+                </div>
+                <p style="color: var(--color-white-50); font-size: 0.875rem;">
+                    💡 Make sure your Google Sheet is publicly accessible and contains columns like: FULL NAME, EMAIL, POSITION, COMPANY NAME
+                </p>
+            </div>
+
+            <!-- CSV Tab -->
+            <div id="csv-tab" class="tab-content">
+                <textarea 
+                    id="csvInput" 
+                    class="csv-textarea"
+                    placeholder="Paste your CSV data here (including header row). First row must contain column names like: FULL NAME,EMAIL,POSITION,COMPANY NAME,..."
+                ></textarea>
+                <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                    <button id="parseCsvBtn" class="btn btn-primary">Parse CSV</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Analytics Section -->
+    <div class="lead-explorer-section">
+        <div class="lead-explorer-container">
+            <div class="analytics-section" id="analyticsSection" style="display: none;">
+                <h2 style="color: var(--color-white); margin-bottom: 1.5rem; font-size: 1.25rem; font-weight: 600;">
+                    📈 Quick Metrics
+                </h2>
+                <div class="analytics-grid">
+                    <div class="analytics-card">
+                        <div class="analytics-label">Total Leads</div>
+                        <div class="analytics-value" id="totalLeads">0</div>
+                    </div>
+                    <div class="analytics-card">
+                        <div class="analytics-label">Unique Companies</div>
+                        <div class="analytics-value" id="uniqueCompanies">0</div>
+                    </div>
+                    <div class="analytics-card">
+                        <div class="analytics-label">Valid Emails</div>
+                        <div class="analytics-value" id="validEmails">0</div>
+                    </div>
+                    <div class="analytics-card">
+                        <div class="analytics-label">Premium Leads</div>
+                        <div class="analytics-value" id="premiumLeads">0</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search Section -->
+            <div id="searchSection" style="display: none;">
+                <h2 style="color: var(--color-white); margin-bottom: 1.5rem; font-size: 1.25rem; font-weight: 600;">
+                    🔍 Find Leads
+                </h2>
+                <div class="search-section">
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        class="search-box"
+                        placeholder="Search by name, company, position, email, location..."
+                    >
+                    <div class="search-result-count" id="resultCount">0 results</div>
+                    <button id="clearSearchBtn" class="clear-btn">Clear</button>
+                </div>
+            </div>
+
+            <!-- Leads Grid -->
+            <div id="leadsContainer" class="leads-grid" style="display: none;"></div>
+
+            <!-- No Data State -->
+            <div id="noDataState" class="empty-state">
+                <div class="empty-state-icon">📥</div>
+                <p class="empty-state-text">Load your Google Sheet or paste CSV data to see leads here</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lead Details Modal -->
+    <div id="leadModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle">Lead Details</h2>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Main Script File Reference -->
+    <script src="script-lead-explorer.js"></script>
+</body>
+</html>

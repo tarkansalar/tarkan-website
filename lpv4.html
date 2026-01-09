@@ -42,6 +42,24 @@
       };
     </script>
 
+    <style>
+      @media (max-width: 768px) {
+        /* Forces tables to stack on mobile */
+        .mobile-stack-card {
+          display: flex;
+          flex-direction: column;
+        }
+        .mobile-label {
+          display: block;
+          font-weight: bold;
+          margin-bottom: 0.25rem;
+          font-size: 0.75rem;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+        }
+      }
+    </style>
+
     <script type="text/javascript">
       (function (c, l, a, r, i, t, y) {
         c[a] =
@@ -58,7 +76,7 @@
     </script>
   </head>
 
-  <body class="bg-brand-dark text-brand-white font-sans antialiased">
+  <body class="bg-brand-dark text-brand-white font-sans antialiased pb-20 md:pb-0">
     <header
       class="bg-brand-dark backdrop-blur-md sticky top-0 z-50 w-full border-b border-white/10"
     >
@@ -68,6 +86,17 @@
         </a>
 
         <div class="hidden md:flex items-center space-x-6">
+          <a href="#problem" class="font-sans hover:text-brand-primary transition-colors"
+            >The Problem</a
+          >
+          <a href="#plan" class="font-sans hover:text-brand-primary transition-colors">The Plan</a>
+          <a href="#proof" class="font-sans hover:text-brand-primary transition-colors">Proof</a>
+          <a href="#testimonials" class="font-sans hover:text-brand-primary transition-colors"
+            >Testimonials</a
+          >
+          <a href="#about" class="font-sans hover:text-brand-primary transition-colors"
+            >About Tarkan</a
+          >
           <button id="open-diagnostic-btn-nav" class="btn btn-secondary">
             Start Blue Ocean Diagnostic
           </button>
@@ -75,9 +104,8 @@
             href="https://calendly.com/cantstopmeofficial/tarkan-salar-meeting-duration-adjustable-clone"
             target="_blank"
             class="btn btn-primary"
+            >Book Your Call</a
           >
-            Book Your Call
-          </a>
         </div>
 
         <button id="mobile-menu-btn" class="md:hidden p-2 rounded-md text-brand-white">
@@ -90,6 +118,15 @@
         class="hidden md:hidden absolute top-full left-0 w-full bg-brand-dark shadow-lg border-t border-white/10"
       >
         <div class="flex flex-col px-6 py-4 space-y-4">
+          <a href="#problem" class="block hover:text-brand-primary transition-colors"
+            >The Problem</a
+          >
+          <a href="#plan" class="block hover:text-brand-primary transition-colors">The Plan</a>
+          <a href="#proof" class="block hover:text-brand-primary transition-colors">Proof</a>
+          <a href="#testimonials" class="block hover:text-brand-primary transition-colors"
+            >Testimonials</a
+          >
+          <a href="#about" class="block hover:text-brand-primary transition-colors">About Tarkan</a>
           <button id="open-diagnostic-btn-mobile" class="btn btn-secondary w-full text-center">
             Start Diagnostic
           </button>
@@ -97,9 +134,8 @@
             href="https://calendly.com/cantstopmeofficial/tarkan-salar-meeting-duration-adjustable-clone"
             target="_blank"
             class="btn btn-primary w-full text-center"
+            >Book Your Call</a
           >
-            Book Your Call
-          </a>
         </div>
       </div>
     </header>
@@ -116,12 +152,12 @@
                 <span class="text-brand-red">$1M–$10M Death Zone</span> and Added
                 <span class="text-brand-primary">$2M–$80M</span> in New Revenue in Under 18 Months
               </h1>
-
-              <p class="text-brand-primary font-bold text-lg mb-6 tracking-wide uppercase">
+              <p
+                class="text-brand-primary font-bold text-lg md:text-xl mb-6 tracking-wide uppercase"
+              >
                 (Using the Blue Ocean Reset System™) <br />
                 <span class="text-white/70">And How I’ll Do the Same for You in Just 8 Weeks</span>
               </p>
-
               <div class="prose prose-invert prose-lg text-brand-white/80 mb-10 mx-auto lg:mx-0">
                 <p>
                   If you’re a consumer brand founder doing <strong>$1M–$10M</strong> in supplements,
@@ -137,7 +173,6 @@
                   freedom — so the business finally works <em>for you</em> instead of against you.
                 </p>
               </div>
-
               <div
                 class="flex flex-col sm:flex-row justify-center lg:justify-start items-center gap-6"
               >
@@ -158,7 +193,7 @@
             <div class="w-full lg:w-1/2 flex justify-center">
               <img
                 src="https://546n3t88gn.ucarecd.net/e820d7c3-26ed-4833-b935-fb8ae809c3c4/-/preview/999x666/"
-                alt="Tarkan Salar, The Blue Ocean Builder"
+                alt="Tarkan Salar"
                 class="rounded-lg shadow-2xl w-full h-auto object-cover"
               />
             </div>
@@ -200,13 +235,12 @@
                   You're drowning in dead stock, rising ad costs, and constant friction. You're not
                   just running the business—you've become the bottleneck.
                 </p>
-                <p class="font-bold text-brand-red">
+                <p class="font-bold text-brand-primary">
                   This isn't a growth problem; it's a systems problem.
                 </p>
               </div>
             </div>
-
-            <div class="w-full lg:w-1/3">
+            <div class="w-full lg:w-1/2">
               <div class="mb-4 text-center lg:text-left">
                 <h3
                   class="font-heading font-bold text-xl md:text-2xl text-brand-primary leading-tight"
@@ -239,41 +273,54 @@
               </p>
             </div>
           </div>
-        </div>
-      </section>
 
-      <section id="guide" class="py-24 md:py-32 bg-white/5">
-        <div class="container mx-auto px-6">
-          <div class="flex flex-col lg:flex-row-reverse items-center gap-16">
-            <div class="w-full lg:w-1/2">
-              <h2 class="section-title text-left">
-                I’m Not Another "Guru." I'm Your Fractional COO.
-              </h2>
-              <div class="prose prose-invert max-w-none text-brand-white/80 text-lg space-y-6 mt-8">
-                <p>
-                  I know this chaos. I lived it. At 3:47 AM, I sat in my office staring at a $28
-                  million-a-year success... and a $3.8 million cash-flow crisis.
-                </p>
-                <p>That failure cost me everything. It also became my superpower.</p>
-                <p>
-                  After 30 years in the trenches, I built the framework I wish I had. No fluff. No
-                  theory. Just hands-on execution. I’m the guy I wish I had on my side when I was
-                  crying in a full warehouse.
-                </p>
-              </div>
+          <div class="text-center max-w-3xl mx-auto mt-24">
+            <h3 class="section-title text-3xl md:text-4xl">
+              Are You Trapped in the 'Messy Middle'?
+            </h3>
+            <p class="section-subtitle">
+              If you're a founder in this range, this probably sounds familiar. You're stuck in
+              'Gross Chaos'—and profits are leaking everywhere.
+            </p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
+            <div class="feature-card">
+              <i data-lucide="trending-down" class="w-10 h-10 text-brand-red mb-4"></i>
+              <h3 class="feature-title">Stagnant Growth</h3>
+              <p class="feature-text">Your growth has flatlined, but your costs keep rising.</p>
             </div>
-            <div class="w-full lg:w-1/2 flex justify-center">
-              <img
-                src="https://546n3t88gn.ucarecd.net/f9eb85a0-7da4-40c6-a5d0-b7b815724d88/-/preview/750x1000/"
-                alt="Tarkan Salar, The Guide"
-                class="rounded-lg shadow-2xl w-full h-auto object-cover"
-              />
+            <div class="feature-card">
+              <i data-lucide="flame" class="w-10 h-10 text-brand-orange mb-4"></i>
+              <h3 class="feature-title">Founder Burnout</h3>
+              <p class="feature-text">You're the bottleneck for every decision.</p>
+            </div>
+            <div class="feature-card">
+              <i data-lucide="dollar-sign" class="w-10 h-10 text-brand-red mb-4"></i>
+              <h3 class="feature-title">Rising Ad Costs</h3>
+              <p class="feature-text">
+                CAC is skyrocketing. You're in a bidding war you can't win.
+              </p>
+            </div>
+            <div class="feature-card">
+              <i data-lucide="filter" class="w-10 h-10 text-brand-orange mb-4"></i>
+              <h3 class="feature-title">Leaking Money</h3>
+              <p class="feature-text">Supply chain friction is silently draining your cash flow.</p>
+            </div>
+            <div class="feature-card">
+              <i data-lucide="copy" class="w-10 h-10 text-brand-white/50 mb-4"></i>
+              <h3 class="feature-title">Commodity Trap</h3>
+              <p class="feature-text">You're forced to compete on price, not value.</p>
+            </div>
+            <div class="feature-card">
+              <i data-lucide="briefcase" class="w-10 h-10 text-brand-white/50 mb-4"></i>
+              <h3 class="feature-title">Disorganized Systems</h3>
+              <p class="feature-text">Running an $8M business on spreadsheets and hustle.</p>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="py-20 bg-brand-dark border-y border-white/10">
+      <section class="py-20 bg-brand-dark border-t border-white/10">
         <div class="container mx-auto px-6">
           <h2 class="section-title text-center mb-16">Is This Right For You?</h2>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
@@ -287,9 +334,9 @@
               </h3>
               <ul class="space-y-4 text-brand-white/80">
                 <li class="flex items-start">
-                  <span class="text-brand-primary mr-2">▪</span></strong>You are an emerging, fast-scaling
-                food & beverage or innovative health & wellness brand or supplements, beauty,
-                fashion, lifestyle brand.</strong>.
+                  <span class="text-brand-primary mr-2">▪</span> You are an
+                  <strong class="text-white ml-1">emerging F&B</strong> or
+                  <strong class="text-white ml-1">health & wellness brand</strong>.
                 </li>
                 <li class="flex items-start">
                   <span class="text-brand-primary mr-2">▪</span> You are doing $1M - $10M in
@@ -327,7 +374,70 @@
         </div>
       </section>
 
-      <section class="py-20 bg-white/5">
+      <section id="guide" class="py-24 md:py-32 bg-white/5">
+        <div class="container mx-auto px-6">
+          <div class="flex flex-col lg:flex-row-reverse items-center gap-16">
+            <div class="w-full lg:w-1/2">
+              <h2 class="section-title text-left">
+                I’m Not Another "Guru." I'm Your Fractional COO.
+              </h2>
+              <div class="prose prose-invert max-w-none text-brand-white/80 text-lg space-y-6 mt-8">
+                <p>
+                  I know this chaos. I lived it. At 3:47 AM, I sat in my office staring at a $28
+                  million-a-year success... and a $3.8 million cash-flow crisis.
+                </p>
+                <p>That failure cost me everything. It also became my superpower.</p>
+                <p>
+                  After 30 years in the trenches, I built the framework I wish I had. No fluff. No
+                  theory. Just hands-on execution.
+                </p>
+              </div>
+            </div>
+            <div class="w-full lg:w-1/2 flex justify-center">
+              <img
+                src="https://546n3t88gn.ucarecd.net/f9eb85a0-7da4-40c6-a5d0-b7b815724d88/-/preview/750x1000/"
+                alt="Tarkan Salar, The Guide"
+                class="rounded-lg shadow-2xl w-full h-auto object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="plan" class="py-24 md:py-32">
+        <div class="container mx-auto px-6">
+          <div class="text-center max-w-3xl mx-auto">
+            <h2 class="section-title">3-Step "Blue Ocean + AI" Sprint</h2>
+            <p class="section-subtitle">
+              I find what's killing your margin, build the thing that 3X it, then install the
+              systems so it sticks.
+            </p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+            <div class="feature-card text-center">
+              <i data-lucide="search" class="w-12 h-12 text-brand-primary mb-4 mx-auto"></i>
+              <h3 class="feature-title">STEP 1: FIND THE LEAK (Week 1)</h3>
+              <p class="feature-text">Audit numbers, customers, product, and ops for 7 days.</p>
+            </div>
+            <div class="feature-card text-center">
+              <i data-lucide="settings" class="w-12 h-12 text-brand-primary mb-4 mx-auto"></i>
+              <h3 class="feature-title">STEP 2: BUILD THE HOOK (Weeks 2-3)</h3>
+              <p class="feature-text">
+                Pick ONE thing to make you the only choice. I don't just suggest it, I build it.
+              </p>
+            </div>
+            <div class="feature-card text-center">
+              <i data-lucide="rocket" class="w-12 h-12 text-brand-primary mb-4 mx-auto"></i>
+              <h3 class="feature-title">STEP 3: FIRE THE CROWD (Weeks 4-8)</h3>
+              <p class="feature-text">
+                Launch with one question-based ad. Tune ops bots so margin sticks.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-20 bg-white/5 border-y border-white/10">
         <div class="container mx-auto px-6">
           <h2 class="section-title text-center mb-16">The Transformation</h2>
           <div class="max-w-5xl mx-auto space-y-6">
@@ -341,7 +451,6 @@
                 After (Blue Ocean)
               </div>
             </div>
-
             <div
               class="grid grid-cols-1 md:grid-cols-2 gap-4 bg-brand-dark md:bg-transparent p-4 md:p-0 rounded-xl border md:border-none border-white/10"
             >
@@ -362,7 +471,6 @@
                 <span class="text-white font-bold">Clear systems, business runs without you</span>
               </div>
             </div>
-
             <div
               class="grid grid-cols-1 md:grid-cols-2 gap-4 bg-brand-dark md:bg-transparent p-4 md:p-0 rounded-xl border md:border-none border-white/10"
             >
@@ -381,7 +489,6 @@
                 <span class="text-white font-bold">Predictable cash flow, controlled growth</span>
               </div>
             </div>
-
             <div
               class="grid grid-cols-1 md:grid-cols-2 gap-4 bg-brand-dark md:bg-transparent p-4 md:p-0 rounded-xl border md:border-none border-white/10"
             >
@@ -404,77 +511,47 @@
         </div>
       </section>
 
-      <section class="py-20 bg-brand-dark">
-        <div class="container mx-auto px-6">
-          <h2 class="section-title text-center mb-16">More Results. No Fluff.</h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div class="flex flex-col group">
-              <h3 class="font-heading font-bold text-lg mb-4 text-brand-white">
-                How We Cut Clinical Trials by 5 Months
-              </h3>
+      <section
+        id="value-anchor"
+        class="py-24 bg-brand-dark border-y border-white/10 relative overflow-hidden"
+      >
+        <div class="container mx-auto px-6 relative z-10">
+          <div
+            class="max-w-5xl mx-auto bg-white/5 border border-white/10 rounded-2xl overflow-hidden backdrop-blur-sm"
+          >
+            <div class="flex flex-col lg:flex-row">
               <div
-                class="relative w-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-black aspect-[9/16]"
+                class="lg:w-2/5 p-8 lg:p-12 border-b lg:border-b-0 lg:border-r border-white/10 flex flex-col justify-center bg-black/20"
               >
-                <video
-                  controls
-                  preload="metadata"
-                  class="w-full h-full object-cover"
-                  poster="https://546n3t88gn.ucarecd.net/8ee84524-5d95-4c07-abc9-000f970352a5/-/preview/562x1000/"
-                >
-                  <source
-                    src="https://546n3t88gn.ucarecd.net/ee067430-074f-432c-8408-4027fcde97b2/"
-                    type="video/mp4"
-                  />
-                </video>
+                <h3 class="font-display text-4xl text-brand-white mb-2">A COO COSTS</h3>
+                <h2 class="font-display text-6xl text-brand-red mb-6">
+                  $400K<span class="text-2xl text-white/50">/YEAR</span>
+                </h2>
+                <p class="text-brand-white/70 text-lg mb-6">
+                  And they'll give you a "strategy deck" in 12 months. You have chaos NOW.
+                </p>
+              </div>
+              <div class="lg:w-3/5 p-8 lg:p-12">
+                <h3 class="font-heading text-2xl font-bold text-brand-white mb-6">
+                  I Build the Fix & Install the Systems
+                  <span class="text-brand-primary">in 8 Weeks.</span>
+                </h3>
+                <ul class="space-y-4 mb-8">
+                  <li class="flex items-start">
+                    <i data-lucide="check-circle-2" class="w-6 h-6 text-brand-primary mr-3"></i
+                    ><span>New Product Innovation</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i data-lucide="check-circle-2" class="w-6 h-6 text-brand-primary mr-3"></i
+                    ><span>Infrastructure Locked In</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i data-lucide="check-circle-2" class="w-6 h-6 text-brand-primary mr-3"></i
+                    ><span>Marketing Hook</span>
+                  </li>
+                </ul>
               </div>
             </div>
-            <div class="flex flex-col group">
-              <h3 class="font-heading font-bold text-lg mb-4 text-brand-white">
-                How a "Red Phone" & AI Cut Refunds by 41%
-              </h3>
-              <div
-                class="relative w-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-black aspect-[9/16]"
-              >
-                <video
-                  controls
-                  preload="metadata"
-                  class="w-full h-full object-cover"
-                  poster="https://546n3t88gn.ucarecd.net/e622eb8c-1c8d-4652-8fdb-f1f18be861f6/-/preview/562x1000/"
-                >
-                  <source
-                    src="https://546n3t88gn.ucarecd.net/1cd74aaf-81f8-46e0-9d1e-6f0476a62fed/"
-                    type="video/mp4"
-                  />
-                </video>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="py-20 bg-white/5 border-y border-white/10">
-        <div class="container mx-auto px-6 text-center">
-          <h2 class="section-title mb-12">"What a Billionaire Has To Say About Tarkan"</h2>
-          <div class="max-w-sm mx-auto">
-            <div
-              class="relative w-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-black aspect-[9/16]"
-            >
-              <video
-                controls
-                preload="metadata"
-                class="w-full h-full object-cover"
-                poster="https://546n3t88gn.ucarecd.net/041d72f1-edd3-4b6f-8609-c04e3ffc3404/-/preview/562x1000/"
-              >
-                <source
-                  src="https://546n3t88gn.ucarecd.net/a6963e98-7c24-4d0f-8a4c-eb1a7a156251/"
-                  type="video/mp4"
-                />
-              </video>
-            </div>
-            <p class="text-center font-bold text-brand-primary mt-4 text-xl">Rafey Alam, Dubai</p>
-            <p class="text-center text-sm text-brand-white/50">
-              "Meeting Him Changed Something Inside Me."
-            </p>
           </div>
         </div>
       </section>
@@ -518,16 +595,12 @@
         </div>
       </section>
 
-      <section class="py-20 bg-white/5 border-t border-white/10">
+      <section id="about" class="py-24 md:py-32 bg-white/5">
         <div class="container mx-auto px-6">
-          <div class="flex flex-col lg:flex-row gap-12 items-start">
-            <div class="w-full lg:w-2/5">
+          <div class="flex flex-col lg:flex-row gap-16 items-start">
+            <div class="w-full lg:w-2/5 sticky top-24">
               <div class="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
-                <img
-                  src="https://546n3t88gn.ucarecd.net/c29614ea-7573-4482-b59d-1dfca7d0d6ef/-/preview/800x1000/"
-                  alt="Tarkan Unscalable"
-                  class="w-full h-auto object-cover"
-                />
+                <img src="2.2.jpg" alt="Tarkan Unscalable" class="w-full h-auto object-cover" />
                 <div class="absolute bottom-6 left-6 right-6">
                   <div
                     class="bg-brand-primary/90 backdrop-blur-md text-brand-dark px-4 py-2 rounded-lg inline-block font-bold uppercase tracking-widest text-xs mb-2"
@@ -540,19 +613,210 @@
                 </div>
               </div>
             </div>
+
             <div class="w-full lg:w-3/5">
-              <h2 class="section-title mb-6">The Man Behind The Method</h2>
-              <div class="prose prose-invert prose-lg text-brand-white/80 mb-10">
+              <h2 class="section-title text-left">The Man Behind The Method</h2>
+              <div class="prose prose-invert max-w-none text-brand-white/80 text-lg space-y-6 mt-8">
                 <p>
-                  For 30 years, I've lived in the trenches. I'm not a consultant who read a book.
-                  I'm an operator who's built an 8-figure business and shipped over 50 million
-                  units.
+                  "The marketplace is noisy. The solution isn't to scream louder. It's to find a new
+                  ocean."
+                </p>
+                <p>
+                  My life's work is dedicated to this. For 30 years, I've lived in the trenches. I'm
+                  not a consultant who read a book. I'm an operator who's built an 8-figure
+                  business, invented world-first products, and shipped over 50 million units.
                 </p>
                 <p>
                   My <strong>"Blue Ocean Reset System™"</strong> is unscalable by design. I limit my
                   roster to 9 clients because I do the work myself.
                 </p>
               </div>
+              <div class="grid grid-cols-2 gap-6 mt-12">
+                <div class="feature-card p-6 text-center">
+                  <span class="font-display text-4xl font-bold text-brand-primary">8-FIGURES</span>
+                  <p class="mt-2 text-brand-white/80">Business Scaled</p>
+                </div>
+                <div class="feature-card p-6 text-center">
+                  <span class="font-display text-4xl font-bold text-brand-primary">50M+</span>
+                  <p class="mt-2 text-brand-white/80">Units Shipped</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="proof" class="py-24 md:py-32 bg-white/5">
+        <div class="container mx-auto px-6">
+          <div class="text-center max-w-3xl mx-auto">
+            <h2 class="section-title">Real Results. No Fluff.</h2>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
+            <div class="feature-card">
+              <h3 class="feature-title text-brand-primary">81.5% Revenue Growth</h3>
+              <p class="feature-text">For: $12M Yoga Brand</p>
+            </div>
+            <div class="feature-card">
+              <h3 class="feature-title text-brand-primary">66% Revenue Growth</h3>
+              <p class="feature-text">For: $22M Supplement Brand</p>
+            </div>
+            <div class="feature-card">
+              <h3 class="feature-title text-brand-primary">$0 to $5M in 16 Months</h3>
+              <p class="feature-text">For: Pilates Mfr</p>
+            </div>
+            <div class="feature-card">
+              <h3 class="feature-title text-brand-primary">$100M to $180M</h3>
+              <p class="feature-text">For: Luxury Fashion Brand</p>
+            </div>
+            <div class="feature-card">
+              <h3 class="feature-title text-brand-primary">Won $150M Contracts</h3>
+              <p class="feature-text">For: $200M Construction Firm</p>
+            </div>
+            <div class="feature-card border-brand-primary">
+              <h3 class="feature-title text-brand-primary">Your Brand: ???</h3>
+              <p class="feature-text">Choose your path.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="video-case-studies" class="py-24 bg-brand-dark border-b border-white/10">
+        <div class="container mx-auto px-6">
+          <div class="text-center max-w-4xl mx-auto mb-16">
+            <h2 class="section-title text-4xl md:text-5xl">Deep Dive: How We Do It</h2>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 max-w-4xl mx-auto">
+            <div class="flex flex-col group">
+              <h3 class="font-heading font-bold text-xl text-brand-white mb-4">
+                How We Cut Clinical Trials by 5 Months
+              </h3>
+              <div
+                class="relative w-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-black aspect-[9/16]"
+              >
+                <video
+                  controls
+                  preload="metadata"
+                  class="w-full h-full object-cover"
+                  poster="https://546n3t88gn.ucarecd.net/8ee84524-5d95-4c07-abc9-000f970352a5/-/preview/562x1000/"
+                >
+                  <source
+                    src="https://546n3t88gn.ucarecd.net/ee067430-074f-432c-8408-4027fcde97b2/"
+                    type="video/mp4"
+                  />
+                </video>
+              </div>
+            </div>
+            <div class="flex flex-col group">
+              <h3 class="font-heading font-bold text-xl text-brand-white mb-4">
+                How a "Red Phone" & AI Cut Refunds by 41%
+              </h3>
+              <div
+                class="relative w-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-black aspect-[9/16]"
+              >
+                <video
+                  controls
+                  preload="metadata"
+                  class="w-full h-full object-cover"
+                  poster="https://546n3t88gn.ucarecd.net/e622eb8c-1c8d-4652-8fdb-f1f18be861f6/-/preview/562x1000/"
+                >
+                  <source
+                    src="https://546n3t88gn.ucarecd.net/1cd74aaf-81f8-46e0-9d1e-6f0476a62fed/"
+                    type="video/mp4"
+                  />
+                </video>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="testimonials" class="py-24 md:py-32 relative">
+        <div class="container mx-auto px-6">
+          <div class="text-center mb-16">
+            <h2 class="section-title">"What a Billionaire Has To Say About Tarkan"</h2>
+            <div class="max-w-sm mx-auto mt-8">
+              <div
+                class="relative w-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-black aspect-[9/16]"
+              >
+                <video
+                  controls
+                  preload="metadata"
+                  class="w-full h-full object-cover"
+                  poster="https://546n3t88gn.ucarecd.net/041d72f1-edd3-4b6f-8609-c04e3ffc3404/-/preview/562x1000/"
+                >
+                  <source
+                    src="https://546n3t88gn.ucarecd.net/a6963e98-7c24-4d0f-8a4c-eb1a7a156251/"
+                    type="video/mp4"
+                  />
+                </video>
+              </div>
+              <p class="font-bold text-brand-primary mt-4">Rafey Alam, Dubai</p>
+            </div>
+          </div>
+
+          <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="section-title">Real Founders. Real Results.</h2>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+            <div class="testimonial-card flex flex-col h-full relative group">
+              <div class="flex items-center mb-6">
+                <img
+                  src="https://546n3t88gn.ucarecd.net/7a12c22e-cde3-4557-84ba-2dd3c0713481/-/preview/500x500/"
+                  alt="Tamir"
+                  class="w-16 h-16 rounded-full border-2 border-brand-primary object-cover mr-4"
+                />
+                <div>
+                  <h4 class="font-bold text-brand-white">Tamir Oliver Feldman</h4>
+                  <p class="text-xs text-brand-primary uppercase">Founder, ECOHERO</p>
+                </div>
+              </div>
+              <p class="text-brand-white/80">
+                "The insights I gained were truly transformative..."
+              </p>
+            </div>
+            <div class="testimonial-card flex flex-col h-full relative group">
+              <div class="flex items-center mb-6">
+                <img
+                  src="https://546n3t88gn.ucarecd.net/bad7c8d7-ca6b-4036-ae53-bed34edb397f/-/preview/500x500/"
+                  alt="Deniz"
+                  class="w-16 h-16 rounded-full border-2 border-brand-primary object-cover mr-4"
+                />
+                <div>
+                  <h4 class="font-bold text-brand-white">Deniz Gurdamar</h4>
+                  <p class="text-xs text-brand-primary uppercase">Businesswoman</p>
+                </div>
+              </div>
+              <p class="text-brand-white/80">
+                "Tarkan was a great motivator... I felt guided to find a solution."
+              </p>
+            </div>
+            <div class="testimonial-card flex flex-col h-full relative group">
+              <div class="flex items-center mb-6">
+                <img
+                  src="https://546n3t88gn.ucarecd.net/e5d8d5cb-a501-4f02-b15e-a86e26a94032/-/preview/500x500/"
+                  alt="Angelica"
+                  class="w-16 h-16 rounded-full border-2 border-brand-primary object-cover mr-4"
+                />
+                <div>
+                  <h4 class="font-bold text-brand-white">Angelica De Souza</h4>
+                  <p class="text-xs text-brand-primary uppercase">Businesswoman</p>
+                </div>
+              </div>
+              <p class="text-brand-white/80">"The 'AHA Moment' with Tarkan was extraordinary!"</p>
+            </div>
+            <div class="testimonial-card flex flex-col h-full relative group">
+              <div class="flex items-center mb-6">
+                <img
+                  src="https://546n3t88gn.ucarecd.net/60db2ae7-d37f-4ed6-a513-eb14e21dd08d/-/preview/500x500/"
+                  alt="Dermawan"
+                  class="w-16 h-16 rounded-full border-2 border-brand-primary object-cover mr-4"
+                />
+                <div>
+                  <h4 class="font-bold text-brand-white">Dermawan Lobion</h4>
+                  <p class="text-xs text-brand-primary uppercase">CTO, Sribu</p>
+                </div>
+              </div>
+              <p class="text-brand-white/80">"It’s rare to meet someone so inspirational..."</p>
             </div>
           </div>
         </div>
@@ -620,19 +884,17 @@
               </p>
             </div>
           </div>
-
           <div class="mt-12 text-center max-w-2xl mx-auto">
             <h3 class="font-heading font-bold text-2xl text-white mb-4">How Life Looks After</h3>
             <p class="text-brand-white/70 italic text-lg leading-relaxed">
               "You wake up without the knot in your stomach. Your team handles the day-to-day. Cash
-              flow is predictable. You're not the bottleneck anymore. That's the freedom you started
-              this brand for."
+              flow is predictable. You're not the bottleneck anymore."
             </p>
           </div>
         </div>
       </section>
 
-      <section class="py-20 bg-white/5 border-y border-white/10">
+      <section id="cta-choice" class="py-24 md:py-32 bg-white/5">
         <div class="container mx-auto px-6">
           <div class="flex flex-col lg:flex-row items-center gap-12 mb-20">
             <div class="w-full lg:w-1/2">
@@ -678,83 +940,94 @@
             </div>
           </div>
 
-          <div class="text-center max-w-4xl mx-auto">
-            <h2 class="section-title mb-12">
-              Stop Drowning in the <span class="text-brand-red">Red Ocean.</span>
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
-              <div
-                class="border border-brand-primary/30 bg-brand-primary/5 p-8 rounded-2xl flex flex-col"
+          <div class="text-center max-w-3xl mx-auto">
+            <h2 class="section-title">Stop Drowning in the Red Ocean.</h2>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16 max-w-5xl mx-auto">
+            <div
+              class="feature-card border-2 border-brand-primary p-8 flex flex-col items-center text-center"
+            >
+              <h3 class="font-heading font-bold text-2xl mb-4">
+                OPTION 1: The Blue Ocean Diagnostic
+              </h3>
+              <p class="feature-text mb-8">
+                Not ready for a call? Take this free 21-question assessment.
+              </p>
+              <button id="open-diagnostic-btn-cta" class="btn btn-primary mt-auto">
+                Start My Diagnostic
+              </button>
+            </div>
+            <div class="feature-card p-8 flex flex-col items-center text-center">
+              <h3 class="font-heading font-bold text-2xl mb-4">
+                OPTION 2: The 'No Fluff' Strategy Call
+              </h3>
+              <p class="feature-text mb-8">
+                Book a live, "no-bullshit" working session to find your single biggest bottleneck.
+              </p>
+              <a
+                href="https://calendly.com/cantstopmeofficial/tarkan-salar-meeting-duration-adjustable-clone"
+                target="_blank"
+                class="btn btn-secondary mt-auto"
+                >Book My Call Now</a
               >
-                <h3 class="font-bold text-2xl mb-4 text-brand-white">
-                  OPTION 1: <br /><span class="text-brand-primary">Free Diagnostic</span>
-                </h3>
-                <p class="text-brand-white/70 mb-8 flex-grow">
-                  Not ready for a call? Take this 21-question assessment.
-                </p>
-                <button
-                  id="open-diagnostic-btn-cta"
-                  class="btn btn-secondary w-full justify-center"
-                >
-                  Start My Diagnostic
-                </button>
-              </div>
-              <div
-                class="border border-white/20 bg-white/5 p-8 rounded-2xl flex flex-col relative overflow-hidden"
-              >
-                <div
-                  class="absolute top-0 right-0 bg-brand-primary text-brand-dark text-xs font-bold px-3 py-1"
-                >
-                  RECOMMENDED
-                </div>
-                <h3 class="font-bold text-2xl mb-4 text-brand-white">
-                  OPTION 2: <br /><span class="text-white">Strategy Call</span>
-                </h3>
-                <p class="text-brand-white/70 mb-8 flex-grow">
-                  Book a live, "no-bullshit" working session to find your single biggest bottleneck.
-                </p>
-                <a
-                  href="https://calendly.com/cantstopmeofficial/tarkan-salar-meeting-duration-adjustable-clone"
-                  target="_blank"
-                  class="btn btn-primary w-full justify-center"
-                  >Book My Call Now</a
-                >
-              </div>
             </div>
           </div>
         </div>
       </section>
     </main>
 
-    <footer
-      class="bg-brand-dark py-12 text-center text-brand-white/30 text-xs border-t border-white/5"
-    >
-      <div class="container mx-auto">
-        <p class="font-heading font-bold text-lg mb-2 text-white">TARKAN: THE BLUE OCEAN BUILDER</p>
-        <p>&copy; 2025 Tarkan Salar. All Rights Reserved. | Privacy Policy</p>
+    <footer class="bg-brand-dark border-t border-white/10 py-16">
+      <div
+        class="container mx-auto px-6 text-center md:text-left flex flex-col md:flex-row justify-between items-center"
+      >
+        <div class="mb-8 md:mb-0">
+          <a
+            href="#"
+            class="text-xl font-bold text-brand-white font-heading tracking-wide mb-2 block"
+            >TARKAN: THE BLUE OCEAN BUILDER</a
+          >
+          <p class="text-sm text-brand-white/50">
+            © 2025 Tarkan Salar. All Rights Reserved. | Privacy Policy
+          </p>
+        </div>
+        <div class="flex justify-center md:justify-end space-x-6">
+          <a href="#" class="text-brand-white/70 hover:text-brand-primary"
+            ><i data-lucide="instagram" class="w-6 h-6"></i
+          ></a>
+          <a href="#" class="text-brand-white/70 hover:text-brand-primary"
+            ><i data-lucide="linkedin" class="w-6 h-6"></i
+          ></a>
+        </div>
       </div>
     </footer>
+
+    <div
+      class="md:hidden fixed bottom-0 left-0 right-0 bg-brand-dark border-t border-white/10 p-4 z-40 grid grid-cols-2 gap-4"
+    >
+      <button class="trigger-diagnostic btn btn-secondary w-full">Start Diagnostic</button>
+      <a
+        href="https://calendly.com/cantstopmeofficial/tarkan-salar-meeting-duration-adjustable-clone"
+        target="_blank"
+        class="btn btn-primary w-full"
+        >Book Your Call</a
+      >
+    </div>
 
     <div id="diagnostic-modal" class="modal-overlay">
       <div class="modal-content">
         <button id="modal-close-btn" class="modal-close-btn">
           <i data-lucide="x" class="w-8 h-8"></i>
         </button>
-
         <div id="quiz-container" class="w-full">
           <div id="quiz-start" class="text-center">
             <h3 id="modal-title" class="font-heading text-3xl font-bold mb-4">
               The Blue Ocean Diagnostic
             </h3>
-            <p class="text-lg text-brand-white/80 mb-8">
-              Take this 21-question assessment to discover your brand's Blue Ocean score.
-            </p>
+            <p class="text-lg text-brand-white/80 mb-8">Take this free 21-question assessment.</p>
             <button id="start-quiz-btn" class="btn btn-primary">
-              Start Diagnostic
-              <i data-lucide="arrow-right" class="w-5 h-5 ml-2"></i>
+              Start Diagnostic <i data-lucide="arrow-right" class="w-5 h-5 ml-2"></i>
             </button>
           </div>
-
           <div id="quiz-questions" class="hidden">
             <div class="w-full bg-brand-dark rounded-full h-2.5 mb-8 border border-white/10">
               <div
@@ -765,7 +1038,6 @@
             </div>
             <div class="quiz-slides"></div>
           </div>
-
           <div id="quiz-lead-capture" class="hidden text-left max-w-lg mx-auto">
             <h3 class="font-heading text-2xl font-bold mb-2 text-brand-white">
               Generating Your Report...
@@ -774,46 +1046,22 @@
               <div>
                 <label class="block text-xs uppercase tracking-widest text-brand-white/50 mb-1"
                   >Full Name</label
-                >
-                <input
-                  type="text"
-                  id="quiz-name"
-                  class="quiz-input"
-                  placeholder="e.g. Tarkan Salar"
-                />
+                ><input type="text" id="quiz-name" class="quiz-input" placeholder="Name" />
               </div>
               <div>
                 <label class="block text-xs uppercase tracking-widest text-brand-white/50 mb-1"
                   >Business Email</label
-                >
-                <input
-                  type="email"
-                  id="quiz-email"
-                  class="quiz-input"
-                  placeholder="name@yourbrand.com"
-                />
+                ><input type="email" id="quiz-email" class="quiz-input" placeholder="Email" />
               </div>
               <div>
                 <label class="block text-xs uppercase tracking-widest text-brand-white/50 mb-1"
                   >Phone Number</label
-                >
-                <input
-                  type="tel"
-                  id="quiz-phone"
-                  class="quiz-input"
-                  placeholder="+1 (555) 000-0000"
-                />
+                ><input type="tel" id="quiz-phone" class="quiz-input" placeholder="Phone" />
               </div>
               <div>
                 <label class="block text-xs uppercase tracking-widest text-brand-white/50 mb-1"
                   >Business Name</label
-                >
-                <input
-                  type="text"
-                  id="quiz-business"
-                  class="quiz-input"
-                  placeholder="e.g. Blue Ocean Supplements"
-                />
+                ><input type="text" id="quiz-business" class="quiz-input" placeholder="Business" />
               </div>
             </div>
             <p id="quiz-lead-error" class="text-brand-red text-sm mt-4 hidden">
@@ -826,10 +1074,9 @@
               </button>
             </div>
           </div>
-
           <div id="quiz-results" class="hidden w-full">
             <div class="text-center mb-8">
-              <h3 class="font-heading text-3xl font-bold mb-2">Your Blue Ocean Diagnosis</h3>
+              <h3 class="font-heading text-3xl font-bold mb-2">Your Diagnosis</h3>
               <p class="text-brand-white/60">
                 Analysis for:
                 <span id="result-business-name" class="text-brand-primary">Brand</span>
@@ -854,10 +1101,9 @@
               <div
                 class="bg-white/5 border border-white/10 rounded-2xl p-6 flex items-center justify-center h-[300px] w-full"
               >
-                <canvas id="blueOceanChart" style="max-height: 250px"></canvas>
+                <canvas id="blueOceanChart"></canvas>
               </div>
             </div>
-
             <div
               class="bg-brand-red/10 border border-brand-red/30 rounded-xl p-6 mb-8 flex flex-col md:flex-row items-center gap-6"
             >
@@ -873,7 +1119,6 @@
                 ><span class="text-sm text-white/50 block text-right">/ Year</span>
               </div>
             </div>
-
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left mb-10">
               <div class="bg-white/5 border border-white/10 rounded-xl p-5">
                 <h4 class="text-brand-primary text-lg font-bold mb-3 flex items-center">
@@ -898,7 +1143,6 @@
                 <p class="text-sm text-brand-white/70 leading-relaxed" id="insight-ai">...</p>
               </div>
             </div>
-
             <div class="text-center">
               <p class="text-brand-white/60 mb-4 text-sm">
                 A detailed audit has been sent to
@@ -917,27 +1161,38 @@
     </div>
 
     <script src="script.js"></script>
+    <script src="script.js"></script>
     <script>
-      // Inline script to wire up the new CTA buttons to the existing modal logic
+      // Extra logic to handle the Mobile Menu & Sticky Triggers
       document.addEventListener("DOMContentLoaded", () => {
+        // 1. Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+        const mobileMenu = document.getElementById("mobile-menu");
+        if (mobileMenuBtn && mobileMenu) {
+          mobileMenuBtn.addEventListener("click", () => {
+            mobileMenu.classList.toggle("hidden");
+          });
+        }
+
+        // 2. Bind ALL "Start Diagnostic" buttons (including new ones) to the Modal
         const modal = document.getElementById("diagnostic-modal");
-        // Select all new buttons that should trigger the diagnostic
-        const triggers = [
-          document.getElementById("open-diagnostic-btn-hero"),
-          document.getElementById("open-diagnostic-btn-cta"),
-          document.querySelector(".trigger-diagnostic"), // Catches any class-based triggers
-        ];
+        const triggers = document.querySelectorAll(
+          ".trigger-diagnostic, #open-diagnostic-btn-hero, #open-diagnostic-btn-nav, #open-diagnostic-btn-mobile, #open-diagnostic-btn-cta"
+        );
 
         triggers.forEach((btn) => {
           if (btn) {
             btn.addEventListener("click", (e) => {
               e.preventDefault();
               modal.style.display = "flex";
-              document.body.style.overflow = "hidden";
+              // Close mobile menu if open
+              if (mobileMenu) mobileMenu.classList.add("hidden");
               if (window.lucide) window.lucide.createIcons();
             });
           }
         });
+
+        if (window.lucide) window.lucide.createIcons();
       });
     </script>
   </body>
