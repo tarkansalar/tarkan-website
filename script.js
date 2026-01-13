@@ -544,8 +544,20 @@ document.addEventListener("DOMContentLoaded", () => {
       const business = businessEl ? businessEl.value : "";
 
       // 1. Validation
-      if (!name || !email || !phone || !business) {
-        if(quizLeadErrorEl) quizLeadErrorEl.classList.remove("hidden");
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      
+      let errorMessage = "";
+      
+      if (!name) errorMessage = "Please enter your name.";
+      else if (!email || !emailRegex.test(email)) errorMessage = "Please enter a valid email address.";
+      else if (!phone) errorMessage = "Please enter your phone number.";
+      else if (!business) errorMessage = "Please enter your business name.";
+
+      if (errorMessage) {
+        if(quizLeadErrorEl) {
+            quizLeadErrorEl.textContent = errorMessage;
+            quizLeadErrorEl.classList.remove("hidden");
+        }
         return;
       }
       if(quizLeadErrorEl) quizLeadErrorEl.classList.add("hidden");
