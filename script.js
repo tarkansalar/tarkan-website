@@ -567,6 +567,9 @@ document.addEventListener("DOMContentLoaded", () => {
       formData.append("profitLeak", results.profitLeak);
       formData.append("answers", JSON.stringify(answers));
 
+      // 5. Send Data to CRM
+      sendToCRM(name, email, phone, business, results.score);
+
       fetch(GOOGLE_SCRIPT_URL, {
         method: "POST",
         body: formData,
@@ -581,6 +584,48 @@ document.addEventListener("DOMContentLoaded", () => {
         // Fallback: show dashboard anyway
         renderDashboard(results, business, email);
       });
+    });
+  }
+
+  /**
+   * Sends lead data to the external CRM API.
+   */
+  function sendToCRM(name, email, phone, business, score) {
+    const url = "https://login.beunstoppable365.com/api/automations/6965f5c7d68b8/execute";
+    
+    // Construct the payload with required and optional custom fields
+    // Note: The curl example uses key names like '{%contact.business_name%}' for custom fields due to the CRM's requirements.
+    // We replicate that structure here.
+    // Since we are sending JSON, keys with special chars are fine.
+    const payload = {
+      "api_token": "081b9d0fe5c806746fd4324e33081218",
+      "contact_name": name,
+      "contact_email": email,
+      "contact_phone": phone,
+      "{%contact.business_name%}": business,
+      "{%contact.audit_score%}": score
+    };
+
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(payload)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`CRM API error: ${response.status} ${response.statusText}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log("CRM Success:", data);
+    })
+    .catch(error => {
+        console.warn("CRM Error:", error);
+        // We do strictly non-blocking logging here so it doesn't stop the user flow
     });
   }
 
