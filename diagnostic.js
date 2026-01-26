@@ -182,16 +182,81 @@ document.addEventListener('DOMContentLoaded', () => {
         return true;
     }
 
+    // --- GOOGLE SHEETS CONFIG ---
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxGYEUCBm3ueYKPmgDBulXupsufhifXxXdvixZS0zsq8HvD0U6VTs1eeigRUNf94w1PUg/exec';
+
     function finishQuiz() {
         console.log('Quiz Finished', state.answers);
         
-        // 1. Calculate Scores
+        // 1. Show Loader
+        const loaderSection = document.getElementById('loader-section');
+        const loaderText = document.getElementById('loader-text');
+        if (loaderSection) {
+            loaderSection.classList.remove('hidden');
+            loaderSection.style.display = 'flex';
+        }
+
+        // 2. Calculate Results (Instant)
         const scores = calculateScores(state.answers);
-        
-        // 2. Generate Report
         const reportHTML = generateReport(state.answers, scores);
         
-        // 3. Display Results
+        // Prepare Data for Google Sheet
+        // We match the structure of the main site script for consistency
+        const formData = new FormData();
+        formData.append("name", state.answers.contact.name);
+        formData.append("email", state.answers.contact.email);
+        formData.append("phone", "'" + state.answers.contact.phoneCode + " " + state.answers.contact.phone);
+        formData.append("business", state.answers.contact.business);
+        
+        // Map Root Cause Score (We use the max score as the "score" for the sheet)
+        const maxScore = Math.max(scores.weakPositioning, scores.noBestsellers, scores.noSystems);
+        formData.append("score", maxScore); 
+        formData.append("profitLeak", 0); // Not calculated in this specific diagnostic, sending 0
+        formData.append("answers", JSON.stringify(state.answers));
+        
+        // 3. Simulate Analysis Delay + Send Data
+        let progressSteps = [
+            "Identifying root causes...",
+            "Analyze revenue structure...",
+            "Comparing against Blue Ocean benchmarks...",
+            "Generating verified report..."
+        ];
+        
+        let step = 0;
+        const interval = setInterval(() => {
+            if(loaderText && step < progressSteps.length) {
+                loaderText.textContent = progressSteps[step];
+                step++;
+            }
+        }, 800);
+
+        // Send to Google Sheet (Async)
+        fetch(GOOGLE_SCRIPT_URL, {
+            method: "POST",
+            body: formData,
+            mode: "no-cors"
+        })
+        .then(() => {
+            // Wait for at least the animation time
+            setTimeout(() => {
+                clearInterval(interval);
+                completeQuiz(loaderSection, reportHTML);
+            }, 3000); 
+        })
+        .catch((error) => {
+            console.error("Sheet Error:", error);
+            // Fallback: show result anyway
+            setTimeout(() => {
+                clearInterval(interval);
+                completeQuiz(loaderSection, reportHTML);
+            }, 3000);
+        });
+    }
+
+    function completeQuiz(loader, reportHTML) {
+        if(loader) {
+            loader.style.display = 'none';
+        }
         displayResults(reportHTML);
     }
 

@@ -752,6 +752,23 @@
 
        <!-- 
           ======================================
+          LOADER SECTION
+          ======================================
+        -->
+       <div id="loader-section" class="fixed inset-0 bg-brand-dark/95 backdrop-blur-md z-50 flex flex-col items-center justify-center hidden">
+            <div class="relative w-24 h-24 mb-8">
+                <div class="absolute inset-0 border-4 border-brand-primary/30 rounded-full animate-pulse"></div>
+                <div class="absolute inset-0 border-4 border-t-brand-primary border-r-transparent border-b-transparent border-l-transparent rounded-full animate-spin"></div>
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <i data-lucide="cpu" class="w-8 h-8 text-brand-primary"></i>
+                </div>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-2 animate-pulse">Analyzing Your Business...</h3>
+            <p id="loader-text" class="text-brand-white/60 text-sm">Identifying root causes...</p>
+       </div>
+
+       <!-- 
+          ======================================
           RESULTS SECTION
           ======================================
         -->
