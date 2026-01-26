@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Page Title -->
+    <title>Tarkan: The Blue Ocean Diagnostic | Find Your Root Cause</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts (Anton & Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@0.378.0/dist/umd/lucide.min.js"></script>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Custom Tailwind Configuration -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              display: ["Anton", "sans-serif"],
+              heading: ["Inter", "sans-serif"],
+            },
+            colors: {
+              "brand-primary": "#D8F911",
+              "brand-dark": "#0D0D0D",
+              "brand-white": "#FFFFFF",
+              "brand-red": "#FF4D4D",
+              "brand-orange": "#F2AD0C",
+            },
+          },
+        },
+      };
+    </script>
+    <script type="text/javascript">
+      (function (c, l, a, r, i, t, y) {
+        c[a] =
+          c[a] ||
+          function () {
+            (c[a].q = c[a].q || []).push(arguments);
+          };
+        t = l.createElement(r);
+        t.async = 1;
+        t.src = "https://www.clarity.ms/tag/" + i;
+        y = l.getElementsByTagName(r)[0];
+        y.parentNode.insertBefore(t, y);
+      })(window, document, "clarity", "script", "ugg13zy1t9");
+    </script>
+  </head>
+
+  <body class="bg-brand-dark text-brand-white font-sans antialiased">
+    <!-- 
+      ======================================
+      SECTION 0: NAVIGATION BAR (Simplified for LP)
+      ======================================
+    -->
+    <header
+      class="bg-brand-dark backdrop-blur-md sticky top-0 z-50 w-full border-b border-white/10"
+    >
+      <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+        <!-- Logo / Brand Name -->
+        <a href="index.html" class="text-xl font-bold text-brand-white font-heading tracking-wide">
+          TARKAN: The Blue Ocean Builder
+        </a>
+
+        <!-- Simple Nav for LP -->
+        <div class="hidden md:flex items-center space-x-6">
+           <a
+            href="#assessment"
+            class="btn btn-primary"
+            >Take the Free Assessment →</a
+          >
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- 
+          ======================================
+          SECTION 1: THE HERO
+          ======================================
+        -->
+      <section id="hero" class="relative bg-brand-dark py-16 md:py-24 overflow-hidden">
+        <div class="container mx-auto px-6 relative z-10 text-center max-w-4xl mx-auto">
+            <h1
+            class="font-display text-4xl md:text-6xl font-bold uppercase mb-6 tracking-wide leading-tight"
+            >
+            I Passed on €50 Million Because I Couldn't See This One Thing
+            </h1>
+            <p
+            class="text-brand-primary font-bold text-lg md:text-2xl mb-8 tracking-wide uppercase"
+            >
+            (And it's the same thing killing your business right now)
+            </p>
+            
+            <p class="text-brand-white/80 text-xl mb-10 max-w-2xl mx-auto">
+                Take this 3-minute Root Cause Assessment to find out what you can't see from inside your business.
+            </p>
+
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-6">
+            <a href="#assessment" class="btn btn-primary w-full sm:w-auto text-lg px-8 py-4">
+                Take the Free Assessment →
+            </a>
+            </div>
+        </div>
+      </section>
+
+      <!-- 
+          ======================================
+          SECTION 1: THE PROBLEM YOU CAN'T SEE
+          ======================================
+        -->
+       <section class="py-16 md:py-24 bg-white/5 border-y border-white/10">
+        <div class="container mx-auto px-6 max-w-3xl">
+            <h2 class="section-title text-center mb-12">The Problem You Can't See</h2>
+            <div class="bg-brand-dark p-8 rounded-xl border border-white/10 shadow-2xl">
+                <p class="text-xl font-bold mb-6 text-brand-white">Check all that apply:</p>
+                <div class="space-y-4 text-lg">
+                    <label class="flex items-center space-x-3 cursor-pointer group">
+                        <input type="checkbox" class="form-checkbox h-6 w-6 text-brand-primary rounded border-white/30 bg-white/5 focus:ring-brand-primary" />
+                        <span class="group-hover:text-brand-primary transition-colors">Drowning in overstock</span>
+                    </label>
+                    <label class="flex items-center space-x-3 cursor-pointer group">
+                        <input type="checkbox" class="form-checkbox h-6 w-6 text-brand-primary rounded border-white/30 bg-white/5 focus:ring-brand-primary" />
+                        <span class="group-hover:text-brand-primary transition-colors">Cash flow getting tighter</span>
+                    </label>
+                    <label class="flex items-center space-x-3 cursor-pointer group">
+                        <input type="checkbox" class="form-checkbox h-6 w-6 text-brand-primary rounded border-white/30 bg-white/5 focus:ring-brand-primary" />
+                        <span class="group-hover:text-brand-primary transition-colors">Customer acquisition costs going up</span>
+                    </label>
+                    <label class="flex items-center space-x-3 cursor-pointer group">
+                        <input type="checkbox" class="form-checkbox h-6 w-6 text-brand-primary rounded border-white/30 bg-white/5 focus:ring-brand-primary" />
+                        <span class="group-hover:text-brand-primary transition-colors">Margins getting thinner</span>
+                    </label>
+                    <label class="flex items-center space-x-3 cursor-pointer group">
+                        <input type="checkbox" class="form-checkbox h-6 w-6 text-brand-primary rounded border-white/30 bg-white/5 focus:ring-brand-primary" />
+                        <span class="group-hover:text-brand-primary transition-colors">Burned out from constant firefighting</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="mt-12 text-center prose prose-invert prose-lg mx-auto">
+                <p class="font-bold text-2xl text-brand-primary mb-4">How many did you check?</p>
+                <p>If you checked more than one, here's what you need to know:</p>
+                <p class="text-xl">These aren't separate problems.</p>
+                <p class="text-xl">They're symptoms of <strong>ONE root cause</strong>.</p>
+                <p class="text-xl">And <span class="text-brand-red underline decoration-brand-red/50">you can't see it</span> from inside your business.</p>
+            </div>
+        </div>
+       </section>
+        
+       <!-- 
+          ======================================
+          SECTION 2: SYMPTOMS VS. ROOT CAUSES
+          ======================================
+        -->
+       <section class="py-16 md:py-24 bg-brand-dark">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <h2 class="section-title text-center mb-16">Here's what most founders do:</h2>
+            
+            <div class="relative border-l-2 border-dashed border-white/20 pl-8 ml-4 md:ml-auto md:mr-auto space-y-12">
+                <!-- Step 1 -->
+                <div class="relative">
+                    <div class="absolute -left-[41px] top-0 w-6 h-6 rounded-full bg-brand-red"></div>
+                    <h3 class="text-xl font-bold text-white mb-2">They fix overstock.</h3>
+                    <p class="text-brand-white/60">Cash flow gets tighter.</p>
+                </div>
+                <!-- Step 2 -->
+                <div class="relative">
+                    <div class="absolute -left-[41px] top-0 w-6 h-6 rounded-full bg-brand-red"></div>
+                    <h3 class="text-xl font-bold text-white mb-2">They fix marketing.</h3>
+                    <p class="text-brand-white/60">Customer acquisition costs go up.</p>
+                </div>
+                 <!-- Step 3 -->
+                <div class="relative">
+                    <div class="absolute -left-[41px] top-0 w-6 h-6 rounded-full bg-brand-red"></div>
+                    <h3 class="text-xl font-bold text-white mb-2">They optimize supply chain.</h3>
+                    <p class="text-brand-white/60">Margins shrink.</p>
+                </div>
+                <!-- Step 4 -->
+                 <div class="relative">
+                    <div class="absolute -left-[43px] top-0 w-7 h-7 rounded-full bg-brand-red border-2 border-brand-dark flex items-center justify-center">
+                        <i data-lucide="x" class="w-4 h-4 text-brand-dark"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-brand-red mb-2">Nothing sticks.</h3>
+                </div>
+            </div>
+
+            <div class="mt-16 text-center max-w-2xl mx-auto">
+                <h3 class="text-3xl font-display uppercase font-bold text-brand-white mb-6">Why?</h3>
+                <p class="text-xl text-brand-white/80 mb-6">
+                    Because they're treating <span class="text-brand-red font-bold">symptoms</span>, not the <span class="text-brand-primary font-bold">root cause</span>.
+                </p>
+                <div class="bg-white/5 p-6 rounded-lg border border-white/10">
+                    <p class="text-lg italic text-brand-white/70">
+                        "It's like taking aspirin for a broken leg. The pain goes away temporarily. But the leg is still broken."
+                    </p>
+                </div>
+                
+                <div class="mt-8">
+                    <p class="text-2xl font-bold text-brand-primary">You need to fix the root cause.</p>
+                    <p class="text-lg text-brand-white/60">Not the symptoms.</p>
+                </div>
+            </div>
+        </div>
+       </section>
+
+       <!-- 
+          ======================================
+          SECTION 3: MY €50 MILLION LESSON
+          ======================================
+        -->
+       <section class="py-16 md:py-24 bg-brand-primary/5 border-y border-white/10">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="w-full lg:w-1/2">
+                    <img src="https://546n3t88gn.ucarecd.net/c29614ea-7573-4482-b59d-1dfca7d0d6ef/-/preview/800x1000/" alt="Tarkan Salar" class="rounded-xl shadow-2xl border border-white/10 w-full max-w-md mx-auto lg:mx-0">
+                </div>
+                <div class="w-full lg:w-1/2">
+                    <h2 class="section-title text-left mb-6">My €50 Million Lesson</h2>
+                     <div class="prose prose-invert prose-lg text-brand-white/80">
+                        <p>A German conglomerate wanted to buy my 8-figure fashion brand.</p>
+                        <p class="text-brand-primary font-bold text-3xl">€50 million.</p>
+                        <p>I passed.</p>
+                        <p><strong>Why?</strong></p>
+                        <p>Because I was too close to see what was really broken. I had two types of pain:</p>
+                        <ul class="list-none pl-0 space-y-4 my-6">
+                            <li class="flex items-start">
+                                <span class="bg-brand-red/20 text-brand-red px-3 py-1 rounded text-sm font-bold mr-3 mt-1">PAIN #1</span>
+                                <div>
+                                    <strong class="block text-white">Stagnation</strong>
+                                    <span class="text-sm">Nothing was working.</span>
+                                </div>
+                            </li>
+                             <li class="flex items-start">
+                                <span class="bg-brand-red/20 text-brand-red px-3 py-1 rounded text-sm font-bold mr-3 mt-1">PAIN #2</span>
+                                <div>
+                                    <strong class="block text-white">Growing too fast</strong>
+                                    <span class="text-sm">Couldn't handle the complexity.</span>
+                                </div>
+                            </li>
+                        </ul>
+                        <p>Both are root problems. I only saw symptoms.</p>
+                        <p>Too busy firefighting to step back. Too close to my business to see clearly.</p>
+                        <p class="text-brand-white font-bold border-l-4 border-brand-red pl-4">That decision cost me €50 million.</p>
+                        <p>When you're too close, you can't see what's really broken. You need someone from the outside.</p>
+                        <p>Don't make the same mistake.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+       </section>
+        
+        <!-- 
+          ======================================
+          SECTION 4: THE 3 ROOT CAUSES
+          ======================================
+        -->
+       <section class="py-16 md:py-24 bg-brand-dark">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title text-center mb-4">The 3 Root Causes</h2>
+            <p class="section-subtitle text-center mb-16">
+                There are only 3 root problems that break D2C brands at $3-15M. You have one.
+            </p>
+
+            <div class="grid grid-cols-1 gap-12 max-w-5xl mx-auto">
+                
+                <!-- Root Cause #1 -->
+                <div class="bg-white/5 border border-white/10 rounded-2xl p-8 md:p-12 hover:border-brand-primary/50 transition-colors">
+                    <div class="flex flex-col md:flex-row gap-8">
+                        <div class="w-full md:w-1/3">
+                            <div class="bg-brand-primary/10 text-brand-primary px-4 py-2 rounded-full text-sm font-bold inline-block mb-4">ROOT CAUSE #1</div>
+                            <h3 class="text-3xl font-display text-white mb-4">Weak Positioning</h3>
+                            <p class="text-brand-white/60 mb-6">The core issue: You don't own a clear niche in the market.</p>
+                            <i data-lucide="target" class="w-16 h-16 text-brand-white/20"></i>
+                        </div>
+                        <div class="w-full md:w-2/3 space-y-8">
+                            <div>
+                                <h4 class="text-white font-bold uppercase text-sm tracking-widest mb-3">The Symptoms You're Treating:</h4>
+                                <div class="flex flex-wrap gap-2">
+                                     <span class="px-3 py-1 bg-brand-red/10 border border-brand-red/20 rounded text-brand-red text-sm">High CAC</span>
+                                     <span class="px-3 py-1 bg-brand-red/10 border border-brand-red/20 rounded text-brand-red text-sm">Low conversion rates</span>
+                                     <span class="px-3 py-1 bg-brand-red/10 border border-brand-red/20 rounded text-brand-red text-sm">Price comparisons</span>
+                                </div>
+                            </div>
+                            <div>
+                                 <h4 class="text-white font-bold uppercase text-sm tracking-widest mb-3">Example:</h4>
+                                 <div class="bg-black/30 p-4 rounded-lg text-sm text-brand-white/80">
+                                    <p class="mb-2"><strong class="text-white">Before:</strong> A skincare brand competing against 1,000 others. CAC: $85.</p>
+                                    <p><strong class="text-brand-primary">After:</strong> Repositioned as "skincare for women with hormonal acne". CAC dropped to $42. Conversion jumped to 3.8%.</p>
+                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Root Cause #2 -->
+                <div class="bg-white/5 border border-white/10 rounded-2xl p-8 md:p-12 hover:border-brand-primary/50 transition-colors">
+                    <div class="flex flex-col md:flex-row gap-8">
+                        <div class="w-full md:w-1/3">
+                            <div class="bg-brand-primary/10 text-brand-primary px-4 py-2 rounded-full text-sm font-bold inline-block mb-4">ROOT CAUSE #2</div>
+                            <h3 class="text-3xl font-display text-white mb-4">No Clear Bestsellers</h3>
+                            <p class="text-brand-white/60 mb-6">The core issue: You don't know which products to double down on.</p>
+                            <i data-lucide="shopping-bag" class="w-16 h-16 text-brand-white/20"></i>
+                        </div>
+                        <div class="w-full md:w-2/3 space-y-8">
+                            <div>
+                                <h4 class="text-white font-bold uppercase text-sm tracking-widest mb-3">The Symptoms You're Treating:</h4>
+                                <div class="flex flex-wrap gap-2">
+                                     <span class="px-3 py-1 bg-brand-red/10 border border-brand-red/20 rounded text-brand-red text-sm">Overstock</span>
+                                     <span class="px-3 py-1 bg-brand-red/10 border border-brand-red/20 rounded text-brand-red text-sm">Thin margins</span>
+                                     <span class="px-3 py-1 bg-brand-red/10 border border-brand-red/20 rounded text-brand-red text-sm">Cash tied up</span>
+                                </div>
+                            </div>
+                            <div>
+                                 <h4 class="text-white font-bold uppercase text-sm tracking-widest mb-3">Example:</h4>
+                                 <div class="bg-black/30 p-4 rounded-lg text-sm text-brand-white/80">
+                                    <p class="mb-2"><strong class="text-white">Before:</strong> Supplements brand with 25 SKUs. 28% margins. Cash tight.</p>
+                                    <p><strong class="text-brand-primary">After:</strong> Identified 4 hero products. Killed 15 underperformers. Margins jumped to 48%.</p>
+                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Root Cause #3 -->
+                <div class="bg-white/5 border border-white/10 rounded-2xl p-8 md:p-12 hover:border-brand-primary/50 transition-colors">
+                    <div class="flex flex-col md:flex-row gap-8">
+                        <div class="w-full md:w-1/3">
+                            <div class="bg-brand-primary/10 text-brand-primary px-4 py-2 rounded-full text-sm font-bold inline-block mb-4">ROOT CAUSE #3</div>
+                            <h3 class="text-3xl font-display text-white mb-4">No Systems</h3>
+                            <p class="text-brand-white/60 mb-6">The core issue: The business can't operate without you.</p>
+                            <i data-lucide="settings" class="w-16 h-16 text-brand-white/20"></i>
+                        </div>
+                        <div class="w-full md:w-2/3 space-y-8">
+                            <div>
+                                <h4 class="text-white font-bold uppercase text-sm tracking-widest mb-3">The Symptoms You're Treating:</h4>
+                                <div class="flex flex-wrap gap-2">
+                                     <span class="px-3 py-1 bg-brand-red/10 border border-brand-red/20 rounded text-brand-red text-sm">Burnout</span>
+                                     <span class="px-3 py-1 bg-brand-red/10 border border-brand-red/20 rounded text-brand-red text-sm">Team underperformance</span>
+                                     <span class="px-3 py-1 bg-brand-red/10 border border-brand-red/20 rounded text-brand-red text-sm">Slow execution</span>
+                                </div>
+                            </div>
+                            <div>
+                                 <h4 class="text-white font-bold uppercase text-sm tracking-widest mb-3">Example:</h4>
+                                 <div class="bg-black/30 p-4 rounded-lg text-sm text-brand-white/80">
+                                    <p class="mb-2"><strong class="text-white">Before:</strong> Founder working 75-hour weeks. Every decision went through her.</p>
+                                    <p><strong class="text-brand-primary">After:</strong> Built approval systems & playbooks. Hours dropped to 35/week. Revenue grew 40%.</p>
+                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+       </section>
+
+       <!-- 
+          ======================================
+          SECTION 5: WHAT THIS ASSESSMENT WILL TELL YOU
+          ======================================
+        -->
+       <section class="py-16 md:py-24 bg-white/5 border-t border-white/10">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title text-center mb-16">What This Assessment Will Tell You</h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
+                <div>
+                     <h3 class="font-display text-2xl mb-6">In 3 minutes, you'll discover:</h3>
+                     <ul class="space-y-4">
+                        <li class="flex items-start">
+                             <div class="w-6 h-6 rounded-full bg-brand-primary/20 flex items-center justify-center mr-3 mt-1">
+                                <i data-lucide="check" class="w-4 h-4 text-brand-primary"></i>
+                             </div>
+                             <span class="text-lg text-brand-white/80">Which root cause is breaking your business</span>
+                        </li>
+                        <li class="flex items-start">
+                             <div class="w-6 h-6 rounded-full bg-brand-primary/20 flex items-center justify-center mr-3 mt-1">
+                                <i data-lucide="check" class="w-4 h-4 text-brand-primary"></i>
+                             </div>
+                             <span class="text-lg text-brand-white/80">Why the problems you're trying to fix are just symptoms</span>
+                        </li>
+                        <li class="flex items-start">
+                             <div class="w-6 h-6 rounded-full bg-brand-primary/20 flex items-center justify-center mr-3 mt-1">
+                                <i data-lucide="check" class="w-4 h-4 text-brand-primary"></i>
+                             </div>
+                             <span class="text-lg text-brand-white/80">What's really causing your overstock, tight cash flow, high CAC, or burnout</span>
+                        </li>
+                        <li class="flex items-start">
+                             <div class="w-6 h-6 rounded-full bg-brand-primary/20 flex items-center justify-center mr-3 mt-1">
+                                <i data-lucide="check" class="w-4 h-4 text-brand-primary"></i>
+                             </div>
+                             <span class="text-lg text-brand-white/80">Exactly what needs to be fixed first</span>
+                        </li>
+                     </ul>
+                </div>
+                
+                <div class="bg-brand-dark p-8 rounded-xl border border-brand-primary/30 shadow-lg relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-brand-primary/5 rounded-full blur-3xl -mr-16 -mt-16"></div>
+                    <h3 class="font-display text-2xl mb-6">You'll get:</h3>
+                    <p class="font-bold text-xl text-brand-primary mb-4">A personalized Root Cause Report showing:</p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center text-brand-white/80">
+                            <span class="w-2 h-2 bg-brand-white/50 rounded-full mr-3"></span>
+                            Your root problem (not just symptoms)
+                        </li>
+                        <li class="flex items-center text-brand-white/80">
+                            <span class="w-2 h-2 bg-brand-white/50 rounded-full mr-3"></span>
+                            Why your current fixes aren't working
+                        </li>
+                         <li class="flex items-center text-brand-white/80">
+                            <span class="w-2 h-2 bg-brand-white/50 rounded-full mr-3"></span>
+                            What happens when you fix the root cause
+                        </li>
+                         <li class="flex items-center text-brand-white/80">
+                            <span class="w-2 h-2 bg-brand-white/50 rounded-full mr-3"></span>
+                            Your next step
+                        </li>
+                    </ul>
+                    <button class="btn btn-primary w-full">Take the 3-Minute Assessment Now →</button>
+                </div>
+            </div>
+        </div>
+       </section>
+
+       <!-- 
+          ======================================
+          SECTION 6: WHY THIS MATTERS
+          ======================================
+        -->
+       <section class="py-16 md:py-24 bg-brand-dark border-y border-white/10">
+            <div class="container mx-auto px-6 max-w-3xl text-center">
+                <h2 class="section-title mb-8">Why This Matters</h2>
+                <div class="prose prose-invert prose-lg mx-auto">
+                    <p class="text-xl">You will never be broke if you fix the root cause, not the symptoms.</p>
+                    <p>That's what I learned the hard way.</p>
+                    <p>After 28 years building an 8-figure brand. Working with Adidas, H&M, Louis Vuitton. Opening my own factory. Doing $40M in 2 years.</p>
+                    <p>I couldn't see my root problem from inside.</p>
+                    <p>I was too close. Too busy firefighting. <strong class="text-brand-red">And it cost me €50 million.</strong></p>
+                    <p class="text-xl font-bold mt-8">Don't make the same mistake.</p>
+                    <p>Take the assessment. Find your root cause. Fix it before it's too late.</p>
+                </div>
+                <div class="mt-12">
+                     <a href="#assessment" class="btn btn-primary btn-lg px-8 py-4 text-lg">Take the Free Assessment Now →</a>
+                </div>
+            </div>
+       </section>
+        
+        <!-- 
+          ======================================
+          FINAL CTA
+          ======================================
+        -->
+        <section class="py-24 bg-brand-primary/10">
+            <div class="container mx-auto px-6 text-center max-w-2xl">
+                 <h2 class="font-display text-5xl md:text-7xl mb-6">3 Minutes to Clarity</h2>
+                 <p class="text-2xl text-brand-white/80 mb-10">Stop guessing what's wrong</p>
+                 <a href="#assessment" class="btn btn-primary btn-lg w-full md:w-auto px-12 py-5 text-xl shadow-xl shadow-brand-primary/20">
+                    Take the Free Assessment →
+                 </a>
+            </div>
+        </section>
+
+        <div id="assessment"></div>
+    </main>
+
+    <footer class="bg-brand-dark py-12 border-t border-white/10 mt-12">
+        <div class="container mx-auto px-6 text-center">
+             <p class="text-brand-white/50 text-sm">
+            &copy; <script>document.write(new Date().getFullYear())</script> Tarkan Salar. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+      lucide.createIcons();
+    </script>
+  </body>
+</html>
