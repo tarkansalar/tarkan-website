@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- GOOGLE SHEETS CONFIG ---
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxGYEUCBm3ueYKPmgDBulXupsufhifXxXdvixZS0zsq8HvD0U6VTs1eeigRUNf94w1PUg/exec';
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyhpWiYY808JuLA3F11Y4bzlycRW-Pj7ysj9FmZ8qUurUjthGqV9DP1pIWrkN-1NvPa/exec';
 
     function finishQuiz() {
         console.log('Quiz Finished', state.answers);
