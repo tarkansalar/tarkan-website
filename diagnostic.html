@@ -478,7 +478,165 @@
             </div>
         </section>
 
-        <div id="assessment"></div>
+        <!-- 
+          ======================================
+          ASSESSMENT SECTION
+          ======================================
+        -->
+       <div id="assessment" class="py-24 bg-brand-dark min-h-screen flex items-center justify-center relative border-t border-brand-primary/30">
+            <!-- Background effects -->
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-4xl max-h-screen bg-brand-primary/5 blur-3xl rounded-full pointer-events-none"></div>
+
+            <div id="assessment-container" class="container mx-auto px-6 relative z-10 max-w-3xl">
+                
+                <div class="bg-brand-dark/80 backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-12 shadow-2xl">
+                    
+                    <!-- Progress Header -->
+                    <div class="flex justify-between items-center mb-8 border-b border-white/10 pb-4">
+                        <span class="text-brand-white/50 text-sm font-bold uppercase tracking-widest">Question <span id="current-step" class="text-brand-primary text-xl">1</span>/8</span>
+                    </div>
+
+                    <!-- QUESTION 1 -->
+                    <div class="quiz-question active-question" data-id="q1">
+                        <h3 class="question-label mb-8">What's your current annual revenue?</h3>
+                        <div class="space-y-4">
+                            <button class="quiz-option single-select-option" data-value="Under $3M">Under $3M</button>
+                            <button class="quiz-option single-select-option" data-value="$3M - $7M">$3M - $7M</button>
+                            <button class="quiz-option single-select-option" data-value="$7M - $15M">$7M - $15M</button>
+                            <button class="quiz-option single-select-option" data-value="Over $15M">Over $15M</button>
+                        </div>
+                    </div>
+
+                    <!-- QUESTION 2 -->
+                    <div class="quiz-question" data-id="q2" style="display:none;">
+                        <h3 class="question-label mb-2">Which of these problems are you currently facing?</h3>
+                        <p class="text-brand-white/50 mb-8">(Check all that apply)</p>
+                        <div class="space-y-4">
+                            <button class="quiz-option multi-select-option flex justify-between items-center group" data-value="Overstock / dead inventory">
+                                <span>Overstock / dead inventory</span>
+                                <i data-lucide="check" class="w-5 h-5 opacity-0 group-[.selected]:opacity-100 text-brand-primary transition-opacity"></i>
+                            </button>
+                            <button class="quiz-option multi-select-option flex justify-between items-center group" data-value="Tight cash flow">
+                                <span>Tight cash flow despite good revenue</span>
+                                <i data-lucide="check" class="w-5 h-5 opacity-0 group-[.selected]:opacity-100 text-brand-primary transition-opacity"></i>
+                            </button>
+                            <button class="quiz-option multi-select-option flex justify-between items-center group" data-value="Rising CAC">
+                                <span>Rising customer acquisition costs</span>
+                                <i data-lucide="check" class="w-5 h-5 opacity-0 group-[.selected]:opacity-100 text-brand-primary transition-opacity"></i>
+                            </button>
+                            <button class="quiz-option multi-select-option flex justify-between items-center group" data-value="Shrinking margins">
+                                <span>Shrinking margins</span>
+                                <i data-lucide="check" class="w-5 h-5 opacity-0 group-[.selected]:opacity-100 text-brand-primary transition-opacity"></i>
+                            </button>
+                            <button class="quiz-option multi-select-option flex justify-between items-center group" data-value="Firefighting">
+                                <span>Constant firefighting (no time to think strategically)</span>
+                                <i data-lucide="check" class="w-5 h-5 opacity-0 group-[.selected]:opacity-100 text-brand-primary transition-opacity"></i>
+                            </button>
+                            <button class="quiz-option multi-select-option flex justify-between items-center group" data-value="Bottleneck">
+                                <span>Team waiting on you for every decision</span>
+                                <i data-lucide="check" class="w-5 h-5 opacity-0 group-[.selected]:opacity-100 text-brand-primary transition-opacity"></i>
+                            </button>
+                             <button class="quiz-option multi-select-option flex justify-between items-center group" data-value="None">
+                                <span>None of these</span>
+                                <i data-lucide="check" class="w-5 h-5 opacity-0 group-[.selected]:opacity-100 text-brand-primary transition-opacity"></i>
+                            </button>
+                        </div>
+                        <div class="mt-8 flex justify-end">
+                            <button class="btn btn-primary next-btn">Next Step <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- QUESTION 3 -->
+                    <div class="quiz-question" data-id="q3" style="display:none;">
+                        <h3 class="question-label mb-8">How many hours per week are you working in your business?</h3>
+                        <div class="space-y-4">
+                            <button class="quiz-option single-select-option" data-value="Under 40">Under 40 hours</button>
+                            <button class="quiz-option single-select-option" data-value="40-50">40-50 hours</button>
+                            <button class="quiz-option single-select-option" data-value="50-70">50-70 hours</button>
+                            <button class="quiz-option single-select-option" data-value="Over 70">Over 70 hours</button>
+                        </div>
+                        <div class="mt-8 flex justify-between">
+                            <button class="text-brand-white/50 hover:text-white back-btn flex items-center"><i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i> Back</button>
+                        </div>
+                    </div>
+
+                    <!-- QUESTION 4 -->
+                    <div class="quiz-question" data-id="q4" style="display:none;">
+                        <h3 class="question-label mb-8">How clear is your brand positioning?</h3>
+                        <div class="space-y-4">
+                            <button class="quiz-option single-select-option" data-value="Crystal clear">Crystal clear (we own a specific niche, customers don't price-shop)</button>
+                            <button class="quiz-option single-select-option" data-value="Somewhat clear">Somewhat clear (we know our audience but compete on price)</button>
+                            <button class="quiz-option single-select-option" data-value="Unclear">Unclear (we're trying to appeal to everyone)</button>
+                            <button class="quiz-option single-select-option" data-value="Very unclear">Very unclear (we compete mostly on price, high CAC)</button>
+                        </div>
+                        <div class="mt-8 flex justify-between">
+                            <button class="text-brand-white/50 hover:text-white back-btn flex items-center"><i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i> Back</button>
+                        </div>
+                    </div>
+
+                    <!-- QUESTION 5 -->
+                    <div class="quiz-question" data-id="q5" style="display:none;">
+                        <h3 class="question-label mb-8">How would you describe your product line?</h3>
+                        <div class="space-y-4">
+                            <button class="quiz-option single-select-option" data-value="Focused">Focused (1-5 hero products, clear bestsellers driving 60%+ of revenue)</button>
+                            <button class="quiz-option single-select-option" data-value="Growing">Growing (5-15 products, some winners emerging)</button>
+                            <button class="quiz-option single-select-option" data-value="Broad">Broad (15-30 products, no clear bestsellers)</button>
+                            <button class="quiz-option single-select-option" data-value="Confused">Confused (30+ SKUs, revenue spread thin across all)</button>
+                        </div>
+                        <div class="mt-8 flex justify-between">
+                            <button class="text-brand-white/50 hover:text-white back-btn flex items-center"><i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i> Back</button>
+                        </div>
+                    </div>
+
+                    <!-- QUESTION 6 -->
+                    <div class="quiz-question" data-id="q6" style="display:none;">
+                        <h3 class="question-label mb-8">What's happening with your margins?</h3>
+                        <div class="space-y-4">
+                            <button class="quiz-option single-select-option" data-value="Growing">Growing (we're increasing prices and customers accept it)</button>
+                            <button class="quiz-option single-select-option" data-value="Stable">Stable (holding steady, nothing changing)</button>
+                            <button class="quiz-option single-select-option" data-value="Shrinking">Shrinking (costs going up, can't raise prices)</button>
+                            <button class="quiz-option single-select-option" data-value="Terrible">Terrible (losing money on some products)</button>
+                        </div>
+                        <div class="mt-8 flex justify-between">
+                            <button class="text-brand-white/50 hover:text-white back-btn flex items-center"><i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i> Back</button>
+                        </div>
+                    </div>
+
+                    <!-- QUESTION 7 -->
+                    <div class="quiz-question" data-id="q7" style="display:none;">
+                        <h3 class="question-label mb-8">Do you have systems that run without you?</h3>
+                        <div class="space-y-4">
+                            <button class="quiz-option single-select-option" data-value="Yes">Yes, team executes without me for most things</button>
+                            <button class="quiz-option single-select-option" data-value="Somewhat">Somewhat, but I'm still involved in too many decisions</button>
+                            <button class="quiz-option single-select-option" data-value="No">No, everything runs through me</button>
+                            <button class="quiz-option single-select-option" data-value="What systems?">What systems?</button>
+                        </div>
+                         <div class="mt-8 flex justify-between">
+                            <button class="text-brand-white/50 hover:text-white back-btn flex items-center"><i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i> Back</button>
+                        </div>
+                    </div>
+
+                    <!-- QUESTION 8 -->
+                    <div class="quiz-question" data-id="q8" style="display:none;">
+                        <h3 class="question-label mb-8">Have you hired specialists in the past 12 months?</h3>
+                         <p class="text-brand-white/50 text-sm mb-6">(marketing agency, operations consultant, etc.)</p>
+                        <div class="space-y-4">
+                            <button class="quiz-option single-select-option" data-value="Yes, helpful">Yes, and they helped significantly</button>
+                            <button class="quiz-option single-select-option" data-value="Yes, no change">Yes, but nothing really changed</button>
+                            <button class="quiz-option single-select-option" data-value="No">No, haven't hired anyone yet</button>
+                            <button class="quiz-option single-select-option" data-value="Disappointed">Tried multiple, all disappointed</button>
+                        </div>
+                         <div class="mt-8 flex justify-between">
+                            <button class="text-brand-white/50 hover:text-white back-btn flex items-center"><i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i> Back</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+       </div>
+
+       <!-- Link Diagnostic Script -->
+       <script src="diagnostic.js"></script>
     </main>
 
     <footer class="bg-brand-dark py-12 border-t border-white/10 mt-12">
