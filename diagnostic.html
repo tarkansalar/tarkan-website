@@ -493,7 +493,7 @@
                     
                     <!-- Progress Header -->
                     <div class="flex justify-between items-center mb-8 border-b border-white/10 pb-4">
-                        <span class="text-brand-white/50 text-sm font-bold uppercase tracking-widest">Question <span id="current-step" class="text-brand-primary text-xl">1</span>/8</span>
+                        <span id="progress-header" class="text-brand-white/50 text-sm font-bold uppercase tracking-widest">Question <span id="current-step" class="text-brand-primary text-xl">1</span>/8</span>
                     </div>
 
                     <!-- QUESTION 1 -->
@@ -629,6 +629,55 @@
                         </div>
                          <div class="mt-8 flex justify-between">
                             <button class="text-brand-white/50 hover:text-white back-btn flex items-center"><i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i> Back</button>
+                        </div>
+                    </div>
+
+                    <!-- CONTACT FORM STEP -->
+                    <div class="quiz-question" data-id="contact" style="display:none;">
+                        <h3 class="question-label mb-6">Almost there! Where should we send your Root Cause Report?</h3>
+                        <p class="text-brand-white/60 mb-8">Enter your details to generate your personalized 8-Week Scale Plan.</p>
+                        
+                        <div class="space-y-6">
+                             <div>
+                                <label class="block text-brand-white/80 text-sm font-bold mb-2">First Name</label>
+                                <input type="text" id="contact-name" class="quiz-input" placeholder="Your Name">
+                            </div>
+
+                            <div>
+                                <label class="block text-brand-white/80 text-sm font-bold mb-2">Email Address</label>
+                                <input type="email" id="contact-email" class="quiz-input" placeholder="name@company.com">
+                            </div>
+
+                             <div>
+                                <label class="block text-brand-white/80 text-sm font-bold mb-2">Phone Number</label>
+                                <div class="flex">
+                                    <select id="contact-country-code" class="quiz-input w-32 rounded-r-none border-r-0 bg-white/5">
+                                        <option value="+1">🇺🇸 +1</option>
+                                        <option value="+44">🇬🇧 +44</option>
+                                        <option value="+61">🇦🇺 +61</option>
+                                        <option value="+49">🇩🇪 +49</option>
+                                        <option value="+33">🇫🇷 +33</option>
+                                        <option value="+91">🇮🇳 +91</option>
+                                        <option value="+86">🇨🇳 +86</option>
+                                        <option value="+81">🇯🇵 +81</option>
+                                        <option value="+39">🇮🇹 +39</option>
+                                        <option value="+971">🇦🇪 +971</option>
+                                        <!-- Add more common codes as needed -->
+                                        <option value="">Other</option>
+                                    </select>
+                                    <input type="tel" id="contact-phone" class="quiz-input rounded-l-none" placeholder="123 456 7890">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-brand-white/80 text-sm font-bold mb-2">Business Name</label>
+                                <input type="text" id="contact-business" class="quiz-input" placeholder="Your Brand Name">
+                            </div>
+                        </div>
+
+                         <div class="mt-8 flex justify-between items-center">
+                            <button class="text-brand-white/50 hover:text-white back-btn flex items-center"><i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i> Back</button>
+                            <button id="submit-quiz-btn" class="btn btn-primary">See My Results <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i></button>
                         </div>
                     </div>
 

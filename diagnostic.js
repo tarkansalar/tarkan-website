@@ -10,7 +10,14 @@ document.addEventListener('DOMContentLoaded', () => {
             q5: null,
             q6: null,
             q7: null,
-            q8: null
+            q8: null,
+            contact: {
+                name: '',
+                email: '',
+                phoneCode: '',
+                phone: '',
+                business: ''
+            }
         }
     };
 
@@ -18,51 +25,60 @@ document.addEventListener('DOMContentLoaded', () => {
     const questions = document.querySelectorAll('.quiz-question');
     const nextBtns = document.querySelectorAll('.next-btn');
     const backBtns = document.querySelectorAll('.back-btn');
-    const progressBar = document.getElementById('progress-bar');
-    const currentStepDisplay = document.getElementById('current-step');
-
+    const submitBtn = document.getElementById('submit-quiz-btn');
+    const progressHeader = document.getElementById('progress-header');
+    
     // Initialize
     updateUI();
 
     // Event Listeners for Single Select Options
     document.querySelectorAll('.single-select-option').forEach(option => {
         option.addEventListener('click', (e) => {
-            const questionId = e.target.closest('.quiz-question').dataset.id;
-            const value = e.target.dataset.value;
+            const btn = e.target.closest('.single-select-option'); // Ensure we get the button
+            if (!btn) return;
+
+            const questionElement = btn.closest('.quiz-question');
+            const questionId = questionElement.dataset.id;
+            const value = btn.dataset.value;
             
             // Highlight selected
-            const siblings = e.target.parentNode.children;
-            for (let sib of siblings) {
+            const siblings = questionElement.querySelectorAll('.single-select-option');
+            siblings.forEach(sib => {
                 sib.classList.remove('selected', 'border-brand-primary', 'bg-brand-primary/10', 'text-brand-primary');
                 sib.classList.add('border-white/30', 'text-brand-white/80');
-            }
-            e.target.classList.add('selected', 'border-brand-primary', 'bg-brand-primary/10', 'text-brand-primary');
-            e.target.classList.remove('border-white/30', 'text-brand-white/80');
+            });
+            btn.classList.add('selected', 'border-brand-primary', 'bg-brand-primary/10', 'text-brand-primary');
+            btn.classList.remove('border-white/30', 'text-brand-white/80');
 
             // Save answer
             state.answers[questionId] = value;
 
-            // Auto-advance after short delay
-            setTimeout(() => {
-                nextQuestion();
-            }, 400);
+            // Auto-advance after short delay (only if not contact form)
+            if (questionId !== 'contact') {
+                setTimeout(() => {
+                    nextQuestion();
+                }, 400);
+            }
         });
     });
 
     // Event Listeners for Multi Select Options (Question 2)
     document.querySelectorAll('.multi-select-option').forEach(option => {
         option.addEventListener('click', (e) => {
-            const value = e.target.dataset.value;
-            const isSelected = e.target.classList.contains('selected');
+            const btn = e.target.closest('.multi-select-option');
+            if (!btn) return;
+            
+            const value = btn.dataset.value;
+            const isSelected = btn.classList.contains('selected');
 
             if (isSelected) {
-                e.target.classList.remove('selected', 'border-brand-primary', 'bg-brand-primary/10', 'text-brand-primary');
-                e.target.classList.add('border-white/30', 'text-brand-white/80');
+                btn.classList.remove('selected', 'border-brand-primary', 'bg-brand-primary/10', 'text-brand-primary');
+                btn.classList.add('border-white/30', 'text-brand-white/80');
                 // Remove from array
                 state.answers.q2 = state.answers.q2.filter(item => item !== value);
             } else {
-                e.target.classList.add('selected', 'border-brand-primary', 'bg-brand-primary/10', 'text-brand-primary');
-                e.target.classList.remove('border-white/30', 'text-brand-white/80');
+                btn.classList.add('selected', 'border-brand-primary', 'bg-brand-primary/10', 'text-brand-primary');
+                btn.classList.remove('border-white/30', 'text-brand-white/80');
                 // Add to array
                 state.answers.q2.push(value);
             }
@@ -77,15 +93,22 @@ document.addEventListener('DOMContentLoaded', () => {
     backBtns.forEach(btn => {
         btn.addEventListener('click', prevQuestion);
     });
+    
+    // Submit Button
+    if (submitBtn) {
+        submitBtn.addEventListener('click', () => {
+             if (validateContactForm()) {
+                finishQuiz();
+             }
+        });
+    }
 
     // Functions
     function nextQuestion() {
         if (state.currentQuestion < questions.length - 1) {
             state.currentQuestion++;
             updateUI();
-        } else {
-            finishQuiz();
-        }
+        } 
     }
 
     function prevQuestion() {
@@ -110,8 +133,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Update Progress
-        if(currentStepDisplay) {
-            currentStepDisplay.textContent = state.currentQuestion + 1;
+        if(progressHeader) {
+            // If contact step (last step)
+            if (state.currentQuestion === questions.length - 1) {
+                 progressHeader.innerHTML = '<span class="text-brand-primary text-xl">Final Step</span>';
+            } else {
+                 progressHeader.innerHTML = `Question <span class="text-brand-primary text-xl">${state.currentQuestion + 1}</span>/8`;
+            }
         }
         
         // Scroll to top of assessment container
@@ -120,10 +148,43 @@ document.addEventListener('DOMContentLoaded', () => {
              assessmentContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     }
+    
+    function validateContactForm() {
+        const nameInput = document.getElementById('contact-name');
+        const emailInput = document.getElementById('contact-email');
+        const phoneInput = document.getElementById('contact-phone');
+        const countryCodeInput = document.getElementById('contact-country-code');
+        const businessInput = document.getElementById('contact-business');
+
+        if (!nameInput || !emailInput || !phoneInput || !countryCodeInput || !businessInput) {
+            // If elements are missing from DOM, just return false or log error
+            return false;
+        }
+        
+        const name = nameInput.value;
+        const email = emailInput.value;
+        const phone = phoneInput.value;
+        const phoneCode = countryCodeInput.value;
+        const business = businessInput.value;
+
+        if (!name || !email || !phone || !business) {
+            alert('Please fill in all fields.');
+            return false;
+        }
+        
+        // Basic Email Regex
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+             alert('Please enter a valid email address.');
+             return false;
+        }
+
+        state.answers.contact = { name, email, phoneCode, phone, business };
+        return true;
+    }
 
     function finishQuiz() {
         console.log('Quiz Finished', state.answers);
-        alert("Assessment Completed! Logic to be implemented.");
-        // Here we will eventually trigger the result logic
+        alert("Assessment Completed! Submitting...");
+        // This is where you would send data to backend or show results
     }
 });
