@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const progressHeader = document.getElementById('progress-header');
     
     // Initialize
-    updateUI();
+    updateUI(false);
 
     // Event Listeners for Single Select Options
     document.querySelectorAll('.single-select-option').forEach(option => {
@@ -107,18 +107,18 @@ document.addEventListener('DOMContentLoaded', () => {
     function nextQuestion() {
         if (state.currentQuestion < questions.length - 1) {
             state.currentQuestion++;
-            updateUI();
+            updateUI(true);
         } 
     }
 
     function prevQuestion() {
         if (state.currentQuestion > 0) {
             state.currentQuestion--;
-            updateUI();
+            updateUI(true);
         }
     }
 
-    function updateUI() {
+    function updateUI(shouldScroll = true) {
         // Show/Hide Questions
         questions.forEach((q, index) => {
             if (index === state.currentQuestion) {
@@ -143,9 +143,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         // Scroll to top of assessment container
-        const assessmentContainer = document.getElementById('assessment-container');
-        if(assessmentContainer) {
-             assessmentContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (shouldScroll) {
+            const assessmentContainer = document.getElementById('assessment-container');
+            if(assessmentContainer) {
+                 assessmentContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
         }
     }
     
