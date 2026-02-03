@@ -50,7 +50,7 @@
             width: 100%;
             max-width: var(--container-max-width);
             margin: 0 auto;
-            padding: 0 1.5rem;
+            padding: 0 1.25rem; /* Slightly reduced for mobile */
         }
 
         /* --- TYPOGRAPHY --- */
@@ -145,7 +145,7 @@
             margin: 0 auto;
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 2rem;
+            padding: 1.5rem; /* Reduced from 2rem for mobile */
             border-radius: 16px;
             margin-bottom: 3rem;
             text-align: left;
@@ -161,7 +161,7 @@
         .checklist-item {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.08); /* More subtle border */
-            padding: 1.5rem;
+            padding: 1.25rem; /* Reduced */
             border-radius: 12px;
             display: flex;
             align-items: flex-start;
@@ -183,6 +183,13 @@
             gap: 3rem;
         }
 
+        .truth-box {
+            background: rgba(255,255,255,0.03);
+            padding: 1.25rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
         /* Table Responsive Wrapper */
         .table-responsive {
             width: 100%;
@@ -193,7 +200,7 @@
         .comparison-table {
             width: 100%;
             border-collapse: collapse;
-            min-width: 300px; /* Ensure it doesn't squish too much */
+            /* removed min-width to prevent overflow */
         }
         
         .comparison-table td {
@@ -664,7 +671,7 @@
                     </div>
                 </div>
                 
-                <div style="background: rgba(255,255,255,0.03); padding: 1.5rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+                <div class="truth-box">
                     <h3 style="color: white; margin-bottom: 1.5rem; font-size: 1.25rem;">The AI Comparison Trap</h3>
                     
                     <div class="table-responsive">
