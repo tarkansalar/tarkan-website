@@ -469,8 +469,87 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function finishQuiz() {
+        // Instead of showing report immediately, show lead form
+        renderLeadForm();
+    }
+
+    function renderLeadForm() {
+        if (!quizContainer) return;
+        
+        const html = `
+            <div class="quiz-wrapper fade-in text-left">
+                <div class="quiz-header mb-6 text-center">
+                    <p class="text-sm font-bold text-white/50 uppercase tracking-widest mb-2">ALMOST DONE</p>
+                    <h2 class="text-3xl font-display font-bold text-white mb-2">Generatng Your Report...</h2>
+                    <p class="text-white/60">Where should we send your full analysis?</p>
+                </div>
+
+                <div class="bg-white/5 border border-white/10 rounded-xl p-6 md:p-10 max-w-lg mx-auto">
+                    <div class="options-grid gap-4">
+                        <!-- Name -->
+                        <div>
+                            <label class="block text-sm text-white/60 mb-2">First Name</label>
+                            <input type="text" id="lead-name" class="quiz-textarea" style="min-height: 50px; padding: 0.75rem 1rem;" placeholder="e.g. Tarkan">
+                        </div>
+
+                        <!-- Email -->
+                        <div>
+                            <label class="block text-sm text-white/60 mb-2">Work Email</label>
+                            <input type="email" id="lead-email" class="quiz-textarea" style="min-height: 50px; padding: 0.75rem 1rem;" placeholder="name@company.com">
+                        </div>
+
+                        <!-- Phone -->
+                        <div>
+                            <label class="block text-sm text-white/60 mb-2">Phone Number</label>
+                            <input type="tel" id="lead-phone" class="quiz-textarea" style="min-height: 50px; padding: 0.75rem 1rem;" placeholder="e.g. +1 555-010-9999">
+                        </div>
+
+                        <!-- Business Name -->
+                        <div>
+                            <label class="block text-sm text-white/60 mb-2">Business Name</label>
+                            <input type="text" id="lead-business" class="quiz-textarea" style="min-height: 50px; padding: 0.75rem 1rem;" placeholder="e.g. Smart Concepts">
+                        </div>
+
+                        <button id="submit-lead-btn" class="btn btn-primary mt-6 w-full py-4 text-lg font-bold shadow-lg hover:shadow-xl transition-all">
+                            SEE MY RESULTS &rarr;
+                        </button>
+                        
+                         <p class="text-center text-xs text-white/30 mt-4">your data is safe. zero spam.</p>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        quizContainer.innerHTML = html;
+        quizContainer.scrollIntoView({ behavior: 'smooth' });
+
+        document.getElementById('submit-lead-btn').addEventListener('click', submitLeadForm);
+    }
+
+    function submitLeadForm() {
+        const name = document.getElementById('lead-name').value.trim();
+        const email = document.getElementById('lead-email').value.trim();
+        const phone = document.getElementById('lead-phone').value.trim();
+        const business = document.getElementById('lead-business').value.trim();
+
+        // Simple validation
+        let valid = true;
+        [name, email, phone, business].forEach(val => {
+            if(!val) valid = false;
+        });
+
+        if (!valid) {
+            alert('Please fill out all fields to unlock your customized report.');
+            return;
+        }
+
+        // Store Lead Data (Simulated for now, can perform API call here)
+        state.leadData = { name, email, phone, business };
+        
+        // Use name in report?
+        
+        // Show Report
         const result = calculatePrimaryNeed();
-        // Generate Report Container
         renderReport(result);
     }
 
@@ -479,9 +558,10 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const primary = result.primary;
         const scores = result.scores;
-        const answers = state.answers; // For personalization
+        const answers = state.answers; 
+        const leadName = state.leadData ? state.leadData.name : 'Founder';
 
-        // Secondary logic: Second highest >= 2 and not primary
+        // Secondary logic...
         let secondary = null;
         if (primary !== 'Systems' && scores.Systems >= 2) secondary = 'Systems';
         else if (primary !== 'Bestsellers' && scores.Bestsellers >= 2 && (!secondary || scores.Bestsellers > scores.Systems)) secondary = 'Bestsellers'; // Simplified
