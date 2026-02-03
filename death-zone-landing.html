@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Death Zone Diagnostic | Tarkan Salar</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        /* 
+         * LANDING PAGE SPECIFIC STYLES 
+         * Fully Responsive & Mobile-First Approach
+         */
+        
+        :root {
+            --section-padding-mobile: 4rem 1.25rem;
+            --section-padding-desktop: 6rem 2rem;
+            --container-max-width: 1200px;
+        }
+
+        /* RESET & BASICS */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            position: relative;
+        }
+
+        body {
+            background-color: #050505;
+            color: var(--color-white);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: var(--container-max-width);
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* --- TYPOGRAPHY --- */
+        .hero-eyebrow {
+            color: var(--color-primary);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .hero-headline {
+            font-family: var(--font-display);
+            /* Fluid typography: 3rem at 320px -> 5rem at 1200px */
+            font-size: clamp(2.5rem, 8vw, 5rem); 
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #ffffff, #d8f911);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subheadline {
+            font-size: clamp(1.25rem, 4vw, 1.75rem); /* Bigger as requested */
+            color: var(--color-white-80);
+            max-width: 800px;
+            margin: 0 auto 3rem; /* Added margin to separate from box below */
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--color-white-80);
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+
+        .prose {
+            font-size: 1.125rem;
+            color: var(--color-white-80);
+        }
+        
+        .prose strong { color: var(--color-white); }
+        .stat-highlight { color: var(--color-red); font-weight: 700; }
+        .text-gradient {
+            background: linear-gradient(to right, #d8f911, #ffffff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .highlight-text { color: var(--color-primary); }
+
+        /* --- BUTTONS --- */
+        .btn-large {
+            padding: 1.25rem 1rem; /* Reduced side padding for mobile */
+            font-size: clamp(0.9rem, 4vw, 1.125rem); /* Responsive font size */
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            line-height: 1.2; /* Better multiline handling if it wraps */
+        }
+
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 0 0 rgba(216, 249, 17, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(216, 249, 17, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(216, 249, 17, 0); }
+        }
+        .btn-pulse { animation: pulse-glow 2s infinite; }
+
+        /* --- SECTIONS --- */
+        
+        /* Hero */
+        .hero-section {
+            padding: 6rem 0 4rem;
+            text-align: center;
+            background: radial-gradient(circle at top center, rgba(216, 249, 17, 0.15) 0%, rgba(13, 13, 13, 0) 70%);
+        }
+        
+        .hero-content-box {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 16px;
+            margin-bottom: 3rem;
+            text-align: left;
+        }
+
+        /* Diagnostic Intro */
+        .checklist-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .checklist-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08); /* More subtle border */
+            padding: 1.5rem;
+            border-radius: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        /* Truth Section */
+        .truth-section {
+            padding: var(--section-padding-mobile);
+            background-color: #0a0a0a;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .truth-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+
+        /* Table Responsive Wrapper */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 300px; /* Ensure it doesn't squish too much */
+        }
+        
+        .comparison-table td {
+            padding: 1rem 0.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            vertical-align: middle;
+        }
+        
+        .comparison-row { display: flex; align-items: center; gap: 0.75rem; }
+        .comparison-icon { flex-shrink: 0; font-size: 1.25rem; }
+        .comparison-icon.check { color: var(--color-green); }
+        .comparison-icon.cross { color: var(--color-red); }
+
+        /* Transformation */
+        .transformation-section {
+            padding: var(--section-padding-mobile);
+            background: linear-gradient(180deg, #0d0d0d 0%, #1a1a1a 100%);
+        }
+
+        .transformation-box {
+            background: rgba(216, 249, 17, 0.03);
+            border: 1px solid var(--color-primary);
+            border-radius: 16px;
+            padding: 2rem 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .transformation-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem; 
+            margin-top: 2rem;
+        }
+        
+        .transformation-check-item {
+            background: rgba(216, 249, 17, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 500;
+        }
+
+        /* Choice Section */
+        .choice-section { padding: var(--section-padding-mobile); }
+
+        .brand-comparison {
+            display: grid;
+            grid-template-columns: 1fr; /* Stack on mobile */
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .brand-card {
+            padding: 2rem;
+            border-radius: 16px;
+            position: relative;
+        }
+        
+        .brand-a {
+            background: rgba(255, 77, 77, 0.05);
+            border: 1px solid rgba(255, 77, 77, 0.3);
+        }
+        
+        .brand-b {
+            background: rgba(216, 249, 17, 0.05);
+            border: 1px solid rgba(216, 249, 17, 0.5);
+            box-shadow: 0 0 30px rgba(216, 249, 17, 0.1);
+            order: -1; /* Show winner first on mobile? Or keep logical comparison order. Keeping logical. */
+        }
+        @media(min-width: 768px) { .brand-b { order: unset; } }
+
+        .brand-title {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        .brand-a .brand-title { color: var(--color-red); }
+        .brand-b .brand-title { color: var(--color-primary); }
+        
+        .brand-list li {
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            font-size: 0.95rem;
+        }
+
+        /* Social Proof */
+        .social-proof-section {
+            padding: var(--section-padding-mobile);
+            background-color: #0a0a0a;
+        }
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        /* Final CTA */
+        .final-cta-section {
+            background: var(--color-primary);
+            color: var(--color-dark);
+            padding: 4rem 1.5rem;
+            text-align: center;
+        }
+        
+        .final-cta-container {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        /* Utility helper for centering */
+        .text-center { text-align: center; }
+        .mx-auto { margin-left: auto; margin-right: auto; }
+
+        /* --- MEDIA QUERIES --- */
+        @media (min-width: 768px) {
+            .hero-section { padding: 8rem 0 5rem; }
+            
+            .checklist-grid {
+                grid-template-columns: 1fr 1fr; /* 2 columns on tablet+ */
+            }
+            .checklist-item-full {
+                grid-column: 1 / -1;
+                justify-content: center;
+            }
+            
+            .truth-section { padding: var(--section-padding-desktop); }
+            .truth-grid {
+                grid-template-columns: 1fr 1fr; /* Side by side on desktop */
+                gap: 4rem;
+                align-items: center;
+            }
+            
+            .transformation-section { padding: var(--section-padding-desktop); }
+            .transformation-box { padding: 3rem; }
+            .transformation-grid {
+                grid-template-columns: repeat(4, 1fr); /* 4 columns on desktop */
+            }
+
+            .choice-section { padding: var(--section-padding-desktop); }
+            .brand-comparison {
+                grid-template-columns: 1fr 1fr; /* Side by side */
+            }
+
+            .social-proof-section { padding: var(--section-padding-desktop); }
+            .testimonial-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+        <div class="container">
+            <span class="hero-eyebrow">🔥 The Death Zone Diagnostic</span>
+            <h1 class="hero-headline">
+                You're Sitting on $200K-$500K<br>in Dead Stock Right Now.
+            </h1>
+            <p class="hero-subheadline">
+                And you don't even realize it's killing your business.
+            </p>
+            
+            <div class="hero-content-box prose">
+                <h3 style="color: white; margin-bottom: 1rem; font-size: 1.5rem;">$2.3 trillion is lost to overstock every year.</h3>
+                <p>Nike: <span class="stat-highlight">$100M gone.</span></p>
+                <p>ASOS: <span class="stat-highlight">£100M written off.</span></p>
+                <p>Your brand: <span class="stat-highlight">Probably $200K-$500K trapped right now.</span></p>
+                <div style="margin-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem;">
+                    <p>Most D2C founders think this is normal. <strong>It's not.</strong></p>
+                    <p class="highlight-text" style="font-weight: 600;">It's the #1 reason 73% of brands die between $10M-$50M.</p>
+                </div>
+            </div>
+            
+            <a href="#diagnostic-start" class="btn btn-primary btn-large btn-pulse">
+                TAKE THE 3-MINUTE DIAGNOSTIC
+            </a>
+            <p style="margin-top: 1rem; color: var(--color-white-50); font-size: 0.9rem;">
+                Free. No email required. Instant results.
+            </p>
+        </div>
+    </section>
+
+    <!-- DIAGNOSTIC INTRO -->
+    <section class="diagnostic-intro" style="padding: 4rem 0;">
+        <div class="container">
+            <h2 class="section-title">The Death Zone Diagnostic</h2>
+            <p class="section-subtitle">3 minutes. 15 questions. Instant results.</p>
+            
+            <p class="text-center prose" style="max-width: 600px; margin: 0 auto 3rem;">
+                Find out if you know your <span class="highlight-text">80/20 Bestseller DNA</span> — or if you're chasing trends that don't fit YOUR brand.
+            </p>
+
+            <div class="checklist-grid">
+                <div class="checklist-item">
+                    <div class="check-icon">✅</div>
+                    <div>
+                        <h4 style="color: white; margin-bottom: 0.25rem;">How much cash is trapped</h4>
+                        <p style="color: var(--color-white-80); font-size: 0.9rem;">The number will shock you.</p>
+                    </div>
+                </div>
+                <div class="checklist-item">
+                    <div class="check-icon">✅</div>
+                    <div>
+                        <h4 style="color: white; margin-bottom: 0.25rem;">Your 80/20 Bestseller DNA</h4>
+                        <p style="color: var(--color-white-80); font-size: 0.9rem;">Do 20% of your products generate 80% of revenue?</p>
+                    </div>
+                </div>
+                <div class="checklist-item">
+                    <div class="check-icon">✅</div>
+                    <div>
+                        <h4 style="color: white; margin-bottom: 0.25rem;">Where you're leaking profits</h4>
+                        <p style="color: var(--color-white-80); font-size: 0.9rem;">Which SKUs are quietly bleeding your margins.</p>
+                    </div>
+                </div>
+                <div class="checklist-item">
+                    <div class="check-icon">✅</div>
+                    <div>
+                        <h4 style="color: white; margin-bottom: 0.25rem;">If you're using AI correctly</h4>
+                        <p style="color: var(--color-white-80); font-size: 0.9rem;">Are you chasing trends or building YOUR brand?</p>
+                    </div>
+                </div>
+                 <div class="checklist-item checklist-item-full" style="background: rgba(216, 249, 17, 0.05); border-color: var(--color-primary);">
+                    <div class="check-icon">✅</div>
+                    <div>
+                        <h4 style="color: var(--color-primary); margin-bottom: 0.25rem;">Your personalized roadmap</h4>
+                        <p style="color: var(--color-white); font-size: 0.9rem;">What to kill, what to scale, and what to test next.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="#diagnostic-start" class="btn btn-primary btn-large">
+                    TAKE THE DIAGNOSTIC
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- THE TRUTH SECTION -->
+    <section class="truth-section">
+        <div class="container">
+            <div class="truth-grid">
+                <div>
+                    <h2 class="section-title" style="text-align: left;">Here's the truth most founders don't realize</h2>
+                    <div class="prose">
+                        <p style="margin-bottom: 1rem;">You're not guessing. You're using Helium 10, Jungle Scout, Particl.</p>
+                        <p style="margin-bottom: 1rem;">You're ordering based on data.</p>
+                        <p style="margin-bottom: 1rem;">And you STILL have <strong class="stat-highlight">$200K-$500K in dead stock.</strong></p>
+                        <h4 style="margin-top: 2rem; color: white;">Why?</h4>
+                        <p>Because AI shows you what's trending <em>everywhere</em>.</p>
+                        <p>It doesn't show you what fits <strong>YOUR brand voice</strong>.</p>
+                    </div>
+                </div>
+                
+                <div style="background: rgba(255,255,255,0.03); padding: 1.5rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+                    <h3 style="color: white; margin-bottom: 1.5rem; font-size: 1.25rem;">The AI Comparison Trap</h3>
+                    
+                    <div class="table-responsive">
+                        <table class="comparison-table">
+                            <tr>
+                                <td colspan="1" style="color: var(--color-white-50); font-size: 0.9rem; padding-bottom: 0.5rem;">Those tools show you:</td>
+                            </tr>
+                            <tr><td class="comparison-row"><span class="comparison-icon check">✅</span> Competitor sales</td></tr>
+                            <tr><td class="comparison-row"><span class="comparison-icon check">✅</span> Search volume</td></tr>
+                            <tr><td class="comparison-row"><span class="comparison-icon check">✅</span> Amazon trends</td></tr>
+                            
+                            <tr>
+                                <td colspan="1" style="color: var(--color-white-50); font-size: 0.9rem; padding-top: 1.5rem; padding-bottom: 0.5rem;">But they DON'T show you:</td>
+                            </tr>
+                            <tr><td class="comparison-row"><span class="comparison-icon cross">❌</span> What dies in 90 days</td></tr>
+                            <tr><td class="comparison-row"><span class="comparison-icon cross">❌</span> Rebuy rates</td></tr>
+                            <tr><td class="comparison-row"><span class="comparison-icon cross">❌</span> Brand fit</td></tr>
+                        </table>
+                    </div>
+
+                    <div style="margin-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem;">
+                        <p style="font-size: 1rem; color: white;">Difference between finding <em>A</em> bestseller and finding <strong>YOUR</strong> bestseller.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRANSFORMATION SECTION -->
+    <section class="transformation-section">
+        <div class="container">
+            <h2 class="section-title">The Transformation</h2>
+            <p class="section-subtitle">Here's what happens when you know your 80/20 Bestseller DNA</p>
+            
+            <div class="transformation-box">
+                <div class="prose text-center" style="max-width: 800px; margin: 0 auto;">
+                    <h3 style="color: var(--color-primary); font-size: clamp(1.5rem, 4vw, 2rem); line-height: 1.2;">80% of your revenue comes from 20% of your products</h3>
+                    <p style="margin-top: 0.5rem;">(your heroes — proven, profitable, predictable)</p>
+                    
+                    <div style="margin: 2rem 0; text-align: left; background: rgba(0,255,0,0.05); padding: 1.5rem; border-radius: 8px;">
+                        <p style="margin-bottom: 0.5rem;"><strong>This is Shein's & Zara's secret.</strong></p>
+                        <p>They test. They kill what doesn't sell. They double down on what does.</p>
+                        <p style="margin-top: 1rem;" class="highlight-text">They're not chasing EVERY trend. They're only testing trends that fit THEIR brand DNA.</p>
+                    </div>
+                </div>
+                
+                <div class="transformation-grid">
+                    <div class="transformation-check-item">
+                        <span class="comparison-icon check">✅</span> <span>Higher profits</span>
+                    </div>
+                    <div class="transformation-check-item">
+                        <span class="comparison-icon check">✅</span> <span>Less overstock</span>
+                    </div>
+                    <div class="transformation-check-item">
+                        <span class="comparison-icon check">✅</span> <span>More focus</span>
+                    </div>
+                    <div class="transformation-check-item">
+                        <span class="comparison-icon check">✅</span> <span>Lower CAC</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CHOICE SECTION -->
+    <section class="choice-section">
+        <div class="container">
+            <h2 class="section-title">The Choice</h2>
+            <p class="section-subtitle">Right now, you're one of two brands:</p>
+            
+            <div class="brand-comparison">
+                <div class="brand-card brand-a">
+                    <h3 class="brand-title">Brand A</h3>
+                    <ul class="brand-list" style="list-style: none; padding: 0;">
+                         <li><span style="color: var(--color-red);">⚠️</span> 47 SKUs</li>
+                         <li><span style="color: var(--color-red);">⚠️</span> $450K dead stock</li>
+                         <li><span style="color: var(--color-red);">⚠️</span> Chasing "hot" trends</li>
+                         <li><span style="color: var(--color-red);">⚠️</span> Margins shrinking</li>
+                    </ul>
+                    <div style="margin-top: 1.5rem; border-top: 1px solid rgba(255, 77, 77, 0.3); padding-top: 1rem;">
+                        <strong style="color: var(--color-red); display: block; font-size: 1.1rem;">Chasing trends.</strong>
+                    </div>
+                </div>
+                
+                <div class="brand-card brand-b">
+                    <div style="position: absolute; top: -1rem; right: -0.5rem; background: var(--color-primary); color: black; padding: 0.5rem 1rem; border-radius: 999px; font-weight: 700; font-size: 0.8rem; transform: rotate(5deg); box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
+                        YOU WANT THIS
+                    </div>
+                    <h3 class="brand-title">Brand B</h3>
+                    <ul class="brand-list" style="list-style: none; padding: 0;">
+                         <li><span style="color: var(--color-primary);">✅</span> 14 hero SKUs</li>
+                         <li><span style="color: var(--color-primary);">✅</span> $80K dead stock</li>
+                         <li><span style="color: var(--color-primary);">✅</span> Verification, not direction</li>
+                         <li><span style="color: var(--color-primary);">✅</span> Margins growing</li>
+                    </ul>
+                    <div style="margin-top: 1.5rem; border-top: 1px solid rgba(216, 249, 17, 0.5); padding-top: 1rem;">
+                        <strong style="color: var(--color-primary); display: block; font-size: 1.1rem;">Knows their DNA.</strong>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 4rem;">
+                <h3 style="color: white; margin-bottom: 2rem;">Which one are you?</h3>
+                <a href="#diagnostic-start" class="btn btn-primary btn-large">
+                    FIND OUT IN 3 MINUTES
+                </a>
+                <p style="margin-top: 1rem; color: var(--color-white-50); padding: 0 1rem;">
+                    You have nothing to lose. One insight could free up $200K-$500K.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOCIAL PROOF -->
+    <section class="social-proof-section">
+        <div class="container">
+            <h2 class="section-title text-center" style="margin-bottom: 3rem;">What Founders Say</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="prose">
+                        <p class="feature-text">"I was using Helium 10 to pick products. Still had $450K in dead stock. This diagnostic showed me I was chasing trends that didn't fit my brand. We killed 21 SKUs... margins went from 28% to 48%."</p>
+                        <div style="margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem;">
+                            <div style="width: 40px; height: 40px; background: #333; border-radius: 50%;"></div>
+                            <div>
+                                <strong style="color: white; display: block;">Founder</strong>
+                                <span style="font-size: 0.85rem; color: var(--color-white-50);">$8M Supplements Brand</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="prose">
+                        <p class="feature-text">"We went from 32 SKUs to 14. I stopped ordering every 'trending' product... Dead stock dropped from $380K to $95K. Our brand became crystal clear."</p>
+                        <div style="margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem;">
+                             <div style="width: 40px; height: 40px; background: #333; border-radius: 50%;"></div>
+                            <div>
+                                <strong style="color: white; display: block;">Founder</strong>
+                                <span style="font-size: 0.85rem; color: var(--color-white-50);">$6M Apparel Brand</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA SECTION -->
+    <section class="final-cta-section">
+        <div class="container">
+            <div class="final-cta-container">
+                <h2 style="font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3rem); line-height: 1.1; margin-bottom: 0;">Stop Chasing Trends.<br>Start Building YOUR Brand.</h2>
+                
+                <!-- Primary CTA -->
+                <div style="width: 100%;">
+                    <a href="#diagnostic-start" class="btn btn-dark btn-large" style="width: 100%; border: 2px solid #000; font-weight: 800;">
+                        TAKE THE 3-MINUTE DIAGNOSTIC
+                    </a>
+                    <p style="margin-top: 0.5rem; color: #000; font-size: 0.9rem; font-weight: 600;">
+                        Free. No email required. Instant results.
+                    </p>
+                </div>
+
+                <p style="color: #000; font-weight: 700; opacity: 0.6;">— OR —</p>
+
+                <!-- Secondary CTA -->
+                <div style="width: 100%;">
+                    <a href="#" class="btn btn-secondary" style="width: 100%; color: #000; border-color: #000; background: transparent;">
+                        BOOK A FREE STRATEGY CALL
+                    </a>
+                    <p style="margin-top: 0.5rem; color: #000; font-size: 0.9rem;">
+                        30 minutes. Zero pitch. Just clarity.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer style="padding: 4rem 1.5rem; text-align: center; border-top: 1px solid rgba(255,255,255,0.1);">
+        <div class="container">
+            <div style="max-width: 600px; margin: 0 auto;">
+                <p style="margin-bottom: 0.5rem; font-weight: 700; color: white;">Built by Tarkan Salar</p>
+                <p style="font-size: 0.9rem; color: var(--color-white-50); margin-bottom: 1rem;">
+                    26 years finding bestsellers for Adidas, Louis Vuitton, Zara.
+                </p>
+                <div style="font-size: 0.8rem; color: var(--color-white-30);">
+                    &copy; 2026 Tarkan Salar. All rights reserved. <br>
+                    <a href="privacy.html" style="color: inherit; text-decoration: underline;">Privacy</a> | 
+                    <a href="terms.html" style="color: inherit; text-decoration: underline;">Terms</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Placeholders for Logic -->
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
