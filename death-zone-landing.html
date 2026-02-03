@@ -315,6 +315,202 @@
         .text-center { text-align: center; }
         .mx-auto { margin-left: auto; margin-right: auto; }
 
+        /* --- DIAGNOSTIC QUIZ STYLES --- */
+        #diagnostic-start {
+            scroll-margin-top: 2rem;
+        }
+
+        #back-btn {
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.875rem;
+            margin-top: 1.5rem;
+            cursor: pointer;
+            transition: color 0.2s ease;
+            padding: 0.5rem 0;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        #back-btn:hover {
+            color: var(--color-white);
+        }
+
+        .quiz-wrapper {
+            max-width: 700px;
+            margin: 0 auto;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .quiz-header {
+            margin-bottom: 2.5rem;
+        }
+
+        .question-title {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            line-height: 1.25;
+            margin-bottom: 1rem;
+            min-height: 3em; /* Prevent layout shift */
+        }
+
+        .options-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .quiz-option {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--color-white);
+            padding: 1.25rem 1.5rem;
+            text-align: left;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+
+        .quiz-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateX(4px);
+        }
+
+        .quiz-option.selected {
+            background: rgba(216, 249, 17, 0.1);
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+            font-weight: 600;
+        }
+
+        /* Checkbox style for multi-select */
+        .check-box {
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 4px;
+            margin-right: 1rem;
+            display: inline-block;
+            position: relative;
+        }
+        
+        .quiz-option.selected .check-box {
+            border-color: var(--color-primary);
+            background: var(--color-primary);
+        }
+
+        .quiz-option.selected .check-box::after {
+            content: '✓';
+            position: absolute;
+            color: black;
+            font-size: 14px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .quiz-textarea {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 1rem;
+            border-radius: 12px;
+            font-size: 1rem;
+            resize: vertical;
+            min-height: 120px;
+        }
+        .quiz-textarea:focus {
+            outline: none;
+            border-color: var(--color-primary);
+        }
+
+        /* Report Styles */
+        .report-wrapper {
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        .result-header h1.glow-text {
+            text-shadow: 0 0 30px rgba(216, 249, 17, 0.3);
+            margin-bottom: 2rem;
+        }
+
+        .analysis-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .analysis-list li::before {
+            content: '•';
+            color: var(--color-primary);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .animate-fadeIn { animation: fadeIn 0.5s ease-out; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Tailwind Utilities Emulation for JS content */
+        .text-brand-primary { color: var(--color-primary); }
+        .bg-brand-primary\/10 { background: rgba(216, 249, 17, 0.1); }
+        .border-brand-primary { border-color: var(--color-primary); }
+        .text-brand-red { color: var(--color-red); }
+        
+        /* Layout Utils */
+        .flex { display: flex; }
+        .justify-between { justify-content: space-between; }
+        .mb-2 { margin-bottom: 0.5rem; }
+        .mb-6 { margin-bottom: 1.5rem; }
+        .mb-8 { margin-bottom: 2rem; }
+        .mt-4 { margin-top: 1rem; }
+        .mt-8 { margin-top: 2rem; }
+        .mt-10 { margin-top: 2.5rem; }
+        .p-4 { padding: 1rem; }
+        .p-6 { padding: 1.5rem; }
+        .p-10 { padding: 2.5rem; }
+        .w-full { width: 100%; }
+        .max-w-lg { max-width: 32rem; }
+        .h-1 { height: 0.25rem; }
+        .rounded-full { border-radius: 9999px; }
+        .rounded-xl { border-radius: 0.75rem; }
+        .rounded-lg { border-radius: 0.5rem; }
+        .overflow-hidden { overflow: hidden; }
+        .bg-white\/10 { background: rgba(255,255,255,0.1); }
+        .bg-white\/5 { background: rgba(255,255,255,0.05); }
+        .text-white { color: white; }
+        .text-white\/50 { color: rgba(255,255,255,0.5); }
+        .text-white\/60 { color: rgba(255,255,255,0.6); }
+        .text-white\/90 { color: rgba(255,255,255,0.9); }
+        .font-bold { font-weight: 700; }
+        .text-sm { font-size: 0.875rem; }
+        .text-xs { font-size: 0.75rem; }
+        .text-2xl { font-size: 1.5rem; }
+        .text-3xl { font-size: 1.875rem; }
+        .text-4xl { font-size: 2.25rem; }
+        .grid { display: grid; }
+        .gap-6 { gap: 1.5rem; }
+        .tracking-widest { letter-spacing: 0.1em; }
+        .uppercase { text-transform: uppercase; }
+        .border { border-width: 1px; border-style: solid; }
+        .border-white\/10 { border-color: rgba(255,255,255,0.1); }
+        
+        @media (min-width: 768px) {
+            .md\:grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+            .md\:text-5xl { font-size: 3rem; }
+            .md\:text-6xl { font-size: 3.75rem; }
+            .md\:p-10 { padding: 2.5rem; }
+        }
+
         /* --- MEDIA QUERIES --- */
         @media (min-width: 768px) {
             .hero-section { padding: 8rem 0 5rem; }
@@ -389,7 +585,7 @@
     <section class="diagnostic-intro" style="padding: 4rem 0;">
         <div class="container">
             <h2 class="section-title">The Death Zone Diagnostic</h2>
-            <p class="section-subtitle">3 minutes. 15 questions. Instant results.</p>
+            <p class="section-subtitle">3 minutes. 16 questions. Instant results.</p>
             
             <p class="text-center prose" style="max-width: 600px; margin: 0 auto 3rem;">
                 Find out if you know your <span class="highlight-text">80/20 Bestseller DNA</span> — or if you're chasing trends that don't fit YOUR brand.
@@ -437,6 +633,17 @@
                 <a href="#diagnostic-start" class="btn btn-primary btn-large">
                     TAKE THE DIAGNOSTIC
                 </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- DIAGNOSTIC QUIZ CONTAINER -->
+    <section id="diagnostic-start" style="padding: 4rem 1.5rem; background: #0d0d0d; min-height: 400px;">
+        <div class="container" style="max-width: 800px; margin: 0 auto;">
+            <div id="quiz-dynamic-container">
+                <div style="text-align: center; color: var(--color-white-50);">
+                    <p>Loading assessment engine...</p>
+                </div>
             </div>
         </div>
     </section>
@@ -664,5 +871,6 @@
             });
         });
     </script>
+    <script src="death-zone-diagnostic.js"></script>
 </body>
 </html>
