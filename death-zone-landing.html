@@ -11,6 +11,28 @@
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Main Stylesheet -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            primary: '#D8F911',
+                            secondary: '#F97316',
+                            dark: '#0D0D0D',
+                            white: '#FFFFFF',
+                            red: '#ef4444'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Anton', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
     <link rel="stylesheet" href="style.css">
     
     <style>
@@ -878,6 +900,6 @@
             });
         });
     </script>
-    <script src="death-zone-diagnostic.js"></script>
+    <script src="death-zone-diagnostic-v2.js"></script>
 </body>
 </html>
