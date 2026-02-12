@@ -615,7 +615,7 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
 
         quizContainer.innerHTML = html;
-        window.scrollTo(0, 0);
+        quizContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
     init();
