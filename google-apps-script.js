@@ -2,55 +2,78 @@
 function doPost(e) {
   try {
     const params = e.parameter;
+    const quizType = params.quizType || "death-zone"; // Default to old quiz
     
-    // Parse Incoming Data
+    // Parse Common Data
     const name = params.name || "Founder";
     const email = params.email;
     const phone = params.phone || "";
     const business = params.business || "";
-    const score = parseInt(params.score) || 0;
-    const category = params.category || "";
     const answers = JSON.parse(params.answers || "{}");
 
-    // --- 1. DETERMINE TIER ---
-    // 0-20: Safe
-    // 21-40: Warning
-    // 41-60: Danger
-    // 61-80: Death
-    let tier = "DEATH ZONE";
-    let color = "#ef4444"; // Red
-    if (score <= 20) { tier = "SAFE ZONE"; color = "#22c55e"; }
-    else if (score <= 40) { tier = "WARNING ZONE"; color = "#eab308"; }
-    else if (score <= 60) { tier = "DANGER ZONE"; color = "#f97316"; }
+    let emailHtml = "";
+    let subject = "";
+    let finalRow = [];
 
-    // --- 2. GENERATE EMAIL HTML ---
-    const emailHtml = generateEmailHtml(name, score, tier, color, answers);
+    // --- BRANCHING LOGIC ---
+    if (quizType === "bestseller-dna") {
+        // --- BESTSELLER DNA LOGIC ---
+        const overallScore = parseInt(params.overallScore) || 0;
+        const scores = JSON.parse(params.scores || "{}");
+        const ratings = JSON.parse(params.categoryRatings || "{}");
 
-    // --- 3. SEND EMAIL ---
+        // Determine Overall Rating
+        let overallRating = "Very Weak";
+        if (overallScore > 80) overallRating = "Weak";
+        if (overallScore > 130) overallRating = "Moderate";
+        if (overallScore > 170) overallRating = "Strong";
+
+        emailHtml = generateBestsellerEmailHtml(name, overallScore, overallRating, scores, ratings, answers);
+        subject = `Your Trapped Cash Diagnostic Report: ${overallRating}`;
+
+        // Save to Sheet (Append extra columns for new data)
+        const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+        finalRow = [
+            new Date(), name, email, phone, business, 
+            "Bestseller DNA", overallScore, overallRating, 
+            JSON.stringify(scores), JSON.stringify(answers)
+        ];
+        sheet.appendRow(finalRow);
+
+    } else {
+        // --- OLD DEATH ZONE LOGIC (Fallback) ---
+        const score = parseInt(params.score) || 0;
+        const category = params.category || "";
+        
+        let tier = "DEATH ZONE";
+        let color = "#ef4444";
+        if (score <= 20) { tier = "SAFE ZONE"; color = "#22c55e"; }
+        else if (score <= 40) { tier = "WARNING ZONE"; color = "#eab308"; }
+        else if (score <= 60) { tier = "DANGER ZONE"; color = "#f97316"; }
+
+        emailHtml = generateEmailHtml(name, score, tier, color, answers);
+        subject = `Your Death Zone Diagnostic Results: ${tier}`;
+
+        const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+        finalRow = [
+            new Date(), name, email, phone, business, 
+            "Death Zone", score, tier, 
+            JSON.stringify(answers)
+        ];
+        sheet.appendRow(finalRow);
+    }
+
+    // --- SEND EMAIL ---
     if (email) {
       MailApp.sendEmail({
         to: email,
-        subject: `Your Death Zone Diagnostic Results: ${tier}`,
+        subject: subject,
         htmlBody: emailHtml,
         name: "Tarkan Salar"
       });
     }
 
-    // --- 4. SAVE TO SHEET ---
-    const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-    sheet.appendRow([
-      new Date(),
-      name,
-      email,
-      phone,
-      business,
-      category,
-      score,
-      tier,
-      JSON.stringify(answers)
-    ]);
-
-    return ContentService.createTextOutput(JSON.stringify({ status: "success", tier: tier }))
+    return ContentService.createTextOutput(JSON.stringify({ status: "success" }))
       .setMimeType(ContentService.MimeType.JSON);
 
   } catch (error) {
@@ -59,7 +82,123 @@ function doPost(e) {
   }
 }
 
-// --- HELPER: HTML GENERATOR ---
+// --- NEW HELPER: BESTSELLER DNA HTML ---
+function generateBestsellerEmailHtml(name, overallScore, overallRating, scores, ratings, answers) {
+    
+    // Define Color based on Overall Rating
+    let color = "#ef4444"; // Red (Very Weak/Weak)
+    if (overallRating === "Moderate") color = "#eab308"; // Yellow
+    if (overallRating === "Strong") color = "#22c55e";   // Green
+
+    // Copy Mapping (Synced with JS)
+    const REPORT_COPY = {
+        focus: {
+            title: "Bestseller DNA & Focus",
+            weak: "You haven't yet concentrated revenue in a clear set of winners. Your catalog is likely bloated with 'hopeful' products that are draining attention.",
+            moderate: "You have winners, but they're not getting full focus. Your best SKUs are effectively subsidizing a long tail of mediocre performers.",
+            strong: "You're doing an excellent job concentrating revenue into a small hero set. The next step is to aggressively scale these winners."
+        },
+        cash: {
+            title: "Trapped Cash & Inventory",
+            weak: "You likely have significant cash sitting on shelves in products your customers have already voted against. This drains optionality.",
+            moderate: "You have some efficiency, but likely still have $50k-$150k trapped in slow-movers that could be redeployed.",
+            strong: "Your inventory runs lean. You're efficient at turning cash back into more cash. Keep this discipline as you scale."
+        },
+        decision: {
+            title: "Decision Quality & Launch Discipline",
+            weak: "Your launch process is leaking capital. Relying on 'mix but not systemized' decisions means every launch is a gamble, not a calculated step.",
+            moderate: "You have some wins, but the 'flopped' launches are costing you momentum. You need a sharper filter before committing capital.",
+            strong: "Your launch filter is working. You're not guessing—you're verifying demand before spending real money."
+        },
+        margin: {
+            title: "Margin & Pressure",
+            weak: "Margin pressure is high. If trapped inventory forces repeated discounting, your unit economics will crumble.",
+            moderate: "Your margin is workable, but not bulletproof. You must be ruthless about controlling CAC and avoiding unnecessary discounts.",
+            strong: "You have healthy margins that allow for aggressive acquisition. Protect this by not letting complexity creep in."
+        }
+    };
+
+    return `
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <style>
+        body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; line-height: 1.6; color: #333; background-color: #f4f4f4; margin: 0; padding: 0; }
+        .container { max-width: 600px; margin: 0 auto; background: #ffffff; padding: 40px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .header { text-align: center; border-bottom: 2px solid #eee; padding-bottom: 20px; margin-bottom: 30px; }
+        .score-box { background: ${color}15; border: 2px solid ${color}; color: ${color}; padding: 20px; text-align: center; border-radius: 8px; margin-bottom: 30px; }
+        .score-val { font-size: 48px; font-weight: bold; line-height: 1; margin: 10px 0; }
+        .rating-label { font-size: 24px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
+        .table-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #eee; }
+        .table-row:last-child { border-bottom: none; }
+        .cat-title { font-weight: bold; color: #555; }
+        .cat-score { font-weight: bold; color: #000; }
+        .section-box { background: #f9f9f9; border: 1px solid #eee; padding: 20px; border-radius: 8px; margin-bottom: 20px; }
+        .section-header { font-size: 18px; font-weight: bold; color: #111; margin-bottom: 10px; display: flex; justify-content: space-between; }
+        .rating-badge { background: #333; color: #fff; font-size: 12px; padding: 2px 8px; border-radius: 4px; }
+        .cta-btn { display: block; width: 100%; background: #D8F911; color: #000; text-align: center; padding: 15px 0; font-weight: bold; text-decoration: none; border-radius: 6px; margin-top: 30px; text-transform: uppercase; font-size: 18px; }
+        .cost-box { background: #000; color: #D8F911; padding: 15px; border-radius: 6px; text-align: center; margin: 20px 0; font-weight: bold; }
+      </style>
+    </head>
+    <body>
+      <div class="container">
+        <div class="header">
+          <h2>TRAPPED CASH DIAGNOSTIC REPORT</h2>
+          <p>Prepared for <strong>${name}</strong></p>
+        </div>
+
+        <!-- EXECUTIVE SUMMARY -->
+        <div class="score-box">
+           <div class="score-val">${overallScore}/200</div>
+           <div class="rating-label">${overallRating} HEALTH SCORE</div>
+        </div>
+
+        <div class="section-box">
+            <div style="font-size: 12px; text-transform: uppercase; color: #999; margin-bottom: 10px; font-weight: bold;">Category Breakdown</div>
+            ${Object.keys(scores).map(cat => `
+                <div class="table-row">
+                    <span class="cat-title">${REPORT_COPY[cat].title}</span>
+                    <span class="cat-score">${scores[cat]}/50 (${ratings[cat]})</span>
+                </div>
+            `).join('')}
+        </div>
+
+        <div class="cost-box">
+            ESTIMATED COST OF INACTION: ${answers['q13'] || '$250K - $500K'}
+        </div>
+
+        <h3>DETAILED ANALYSIS</h3>
+        
+        ${Object.keys(scores).map(cat => `
+            <div class="section-box">
+                <div class="section-header">
+                    <span>${REPORT_COPY[cat].title}</span>
+                    <span class="rating-badge">${ratings[cat]}</span>
+                </div>
+                <p style="margin: 0; color: #666; font-size: 14px;">
+                    ${REPORT_COPY[cat][ratings[cat].toLowerCase()]}
+                </p>
+            </div>
+        `).join('')}
+        
+        <div style="margin-top: 40px; text-align: center;">
+            <h3>YOUR NEXT STEP</h3>
+            <p>You have an estimated ${answers['q13'] || '$250K+'} at risk. Let's map your numbers to a 30-day liquidation plan.</p>
+            <a href="https://calendly.com/cantstopmeofficial/tarkan-salar-meeting-duration-adjustable-clone" class="cta-btn">
+                BOOK STRATEGY CALL
+            </a>
+            <p style="font-size: 12px; color: #999; margin-top: 20px;">
+                "${answers['q17'] || 'No additional notes provided.'}"
+            </p>
+        </div>
+
+      </div>
+    </body>
+    </html>
+    `;
+}
+
+// --- HELPER: OLD HTML GENERATOR (Keep existing function below) ---
 function generateEmailHtml(name, score, tier, color, answers) {
   
   // TIER CONTENT MAPPING (From User Request)
@@ -158,7 +297,7 @@ function generateEmailHtml(name, score, tier, color, answers) {
       <div class="container">
         <div class="header">
           <h2>DEATH ZONE DIAGNOSTIC RESULTS</h2>
-         <p>Analysis for <strong>${name}</strong></p>
+          <p>Analysis for <strong>${name}</strong></p>
         </div>
 
         <div class="score-box">
