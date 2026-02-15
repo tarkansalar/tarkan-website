@@ -392,20 +392,20 @@ document.addEventListener('DOMContentLoaded', () => {
         const html = `
             <div class="fade-in max-w-lg mx-auto py-10">
                 <div class="text-center mb-10">
-                    <h2 class="text-3xl font-display font-bold text-white mb-2">Analysis Complete</h2>
-                    <p class="text-white/60">Enter your details to reveal your Trapped Cash Report.</p>
+                    <h2 class="text-3xl font-display font-bold text-white mb-2">Your Trapped Cash Report is Ready</h2>
+                    <p class="text-white/60">Enter your email and we’ll send your personalized diagnostic + 90-day action plan in the next 60 seconds.</p>
                 </div>
                 
                 <div class="space-y-4">
                     <input type="text" id="lead-name" placeholder="First Name" class="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-white placeholder-white/30 focus:border-[#D8F911] outline-none transition-colors">
                     <input type="email" id="lead-email" placeholder="Work Email" class="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-white placeholder-white/30 focus:border-[#D8F911] outline-none transition-colors">
+                    <p class="text-xs text-white/40 ml-1">We hate spam too. Only actionable insights, no fluff.</p>
                     <input type="tel" id="lead-phone" placeholder="Phone Number" class="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-white placeholder-white/30 focus:border-[#D8F911] outline-none transition-colors">
                     <input type="text" id="lead-business" placeholder="Business Name" class="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-white placeholder-white/30 focus:border-[#D8F911] outline-none transition-colors">
                     
                     <button onclick="submitLead()" class="w-full bg-[#D8F911] text-black font-bold text-xl py-4 rounded-xl hover:scale-[1.02] transition-transform uppercase tracking-wide">
-                        Reveal My Report
+                        SEND MY REPORT
                     </button>
-                    <p class="text-center text-xs text-white/30">Your data is secure. No spam.</p>
                 </div>
             </div>
         `;
