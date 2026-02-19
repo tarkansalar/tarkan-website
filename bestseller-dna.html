@@ -99,12 +99,20 @@
         }
 
         .hero-subheadline {
-            font-size: clamp(1.25rem, 4vw, 1.75rem); /* Bigger as requested */
-            color: var(--color-white-80);
-            max-width: 800px;
-            margin: 0 auto 3rem; /* Added margin to separate from box below */
-            text-align: center;
-            line-height: 1.4;
+            font-size: clamp(1rem, 3vw, 1.25rem); /* Optimal reading size */
+            color: rgba(255, 255, 255, 0.85); /* Proper contrast */
+            max-width: 640px; /* Optimal reading width (60-75 chars per line) */
+            margin: 0 auto 3rem; 
+            text-align: left; /* Left align is much cleaner for long paragraphs */
+            line-height: 1.8; /* Generous breathing room */
+            padding: 0 1rem;
+        }
+        
+        @media (min-width: 768px) {
+            .hero-subheadline {
+                text-align: center; /* Center on desktop if width is constrained */
+                font-size: 1.25rem;
+            }
         }
 
         .section-title {
@@ -586,9 +594,27 @@
             <h1 class="hero-headline">
                 Your Cash is Trapped<br>in the Wrong Products.
             </h1>
-            <p class="hero-subheadline">
-                If you’re in the $3M–$20M range, you probably recognize this: revenue looks good, profit on paper doesn’t feel like cash in the bank, and you’re constantly asking yourself ‘where did the money go?’ Meanwhile SKU count keeps creeping up, inventory feels chaotic, CAC is higher than it should be, margins feel squeezed, and the team is firefighting across too many products and channels.
-            </p>
+            <div class="hero-subheadline">
+                <p style="margin-bottom: 2rem; font-weight: 500;">
+                    If you’re in the $3M–$20M range, you probably recognize this:
+                </p>
+                
+                <div style="text-align: left; max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.25rem;">
+                    <div style="display: flex; gap: 1rem; align-items: flex-start;">
+                        <span style="font-size: 1.25rem; line-height: 1.4;">🤔</span>
+                        <p style="margin: 0; color: rgba(255,255,255,0.9);">
+                            Revenue looks good, profit on paper doesn’t feel like cash in the bank, and you’re constantly asking yourself <em>‘where did the money go?’</em>
+                        </p>
+                    </div>
+                
+                    <div style="display: flex; gap: 1rem; align-items: flex-start;">
+                         <span style="font-size: 1.25rem; line-height: 1.4;">🔥</span>
+                        <p style="margin: 0; color: rgba(255,255,255,0.9);">
+                            Meanwhile SKU count keeps creeping up, inventory feels chaotic, CAC is higher than it should be, margins feel squeezed, and the team is firefighting across too many products and channels.
+                        </p>
+                    </div>
+                </div>
+            </div>
             
             <div class="hero-content-box prose">
                 <h3 style="color: white; margin-bottom: 1rem; font-size: 1.5rem;">The Silent Killer of $3M-$20M Brands.</h3>
