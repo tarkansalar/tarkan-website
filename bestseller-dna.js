@@ -286,7 +286,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // DOM Elements
     const quizContainer = document.getElementById('quiz-dynamic-container');
-    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbytqIEU3KJD-8_qmFBkcj4SpO8mLI3HZHzEUxZO9ktTY6mtsCfchdopHUwLPXhtdjAFjA/exec"
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyNKT18hgrms40Z8XXl9Eb1qUtYsVGIfeug-sUD01k8UtGv1NTf9srBtj8Gw568_v2LIw/exec';
 
     console.log("--- BESTSELLER DNA DIAGNOSTIC LOADED ---");
 

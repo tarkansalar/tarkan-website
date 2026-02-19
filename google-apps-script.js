@@ -192,6 +192,25 @@ function generateBestsellerEmailHtml(name, overallScore, overallRating, scores, 
             </p>
         </div>
 
+        <!-- P.S. SECTION -->
+        <div style="margin-top: 40px; padding-top: 30px; border-top: 2px dashed #eee; text-align: left;">
+            <p style="font-style: italic; color: #666; margin-bottom: 20px;"><strong>P.S. Example: Bestseller DNA for a Supplement Brand</strong> <br>(Create your own Brand Filter)</p>
+            
+            <p style="margin-bottom: 20px; color: #444;">
+                Use this framework before launching any new product. Also run your existing products through it.<br>
+                If a product doesn’t fit → <strong>kill it.</strong><br>
+                Your brand stays sharp only when every product passes the same filter.
+            </p>
+
+            <div style="background: #fdfdfd; border-left: 4px solid #D8F911; padding: 15px 20px; font-family: monospace; color: #333;">
+                <p style="margin: 0 0 10px 0;"><strong>WHO:</strong><br>Active lifestyle customers. Gym-goers. Athletes. Performance-focused individuals.</p>
+                <p style="margin: 0 0 10px 0;"><strong>WHAT:</strong><br>Performance optimization. Faster recovery. Sustained energy for workouts.</p>
+                <p style="margin: 0 0 10px 0;"><strong>HOW:</strong><br>Clean ingredients. Science-backed formulations. Premium positioning.</p>
+                <hr style="border: 0; border-top: 1px dashed #ccc; margin: 15px 0;">
+                <p style="margin: 0; font-weight: bold; color: #000;">Bestseller DNA:<br>“Active lifestyle, performance-focused, clean ingredients, recovery + energy.”</p>
+            </div>
+        </div>
+
       </div>
     </body>
     </html>
